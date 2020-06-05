@@ -18,8 +18,7 @@ class CommentDAO {
 
     static async createOneComment(comment) {
         try {
-            await commentsCollection.insertOne(comment);
-            return;
+            return await commentsCollection.insertOne(comment);
         } catch (err) {
             console.error(err);
         }
@@ -47,13 +46,12 @@ class CommentDAO {
 
     static async updateComment(id, data) {
         try {
-            const r = await commentsCollection.updateOne(
+            return await commentsCollection.updateOne(
                 { _id: ObjectId(id) },
                 {
                     $set: data
                 }
             );
-            return;
         } catch (err) {
             console.error(err);
         }
@@ -61,8 +59,7 @@ class CommentDAO {
 
     static async deleteComment(id) {
         try {
-            await commentsCollection.deleteOne({ _id: ObjectId(id) });
-            return;
+            return await commentsCollection.deleteOne({ _id: ObjectId(id) });
         } catch (err) {
             console.error(err);
         }

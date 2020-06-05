@@ -25,12 +25,15 @@ class PostsDAO {
     }
 
     static async getOnePost(id) {
-        try {
-            const post = await postsCollection.findOne({ _id: ObjectId(id) });
-            return post;
-        } catch (err) {
-            console.error(err);
-        }
+        // try {
+        //     console.log(ObjectId('wwwww'));
+        //     const post = await postsCollection.findOne({ _id: ObjectId(id) });
+        //     return post;
+        // } catch (err) {
+        //     console.error(err);
+        // }
+        const post = await postsCollection.findOne({ _id: ObjectId(id) });
+        return post;
     }
 
     static async createManyPosts(posts) {
@@ -44,8 +47,7 @@ class PostsDAO {
 
     static async createOnePost(post) {
         try {
-            await postsCollection.insertOne(post);
-            return;
+            return await postsCollection.insertOne(post);
         } catch (err) {
             console.error(err);
         }
@@ -53,11 +55,10 @@ class PostsDAO {
 
     static async updatePost(id, data) {
         try {
-            await postsCollection.updateOne(
+            return await postsCollection.updateOne(
                 { _id: ObjectId(id) },
                 { $set: data }
             );
-            return;
         } catch (err) {
             console.error(err);
         }
@@ -65,8 +66,7 @@ class PostsDAO {
 
     static async deletePost(id) {
         try {
-            await postsCollection.deleteOne({ _id: ObjectId(id) });
-            return;
+            return await postsCollection.deleteOne({ _id: ObjectId(id) });
         } catch (err) {
             console.error(err);
         }

@@ -45,13 +45,12 @@ class UserDAO {
 
     static async updateUser(id, data) {
         try {
-            const r = await usersCollection.updateOne(
+            return await usersCollection.updateOne(
                 { _id: ObjectId(id) },
                 {
                     $set: data
                 }
             );
-            return;
         } catch (err) {
             console.error(err);
         }
@@ -59,8 +58,7 @@ class UserDAO {
 
     static async deleteUser(id) {
         try {
-            await usersCollection.deleteOne({ _id: ObjectId(id) });
-            return;
+            return await usersCollection.deleteOne({ _id: ObjectId(id) });
         } catch (err) {
             console.error(err);
         }
