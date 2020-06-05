@@ -6,4 +6,6 @@
 
 3. finish the basic CRUD of comments.(done)
 
-4. error handling
+4. error handling in on central place, not mix up with business logic
+
+TODO: new Error(`Cannot find ${req.originalUrl}`); what is the Error class in nodejs? and what is `Error.captureStackTrace(this, this.constructor)`?
