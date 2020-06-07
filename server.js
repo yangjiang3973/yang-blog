@@ -2,11 +2,11 @@ const MongoClient = require('mongodb').MongoClient;
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 
-process.on('uncaughtException', err => {
-    console.log('uncaught exception! shutting down...');
-    console.log(err.name, err.message);
-    process.exit(1);
-});
+// process.on('uncaughtException', err => {
+//     console.log('uncaught exception! shutting down...');
+//     console.log(err.name, err.message);
+//     process.exit(1);
+// });
 
 const app = require('./app');
 const PostDAO = require('./dao/postDAO');
@@ -16,6 +16,7 @@ const CommentDAO = require('./dao/commentDAO');
 let url;
 if (process.env.NODE_ENV === 'development') url = 'mongodb://localhost:27017';
 else url = process.env.DB_URL.replace('<PASSWORD>', process.env.DB_PASSWORD);
+url = 'mongodb://localhost:27017';
 
 let server;
 MongoClient.connect(url, {

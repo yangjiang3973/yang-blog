@@ -1,4 +1,6 @@
 const { ObjectId } = require('mongodb');
+const dbErrorHandler = require('../utils/dbErrorHandler');
+const commentsSchema = require('./commentsSchema');
 
 let commentsCollection; // collections
 
@@ -8,10 +10,18 @@ class CommentDAO {
             return;
         }
         try {
+            await conn.db('blog').command({
+                collMod: 'comments',
+                validator: {
+                    $jsonSchema: commentsSchema
+                },
+                validationLevel: 'strict',
+                validationAction: 'error'
+            });
             commentsCollection = await conn.db('blog').collection('comments');
         } catch (e) {
             console.error(
-                {}`Unable to establish a collection handle in commentDAO: ${e}`
+                `Unable to establish a collection handle in commentDAO: ${e}`
             );
         }
     }
@@ -20,7 +30,7 @@ class CommentDAO {
         try {
             return await commentsCollection.insertOne(comment);
         } catch (err) {
-            console.error(err);
+            dbErrorHandler(err);
         }
     }
 
@@ -29,7 +39,7 @@ class CommentDAO {
             const comments = await commentsCollection.find({}).toArray();
             return comments;
         } catch (err) {
-            console.error(err);
+            dbErrorHandler(err);
         }
     }
 
@@ -40,7 +50,7 @@ class CommentDAO {
             });
             return comment;
         } catch (err) {
-            console.log('CommentDAO -> getOneComment -> err', err);
+            dbErrorHandler(err);
         }
     }
 
@@ -53,7 +63,7 @@ class CommentDAO {
                 }
             );
         } catch (err) {
-            console.error(err);
+            dbErrorHandler(err);
         }
     }
 
@@ -61,7 +71,7 @@ class CommentDAO {
         try {
             return await commentsCollection.deleteOne({ _id: ObjectId(id) });
         } catch (err) {
-            console.error(err);
+            dbErrorHandler(err);
         }
     }
 }

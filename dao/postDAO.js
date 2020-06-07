@@ -1,4 +1,6 @@
 const { ObjectId } = require('mongodb');
+const dbErrorHandler = require('../utils/dbErrorHandler');
+const postsSchema = require('./postsSchema');
 
 let postsCollection; // collections
 
@@ -8,10 +10,18 @@ class PostsDAO {
             return;
         }
         try {
+            await conn.db('blog').command({
+                collMod: 'posts',
+                validator: {
+                    $jsonSchema: postsSchema
+                },
+                validationLevel: 'strict',
+                validationAction: 'error'
+            });
             postsCollection = await conn.db('blog').collection('posts');
         } catch (e) {
             console.error(
-                {}`Unable to establish a collection handle in userDAO: ${e}`
+                `Unable to establish a collection handle in postDAO: ${e}`
             );
         }
     }
@@ -20,20 +30,17 @@ class PostsDAO {
             const posts = await postsCollection.find({}).toArray();
             return posts;
         } catch (err) {
-            console.error(err);
+            dbErrorHandler(err);
         }
     }
 
     static async getOnePost(id) {
-        // try {
-        //     console.log(ObjectId('wwwww'));
-        //     const post = await postsCollection.findOne({ _id: ObjectId(id) });
-        //     return post;
-        // } catch (err) {
-        //     console.error(err);
-        // }
-        const post = await postsCollection.findOne({ _id: ObjectId(id) });
-        return post;
+        try {
+            const post = await postsCollection.findOne({ _id: ObjectId(id) });
+            return post;
+        } catch (err) {
+            dbErrorHandler(err);
+        }
     }
 
     static async createManyPosts(posts) {
@@ -41,15 +48,17 @@ class PostsDAO {
             await postsCollection.insertMany(posts);
             return;
         } catch (err) {
-            console.error(err);
+            dbErrorHandler(err);
         }
     }
 
     static async createOnePost(post) {
         try {
             return await postsCollection.insertOne(post);
+            // for validation err, create AppError throw err here to pass err to dbErrorHandler
         } catch (err) {
-            console.error(err);
+            // throw err;
+            dbErrorHandler(err);
         }
     }
 
@@ -60,7 +69,7 @@ class PostsDAO {
                 { $set: data }
             );
         } catch (err) {
-            console.error(err);
+            dbErrorHandler(err);
         }
     }
 
@@ -68,7 +77,7 @@ class PostsDAO {
         try {
             return await postsCollection.deleteOne({ _id: ObjectId(id) });
         } catch (err) {
-            console.error(err);
+            dbErrorHandler(err);
         }
     }
 
