@@ -31,12 +31,14 @@ class UserDAO {
 
     static async createOneUser(user) {
         try {
+            if (!user.role) user.role = 'user'; // by default
             const { password, passwordConfirm } = user;
             if (!validators.validatePassowrd(password, passwordConfirm))
                 throw new AppError(400, 'your password does not match');
             user.password = await bcrypt.hash(password, 10);
             delete user.passwordConfirm;
-            return await usersCollection.insertOne(user);
+            const r = await usersCollection.insertOne(user);
+            return r;
         } catch (err) {
             dbErrorHandler(err);
         }

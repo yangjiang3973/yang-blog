@@ -66,7 +66,7 @@ process.on('unhandledRejection', err=>{
 
 for password, check passwordConfirm matching
 
-2. JWT
+2. JWT(DONE)
 
 (1) build user schema (DONE)
 
@@ -78,10 +78,16 @@ for password, check passwordConfirm matching
 
 (5) JWT for signin (DONE)
 
-(6) protect routes
+(6) protect routes(DONE)
 
 3. review schemas in natours to borrow some ideas
 
 4. learn bcrypt..why don't need to add a salt manually?
 
 5. learn how JWT works!
+
+# 2020-06-08
+
+1. Forgot password!(send email with a link)
+
+2.

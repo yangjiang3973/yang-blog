@@ -10,6 +10,11 @@ const app = express();
 /* middleware */
 app.use(express.json({ limit: '10kb' }));
 
+// app.use((req, res, next) => {
+//     console.log(req.headers);
+//     next();
+// });
+
 /* routes */
 app.use('/api/v1/posts', postRouter); // sub-app
 app.use('/api/v1/users', userRouter);

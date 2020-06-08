@@ -16,6 +16,16 @@ module.exports = {
             minLength: 8,
             description:
                 'must be a string and is longer than 8 char and is required'
+        },
+        passwordChangedAt: {
+            bsonType: 'date',
+            description: 'must be a string'
+        },
+        role: {
+            bsonType: 'string',
+            enum: ['admin', 'user'],
+            description:
+                'must be a string and can only be one of the enum values'
         }
     }
 };

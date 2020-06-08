@@ -30,7 +30,9 @@ MongoClient.connect(url, {
         await UserDAO.injectDB(client);
         await CommentDAO.injectDB(client);
         server = app.listen(process.env.PORT, () => {
-            console.log(`listening on port 4000`);
+            console.log(
+                `listening on port 4000 in ${process.env.NODE_ENV} mode`
+            );
         });
     })
     .catch(err => {
