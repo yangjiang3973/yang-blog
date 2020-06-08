@@ -26,6 +26,14 @@ module.exports = {
             enum: ['admin', 'user'],
             description:
                 'must be a string and can only be one of the enum values'
+        },
+        passwordResetToken: {
+            bsonType: 'string',
+            description: 'must be a string'
+        },
+        passwordResetExpires: {
+            bsonType: 'date',
+            description: 'must be a date'
         }
     }
 };

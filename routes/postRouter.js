@@ -6,7 +6,7 @@ const router = express.Router(); // mount a new router
 
 router
     .route('/')
-    .get(postController.getAllPosts)
+    .get(authController.protect, postController.getAllPosts)
     .post(authController.protect, postController.createOnePost);
 
 router

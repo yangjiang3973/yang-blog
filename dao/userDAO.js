@@ -1,5 +1,6 @@
 const { ObjectId } = require('mongodb');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const AppError = require('../utils/appError');
 const dbErrorHandler = require('../utils/dbErrorHandler');
 const validators = require('../utils/validators');
@@ -88,13 +89,15 @@ class UserDAO {
         }
     }
 
-    // static async findUserByEmail(email) {
-    //     try {
-    //         return await usersCollection.findOne({ email: email });
-    //     } catch (error) {
-    //         dbErrorHandler(err);
-    //     }
-    // }
+    static async findUserByEmail(email) {
+        try {
+            const user = await usersCollection.findOne({ email: email });
+            return user;
+        } catch (error) {
+            dbErrorHandler(err);
+        }
+    }
+
     static async checkUserPassword(email, password) {
         const user = await usersCollection.findOne({ email: email });
         if (!user)
@@ -104,6 +107,76 @@ class UserDAO {
             );
         const correct = await bcrypt.compare(password, user.password);
         return { user, correct };
+    }
+
+    static async createPasswordResetToken(userId) {
+        const resetToken = crypto.randomBytes(32).toString('hex');
+        const passwordResetToken = crypto
+            .createHash('sha256')
+            .update(resetToken)
+            .digest('hex');
+        const passwordResetExpires = new Date(Date.now() + 10 * 60 * 1000);
+        // console.log(
+        //     'UserDAO -> createPasswordResetToken -> passwordResetToken',
+        //     passwordResetToken
+        // );
+        // console.log(
+        //     'UserDAO -> createPasswordResetToken -> passwordResetExpires',
+        //     passwordResetExpires
+        // );
+
+        await usersCollection.findOneAndUpdate(
+            { _id: userId },
+            {
+                $set: {
+                    passwordResetToken: passwordResetToken,
+                    passwordResetExpires: passwordResetExpires
+                }
+            }
+        );
+        return resetToken;
+    }
+
+    static async deletePasswordResetToken(user) {
+        const r = await usersCollection.findOneAndUpdate(
+            { _id: user._id },
+            {
+                $unset: {
+                    passwordResetToken: 1,
+                    passwordResetExpires: 1
+                }
+            }
+        );
+        return r;
+    }
+
+    static async findUserByToken(hashedToken) {
+        const user = await usersCollection.findOne({
+            passwordResetToken: hashedToken,
+            passwordResetExpires: { $gt: new Date(Date.now()) }
+        });
+        // console.log(user.passwordResetExpires);
+        // console.log(new Date());
+        return user;
+    }
+
+    static async resetPassword(userId, newPassword, newPasswordConfirm) {
+        if (!validators.validatePassowrd(newPassword, newPasswordConfirm))
+            throw new AppError(400, 'your password does not match');
+
+        const password = await bcrypt.hash(newPassword, 10);
+        await usersCollection.findOneAndUpdate(
+            { _id: userId },
+            {
+                $set: {
+                    password
+                },
+                $unset: {
+                    passwordResetToken: 1,
+                    passwordResetExpires: 1
+                }
+            }
+        );
     }
 }
 

@@ -88,6 +88,16 @@ for password, check passwordConfirm matching
 
 # 2020-06-08
 
-1. Forgot password!(send email with a link)
+1. Auth: forgot password!(send email with a link) (DONE)
 
-2.
+2. Auth: reset password!(use link that includes token to update password) (DONE)
+
+3. learn crypto package? `crypto.createHash('sha256').update(req.params.token).digest('hex');`
+
+4. now there are `findUserByEmail` and `findUserByToken`, should I make a general query api in DAO?
+
+5. refactor `signToken + res` into on factor?
+
+6. first time to forgot password will fail? throw validation error
+
+7. mailtrap is too slow!!!!!

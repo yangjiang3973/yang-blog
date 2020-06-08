@@ -1,10 +1,11 @@
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const UserDao = require('../dao/userDAO');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const { isPasswordChangedAfterJWT } = require('../utils/validators');
+const { sendEmail } = require('../utils/utils');
 
 const signToken = id => {
     return jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -97,3 +98,70 @@ module.exports.restrictTo = (...roles) => {
         next();
     };
 };
+
+module.exports.forgotPassword = catchAsync(async (req, res, next) => {
+    // get user based on POSTed email
+    const user = await UserDao.findUserByEmail(req.body.email);
+    if (!user)
+        return next(new AppError(404, 'There is no user with this email'));
+
+    // generate a random token
+    const resetToken = await UserDao.createPasswordResetToken(user._id);
+
+    // send it by email
+    const resetURL = `${req.protocol}://${req.get(
+        'host'
+    )}/api/v1/users/resetPassword/${resetToken}`;
+
+    const message = `Forgot your password? Submit new password and password confirm to: ${resetURL}`;
+    try {
+        await sendEmail({
+            email: user.email,
+            subject: 'Reset your password(valid in 10min)',
+            message
+        });
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Token sent to your email'
+        });
+    } catch (err) {
+        // reset token and expires time
+        await UserDao.deletePasswordResetToken(user);
+        return next(
+            new AppError(
+                500,
+                'There is an error sending the email! Please try again later'
+            )
+        );
+    }
+});
+
+module.exports.resetPassword = catchAsync(async (req, res, next) => {
+    // get user based on the token
+    const hashedToken = crypto
+        .createHash('sha256')
+        .update(req.params.token)
+        .digest('hex');
+
+    const user = await UserDao.findUserByToken(hashedToken);
+
+    // check if there is a user and token is not expired, set new password
+    if (!user) {
+        return next(new AppError(400, 'Token is invalid or expired!'));
+    }
+    await UserDao.resetPassword(
+        user._id,
+        req.body.password,
+        req.body.passwordConfirm
+    );
+
+    // update changedPasswordAt
+
+    // login user(send jwt)
+    const token = signToken(user._id);
+    res.status(200).json({
+        status: 'success',
+        token
+    });
+});
