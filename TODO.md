@@ -114,3 +114,38 @@ for password, check passwordConfirm matching
    Ans: The difference is that FindAndModify() returns the document, either the pre-update or post-update version, together with the update, in one atomic operation. Update is atomic but does not return the document, so if you then query for it it's possible it will have been changed by another process in the interim.
 
 5. follow No.4, need to change update and findandupdate to proper ones.(done in UserDAO)
+
+6. delete user by himself(set active to false) (DONE)
+
+7. rate limiting(num of req from the same ip)
+
+8. prevent xss attacks:
+
+(1) learn more about xss
+
+(2) store jwt in httpOnly cookies(DONE)
+
+(after use cookie, should I continue keeping token in res json???)
+(cannot now, because `protect()` still cannot use cookie jwt)
+
+(3) use `helmet` to set special headers
+
+9. prevent DDoS attack:
+
+(1) rate limiting
+
+(2) limit body payload(body-parser)
+
+(3) avoid evil regular expressions(DONE)
+
+10. noSQL injection
+
+(1) schema validation(DONE)
+
+(2) sanitize input data
+
+(3) learn more about noSQL injection
+
+11. prevent Cross-Site Request Forgery(`csurf` package)
+
+12. prevent parameter pollution causing Uncaught Exception

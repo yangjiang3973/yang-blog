@@ -1,4 +1,5 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./utils/errorHandler');
 const postRouter = require('./routes/postRouter');
@@ -9,6 +10,13 @@ const app = express();
 
 /* middleware */
 app.use(express.json({ limit: '10kb' }));
+
+const limiter = rateLimit({
+    max: 100,
+    windowMs: 60 * 60 * 1000, // 1h
+    message: 'Too many requests from this IP. Please try again later!'
+});
+app.use('/api', limiter);
 
 // app.use((req, res, next) => {
 //     console.log(req.headers);

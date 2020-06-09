@@ -13,6 +13,26 @@ const signToken = id => {
     });
 };
 
+const createTokenResponse = (id, code, req, res) => {
+    const token = signToken(id);
+    const cookieOptions = {
+        expires: new Date(
+            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+        ),
+        httpOnly: true,
+        secure: true // TODO: will change it when deployment
+    };
+
+    if (process.env.NODE_ENV === 'development') cookieOptions.secure = false;
+
+    res.cookie('jwt', token, cookieOptions);
+
+    res.status(code).json({
+        status: 'success',
+        token //TODO: is it possible to remove it? by only using cookie. also need to change `protect`
+    });
+};
+
 module.exports.signup = catchAsync(async (req, res, next) => {
     const user = req.body;
     const { result, insertedId } = await UserDao.createOneUser(user);
@@ -20,13 +40,7 @@ module.exports.signup = catchAsync(async (req, res, next) => {
         return next(new AppError(404, 'Failed to create a new user'));
     }
     // jwt
-    const token = signToken(insertedId);
-
-    res.status(201).json({
-        status: 'success',
-        token,
-        data: user
-    });
+    createTokenResponse(insertedId, 201, req, res);
 });
 
 module.exports.login = catchAsync(async (req, res, next) => {
@@ -54,12 +68,7 @@ module.exports.login = catchAsync(async (req, res, next) => {
             );
         }
     }
-    // if ok, send token back to client
-    const token = signToken(user._id);
-    res.status(200).json({
-        status: 'success',
-        token
-    });
+    createTokenResponse(user._id, 200, req, res);
 });
 
 module.exports.protect = catchAsync(async (req, res, next) => {
@@ -169,12 +178,7 @@ module.exports.resetPassword = catchAsync(async (req, res, next) => {
         req.body.passwordConfirm
     );
 
-    // login user(send jwt)
-    const token = signToken(user._id);
-    res.status(200).json({
-        status: 'success',
-        token
-    });
+    createTokenResponse(user._id, 200, req, res);
 });
 
 module.exports.updatePassword = catchAsync(async (req, res, next) => {
@@ -201,10 +205,5 @@ module.exports.updatePassword = catchAsync(async (req, res, next) => {
         req.body.newPasswordConfirm
     );
 
-    // log user in, send jwt
-    const token = signToken(user._id);
-    res.status(200).json({
-        status: 'success',
-        token
-    });
+    createTokenResponse(user._id, 200, req, res);
 });
