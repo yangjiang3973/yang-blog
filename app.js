@@ -1,5 +1,6 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./utils/errorHandler');
 const postRouter = require('./routes/postRouter');
@@ -9,8 +10,7 @@ const commentRouter = require('./routes/commentRouter');
 const app = express();
 
 /* middleware */
-app.use(express.json({ limit: '10kb' }));
-
+app.use(helmet());
 const limiter = rateLimit({
     max: 100,
     windowMs: 60 * 60 * 1000, // 1h
@@ -18,10 +18,8 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
-// app.use((req, res, next) => {
-//     console.log(req.headers);
-//     next();
-// });
+app.use(express.json({ limit: '10kb' })); // body parser
+app.use(express.static(`${__dirname}/public`));
 
 /* routes */
 app.use('/api/v1/posts', postRouter); // sub-app
