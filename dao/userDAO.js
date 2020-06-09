@@ -33,6 +33,8 @@ class UserDAO {
     static async createOneUser(user) {
         try {
             if (!user.role) user.role = 'user'; // by default
+            if (!user.active) user.active = true;
+
             const { password, passwordConfirm } = user;
             if (!validators.validatePassowrd(password, passwordConfirm))
                 throw new AppError(400, 'your password does not match');
@@ -70,12 +72,17 @@ class UserDAO {
 
     static async updateUser(id, data) {
         try {
-            return await usersCollection.updateOne(
+            const r = await usersCollection.findOneAndUpdate(
                 { _id: ObjectId(id) },
                 {
                     $set: data
+                },
+                {
+                    returnOriginal: false,
+                    projection: { password: 0, active: 0 }
                 }
             );
+            return r;
         } catch (err) {
             dbErrorHandler(err);
         }
@@ -99,14 +106,18 @@ class UserDAO {
     }
 
     static async checkUserPassword(email, password) {
-        const user = await usersCollection.findOne({ email: email });
-        if (!user)
-            throw new AppError(
-                401,
-                'No user matches this email, Please provide a valid one'
-            );
-        const correct = await bcrypt.compare(password, user.password);
-        return { user, correct };
+        try {
+            const user = await usersCollection.findOne({ email: email });
+            if (!user)
+                throw new AppError(
+                    401,
+                    'No user matches this email, Please provide a valid one'
+                );
+            const correct = await bcrypt.compare(password, user.password);
+            return { user, correct };
+        } catch (error) {
+            dbErrorHandler(err);
+        }
     }
 
     static async createPasswordResetToken(userId) {
@@ -116,14 +127,6 @@ class UserDAO {
             .update(resetToken)
             .digest('hex');
         const passwordResetExpires = new Date(Date.now() + 10 * 60 * 1000);
-        // console.log(
-        //     'UserDAO -> createPasswordResetToken -> passwordResetToken',
-        //     passwordResetToken
-        // );
-        // console.log(
-        //     'UserDAO -> createPasswordResetToken -> passwordResetExpires',
-        //     passwordResetExpires
-        // );
 
         await usersCollection.findOneAndUpdate(
             { _id: userId },
@@ -155,8 +158,6 @@ class UserDAO {
             passwordResetToken: hashedToken,
             passwordResetExpires: { $gt: new Date(Date.now()) }
         });
-        // console.log(user.passwordResetExpires);
-        // console.log(new Date());
         return user;
     }
 
@@ -169,7 +170,8 @@ class UserDAO {
             { _id: userId },
             {
                 $set: {
-                    password
+                    password,
+                    passwordChangedAt: new Date(Date.now())
                 },
                 $unset: {
                     passwordResetToken: 1,

@@ -100,4 +100,17 @@ for password, check passwordConfirm matching
 
 6. first time to forgot password will fail? throw validation error
 
-7. mailtrap is too slow!!!!!
+7. mailtrap is too slow!!!!! need a better tool!
+
+# 2020-06-09
+
+1. if a user delete himself, will be set `active = false`. need to consider this feature in auth controller(update, recover...).
+
+2. update password by user himself(DONE)
+
+3. update other user info by himself(DONE)
+
+4. mongodb difference between update and findandupdate(DONE)
+   Ans: The difference is that FindAndModify() returns the document, either the pre-update or post-update version, together with the update, in one atomic operation. Update is atomic but does not return the document, so if you then query for it it's possible it will have been changed by another process in the interim.
+
+5. follow No.4, need to change update and findandupdate to proper ones.(done in UserDAO)

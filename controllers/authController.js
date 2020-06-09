@@ -40,7 +40,20 @@ module.exports.login = catchAsync(async (req, res, next) => {
     const { user, correct } = await UserDao.checkUserPassword(email, password);
     if (!correct)
         return next(new AppError(401, 'In correct password or email'));
-
+    // active user again after deleting himself
+    if (!user.active) {
+        const { ok } = await UserDao.updateUser(user._id, {
+            active: true
+        });
+        if (ok !== 1) {
+            return next(
+                new AppError(
+                    404,
+                    'Failed to active your account. Please try again!'
+                )
+            );
+        }
+    }
     // if ok, send token back to client
     const token = signToken(user._id);
     res.status(200).json({
@@ -156,9 +169,39 @@ module.exports.resetPassword = catchAsync(async (req, res, next) => {
         req.body.passwordConfirm
     );
 
-    // update changedPasswordAt
-
     // login user(send jwt)
+    const token = signToken(user._id);
+    res.status(200).json({
+        status: 'success',
+        token
+    });
+});
+
+module.exports.updatePassword = catchAsync(async (req, res, next) => {
+    // get the user from the collection
+    if (!req.user)
+        return next(
+            new AppError(
+                401,
+                'You are not authorized to do this action. Please login!'
+            )
+        );
+
+    // if the POSTed password is correct
+    const { user, correct } = await UserDao.checkUserPassword(
+        req.user.email,
+        req.body.currentPassword
+    );
+    if (!correct) return next(new AppError(400, 'You input a wrong password!'));
+
+    // update the password
+    await UserDao.resetPassword(
+        user._id,
+        req.body.newPassword,
+        req.body.newPasswordConfirm
+    );
+
+    // log user in, send jwt
     const token = signToken(user._id);
     res.status(200).json({
         status: 'success',

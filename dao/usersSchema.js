@@ -17,15 +17,19 @@ module.exports = {
             description:
                 'must be a string and is longer than 8 char and is required'
         },
-        passwordChangedAt: {
-            bsonType: 'date',
-            description: 'must be a string'
-        },
         role: {
             bsonType: 'string',
             enum: ['admin', 'user'],
             description:
                 'must be a string and can only be one of the enum values'
+        },
+        active: {
+            bsonType: 'bool',
+            description: 'must be a bool type'
+        },
+        passwordChangedAt: {
+            bsonType: 'date',
+            description: 'must be a string'
         },
         passwordResetToken: {
             bsonType: 'string',

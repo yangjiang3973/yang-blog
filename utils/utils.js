@@ -21,3 +21,11 @@ module.exports.sendEmail = async options => {
     // send!
     await transporter.sendMail(mailOptions);
 };
+
+module.exports.filterObj = (obj, ...allowedFields) => {
+    const newObj = {};
+    Object.keys(obj).forEach(e => {
+        if (allowedFields.includes(e)) newObj[e] = obj[e];
+    });
+    return newObj;
+};
