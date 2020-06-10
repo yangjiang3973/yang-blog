@@ -113,13 +113,13 @@ for password, check passwordConfirm matching
 4. mongodb difference between update and findandupdate(DONE)
    Ans: The difference is that FindAndModify() returns the document, either the pre-update or post-update version, together with the update, in one atomic operation. Update is atomic but does not return the document, so if you then query for it it's possible it will have been changed by another process in the interim.
 
-5. follow No.4, need to change update and findandupdate to proper ones.(done in UserDAO)
+5. follow No.4, need to change update and findAndUpdate to proper ones.(done in UserDAO)
 
 6. delete user by himself(set active to false) (DONE)
 
-7. rate limiting(num of req from the same ip)
+7. rate limiting(num of req from the same ip) (DONE)
 
-8. prevent xss attacks:
+8. prevent xss attacks:(DONE)
 
 (1) learn more about xss
 
@@ -128,13 +128,13 @@ for password, check passwordConfirm matching
 (after use cookie, should I continue keeping token in res json???)
 (cannot now, because `protect()` still cannot use cookie jwt)
 
-(3) use `helmet` to set special headers
+(3) use `helmet` to set special headers(DONE)
 
-9. prevent DDoS attack:
+9. prevent DDoS attack:(DONE)
 
-(1) rate limiting
+(1) rate limiting (DONE)
 
-(2) limit body payload(body-parser)
+(2) limit body payload(body-parser)(DONE)
 
 (3) avoid evil regular expressions(DONE)
 
@@ -142,10 +142,12 @@ for password, check passwordConfirm matching
 
 (1) schema validation(DONE)
 
-(2) sanitize input data
+(2) sanitize input data(DONE)
 
 (3) learn more about noSQL injection
 
 11. prevent Cross-Site Request Forgery(`csurf` package)
 
-12. prevent parameter pollution causing Uncaught Exception
+12. prevent parameter pollution causing Uncaught Exception(`hpp`)(DONE)
+
+13. learn from `helmet`
