@@ -96,11 +96,9 @@ for password, check passwordConfirm matching
 
 4. now there are `findUserByEmail` and `findUserByToken`, should I make a general query api in DAO?
 
-5. refactor `signToken + res` into on factor?
+5. refactor `signToken + res` into on function?(DONE)
 
-6. first time to forgot password will fail? throw validation error
-
-7. mailtrap is too slow!!!!! need a better tool!
+6. mailtrap is too slow!!!!! need a better tool!
 
 # 2020-06-09
 
@@ -150,4 +148,10 @@ for password, check passwordConfirm matching
 
 12. prevent parameter pollution causing Uncaught Exception(`hpp`)(DONE)
 
-13. learn from `helmet`
+13. learn `hpp`
+
+14. learn from `helmet`
+
+# 2020-06-10
+
+1. start server side rendering

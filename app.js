@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -9,10 +10,15 @@ const globalErrorHandler = require('./utils/errorHandler');
 const postRouter = require('./routes/postRouter');
 const userRouter = require('./routes/userRouter');
 const commentRouter = require('./routes/commentRouter');
+const viewRouter = require('./routes/viewRouter');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 /* middleware */
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 const limiter = rateLimit({
     max: 100,
@@ -33,9 +39,8 @@ app.use(
     })
 );
 
-app.use(express.static(`${__dirname}/public`));
-
 /* routes */
+app.use('/', viewRouter);
 app.use('/api/v1/posts', postRouter); // sub-app
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/comments', commentRouter);
