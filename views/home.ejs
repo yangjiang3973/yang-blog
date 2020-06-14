@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 
-        <title><%=title %></title>
+        <title>Yang Jiang's Blog</title>
     </head>
 
     <body>
@@ -111,8 +111,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="content">content</div>
-            <div class="comments">comments</div>
+            <div class="content">
+                <% articles.forEach((i) => { %>
+                <article class="content__brief">
+                    <%- i.data %>
+                </article>
+                <% }); %>
+            </div>
         </div>
     </body>
 </html>

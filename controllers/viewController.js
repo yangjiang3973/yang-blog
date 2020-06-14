@@ -1,5 +1,5 @@
 module.exports.home = (req, res, next) => {
     res.status(200).render('home', {
-        title: 'hello'
+        articles: [{ data: '1' }, { data: '2' }]
     });
 };

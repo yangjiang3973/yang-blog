@@ -177,4 +177,11 @@ for password, check passwordConfirm matching
 
 # 2020-06-14
 
-1. Menu component()
+1. Menu component(DONE)
+
+2. modify box-shadow and learn it syntax
+
+3. Content brief component(
+   3.1 front-end style(DONE)
+   3.2 back-end data()
+   )

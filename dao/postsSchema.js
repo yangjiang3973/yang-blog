@@ -1,6 +1,6 @@
 module.exports = {
     bsonType: 'object',
-    required: ['title', 'text'],
+    required: ['title', 'text', 'createdAt'],
     properties: {
         title: {
             bsonType: 'string',
@@ -10,6 +10,10 @@ module.exports = {
         text: {
             bsonType: 'string',
             description: 'must be a string and is required'
+        },
+        createdAt: {
+            bsonType: 'date',
+            description: 'mube be a date and is required'
         }
     }
 };
