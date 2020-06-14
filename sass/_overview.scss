@@ -1,0 +1,45 @@
+.overview {
+    background-color: $color-white;
+    padding: 1.8rem 1rem;
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    row-gap: 1.2rem;
+    justify-items: center;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 -1px 0.5px 0 rgba(0, 0, 0, 0.09);
+
+    &__logo {
+        border: 1px solid #eee;
+        border-radius: 50%;
+    }
+
+    &__name {
+        font-weight: 600;
+        font-size: $font-medium;
+    }
+    &__motto {
+        font-size: $font-small;
+        color: $color-grey;
+    }
+    &__states {
+        text-align: center;
+        &--number {
+            font-size: $font-medium;
+            font-weight: 800;
+        }
+        &--field {
+            font-size: $font-small;
+            color: $color-grey;
+        }
+    }
+    &__links {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 1rem;
+    }
+    &__icon {
+        height: $font-large;
+        width: $font-large;
+    }
+}

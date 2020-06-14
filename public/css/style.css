@@ -1,0 +1,77 @@
+/* Color Variables*/
+/* Font Variables*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; }
+
+body {
+  font-family: "Nunito", sans-serif;
+  color: #555;
+  font-weight: 300;
+  line-height: 1.6;
+  background-color: #eee; }
+
+.headband {
+  background: #222;
+  height: 3px; }
+
+.container {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  width: 75%;
+  margin: 0 auto; }
+
+.content {
+  background-color: #fff;
+  height: 50rem; }
+
+.comments {
+  grid-column: 2 / -1;
+  background-color: #fff; }
+
+.menu {
+  margin-top: 1rem;
+  height: 24rem;
+  background-color: #fff; }
+
+.overview {
+  background-color: #fff;
+  padding: 1.8rem 1rem;
+  display: grid;
+  grid-template-rows: repeat(5, auto);
+  row-gap: 1.2rem;
+  justify-items: center;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 -1px 0.5px 0 rgba(0, 0, 0, 0.09); }
+  .overview__logo {
+    border: 1px solid #eee;
+    border-radius: 50%; }
+  .overview__name {
+    font-weight: 600;
+    font-size: 1.8rem; }
+  .overview__motto {
+    font-size: 1.2rem;
+    color: #999; }
+  .overview__states {
+    text-align: center; }
+    .overview__states--number {
+      font-size: 1.8rem;
+      font-weight: 800; }
+    .overview__states--field {
+      font-size: 1.2rem;
+      color: #999; }
+  .overview__links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1rem; }
+  .overview__icon {
+    height: 2.4rem;
+    width: 2.4rem; }

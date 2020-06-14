@@ -1,0 +1,48 @@
+/* Color Variables*/
+$color-bg: #eee; // container background color
+$color-text: #555;
+$color-grey: #999;
+$color-white: #fff;
+$color-black: #222;
+
+/* Font Variables*/
+$font-primary: 'Nunito', sans-serif;
+$font-display: 'Josefin Sans', sans-serif;
+
+$font-large: 2.4rem;
+$font-medium: 1.8rem;
+$font-small: 1.2rem;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 10px/16px=62.5% => 1rem = 10px
+}
+
+body {
+    font-family: $font-primary;
+    color: $color-text;
+    font-weight: 300;
+    line-height: 1.6;
+    background-color: $color-bg;
+}
+
+.headband {
+    background: #222;
+    height: 3px;
+}
+.container {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    width: 75%;
+    margin: 0 auto;
+}

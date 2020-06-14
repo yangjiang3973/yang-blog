@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server.js",
         "dev": "nodemon server.js",
-        "prod": "NODE_ENV=production nodemon server.js"
+        "prod": "NODE_ENV=production nodemon server.js",
+        "watch:sass": "node-sass sass/main.scss public/css/style.css -w"
     },
     "repository": {
         "type": "git",
@@ -34,6 +35,7 @@
         "xss-clean": "^0.1.1"
     },
     "devDependencies": {
+        "node-sass": "^4.14.1",
         "nodemon": "^2.0.4"
     }
 }

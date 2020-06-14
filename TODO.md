@@ -155,3 +155,21 @@ for password, check passwordConfirm matching
 # 2020-06-10
 
 1. start server side rendering
+
+2. Q: in page a, style.css was loaded, when open page b, does style.css need to load again?
+
+3. organize commently used syntax of emmet
+
+4. css initialize(padding, box-sizing...) (DONE)
+
+5. Homepage `/` ()
+
+6. after this project, write blogs for grid, flex for future use
+
+# 2020-06-13
+
+1. implement similar `catchAsync` in DAO functions.(return function call not function definition)
+
+2. Overview component(
+   2.1 icon import()
+   )
