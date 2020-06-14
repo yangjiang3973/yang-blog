@@ -170,6 +170,11 @@ for password, check passwordConfirm matching
 
 1. implement similar `catchAsync` in DAO functions.(return function call not function definition)
 
-2. Overview component(
-   2.1 icon import()
-   )
+2. Overview component(DONE)
+   2.1 icon import(DONE)
+
+3. what is svg sprite?
+
+# 2020-06-14
+
+1. Menu component()

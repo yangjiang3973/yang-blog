@@ -1,5 +1,42 @@
 .menu {
     margin-top: 1rem;
-    height: 24rem;
     background-color: $color-white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+    &__title {
+        color: $color-white;
+        background-color: $color-black;
+        text-align: center;
+        padding: 2rem 0;
+        &--main {
+            font-size: $font-medium;
+        }
+
+        &--sub {
+            color: $color-grey;
+            margin: 1rem 0;
+            font-size: $font-small;
+        }
+    }
+
+    &__nav {
+        padding: 1.5rem 0;
+    }
+    &__item {
+        list-style: none;
+        padding: 1rem 2rem;
+        a {
+            text-decoration: none;
+            color: $color-text;
+            font-size: $font-small;
+        }
+    }
+    &__icon {
+        display: inline-block;
+        vertical-align: middle;
+        height: $font-medium;
+        width: $font-medium;
+        margin-right: 0.8rem;
+    }
 }
