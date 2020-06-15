@@ -184,4 +184,5 @@ for password, check passwordConfirm matching
 3. Content brief component(
    3.1 front-end style(DONE)
    3.2 back-end data()
+   3.3 xss middleware need to set a white list for post with html code
    )

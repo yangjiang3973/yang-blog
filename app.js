@@ -31,7 +31,7 @@ app.use(express.json({ limit: '10kb' })); // body parser
 
 // data sanitization for NoSQL injection and XSS
 app.use(mongoSanitize());
-app.use(xss());
+// app.use(xss());
 // prevent parameter pollution(query string)
 app.use(
     hpp({

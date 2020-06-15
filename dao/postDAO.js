@@ -81,16 +81,17 @@ class PostsDAO {
         }
     }
 
-    //   static async getRecentPosts() {
-    //     try {
-    //       return await posts
-    //         .find({})
-    //         .limit(5)
-    //         .toArray();
-    //     } catch (error) {
-    //       console.error(error);
-    //     }
-    //   }
+    static async getRecentPosts() {
+        try {
+            return await postsCollection
+                .find({})
+                .sort({ createdAt: -1 })
+                .limit(5)
+                .toArray();
+        } catch (error) {
+            dbErrorHandler(err);
+        }
+    }
 
     //   static async getPostsList() {
     //     try {

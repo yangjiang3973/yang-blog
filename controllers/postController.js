@@ -26,6 +26,7 @@ module.exports.getOnePost = catchAsync(async (req, res, next) => {
 });
 
 module.exports.createOnePost = catchAsync(async (req, res, next) => {
+    req.body.createdAt = new Date(Date.now());
     const { result } = await PostDAO.createOnePost(req.body);
 
     if (result.ok !== 1 || result.n === 0) {

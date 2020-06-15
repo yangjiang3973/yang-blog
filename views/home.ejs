@@ -18,104 +18,19 @@
     <body>
         <div class="headband"></div>
         <div class="container">
-            <div class="sidebar">
-                <div class="overview">
-                    <img
-                        src="images/logo.png"
-                        alt="Yang Blog Logo"
-                        class="overview__logo"
-                    />
-                    <div class="overview__name">蒋阳的博客</div>
-                    <div class="overview__motto">
-                        战胜攻取 而不修其功者凶 命曰费留
-                    </div>
-                    <div class="overview__states">
-                        <div class="overview__states--number">
-                            10
-                        </div>
-                        <div class="overview__states--field">
-                            posts
-                        </div>
-                    </div>
-                    <div class="overview__links">
-                        <svg class="overview__icon">
-                            <use
-                                xlink:href="images/sprite.svg#icon-github"
-                            ></use>
-                        </svg>
-                        <svg class="overview__icon">
-                            <use
-                                xlink:href="images/sprite.svg#icon-bubbles"
-                            ></use>
-                        </svg>
-                        <svg class="overview__icon">
-                            <use
-                                xlink:href="images/sprite.svg#icon-linkedin"
-                            ></use>
-                        </svg>
-                        <svg class="overview__icon">
-                            <use xlink:href="images/sprite.svg#icon-rss2"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="menu">
-                    <div class="menu__title">
-                        <div class="menu__title--main">
-                            Yang Jiang
-                        </div>
-                        <div class="menu__title--sub">
-                            blog and notebook
-                        </div>
-                    </div>
-                    <ul class="menu__nav">
-                        <li class="menu__item">
-                            <a href="/">
-                                <svg class="menu__icon">
-                                    <use
-                                        xlink:href="images/sprite.svg#icon-home2"
-                                    ></use>
-                                </svg>
-                                Home
-                            </a>
-                        </li>
-                        <li class="menu__item">
-                            <a href="/posts">
-                                <svg class="menu__icon">
-                                    <use
-                                        xlink:href="images/sprite.svg#icon-books"
-                                    ></use>
-                                </svg>
-                                Docs
-                            </a>
-                        </li>
-                        <li class="menu__item">
-                            <a href="/tags">
-                                <svg class="menu__icon">
-                                    <use
-                                        xlink:href="images/sprite.svg#icon-bookmarks"
-                                    ></use>
-                                </svg>
-                                Tags
-                            </a>
-                        </li>
-                        <li class="menu__item">
-                            <a href="/search">
-                                <svg class="menu__icon">
-                                    <use
-                                        xlink:href="images/sprite.svg#icon-search"
-                                    ></use>
-                                </svg>
-                                Search
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <%- include("components/_sidebar.ejs"); %>
             <div class="content">
                 <% articles.forEach((i) => { %>
-                <article class="content__brief">
-                    <%- i.data %>
-                </article>
+                <div class="content__block">
+                    <article class="content__brief">
+                        <%- i.text %>
+                    </article>
+                    <div class="content__link">
+                        <a href="/posts/<%= i._id %>" rel="content">
+                            Read >>
+                        </a>
+                    </div>
+                </div>
                 <% }); %>
             </div>
         </div>
