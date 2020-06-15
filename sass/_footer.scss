@@ -1,0 +1,10 @@
+.footer {
+    &__copyright {
+        font-size: $font-small;
+        margin: 2rem auto;
+        text-align: center;
+        a {
+            color: $color-text;
+        }
+    }
+}
