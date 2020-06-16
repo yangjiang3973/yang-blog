@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("components/_head.ejs")%>
+
+    <body>
+        <div class="headband"></div>
+        <div class="container">
+            <%- include("components/_sidebar.ejs"); %>
+            <div class="post">
+                <%- include("components/_postHeader.ejs", {article: article})%>
+            </div>
+        </div>
+        <%- include("components/_footer.ejs")%>
+    </body>
+</html>

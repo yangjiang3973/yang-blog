@@ -24,11 +24,15 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: 0.2fr 1fr;
+  width: 75%;
+  grid-template-columns: 24rem 115rem;
   grid-template-rows: auto auto;
   gap: 1rem;
-  width: 75%;
   margin: 0 auto; }
+
+.admin {
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
 
 .content {
   display: grid;
@@ -38,12 +42,23 @@ body {
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     display: grid;
-    grid-template-rows: repeat(2, 1fr); }
+    grid-template-rows: auto auto;
+    grid-template-columns: 115rem; }
   .content__brief {
-    font-size: 1.2rem; }
+    font-size: 1.2rem;
+    padding: 4rem 4rem 2rem 4rem; }
+    .content__brief--body {
+      font-size: 1.8rem;
+      line-height: 2.5;
+      line-clamp: 10;
+      height: 20rem;
+      overflow: hidden; }
+      .content__brief--body pre {
+        white-space: pre-wrap; }
   .content__link {
     align-self: center;
-    justify-self: center; }
+    justify-self: center;
+    margin: 0 1rem 1rem 1rem; }
     .content__link a {
       padding: 0 1rem;
       color: #555;
@@ -135,3 +150,24 @@ body {
   .overview__icon {
     height: 2.4rem;
     width: 2.4rem; }
+
+.post__header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 6rem;
+  text-align: center; }
+
+.post__info {
+  color: #999;
+  margin: 1rem 0; }
+
+.post__date::after {
+  content: '|';
+  margin: 0 1rem; }
+
+.post__icon {
+  fill: #999;
+  display: inline-block;
+  vertical-align: top;
+  height: 1.8rem;
+  width: 1.8rem;
+  margin-right: 0.2rem; }

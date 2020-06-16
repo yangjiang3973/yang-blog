@@ -1,0 +1,18 @@
+<div class="post__header">
+    <h1>
+        <%= article.title%>
+    </h1>
+    <div class="post__info">
+        <time class="post__date">
+            <svg class="post__icon">
+                <use xlink:href="images/sprite.svg#icon-price-tags"></use>
+            </svg>
+            Posted on <%- article.createdAt.toLocaleDateString()%></time
+        ><span class="post__count-comments">
+            <svg class="post__icon">
+                <use xlink:href="images/sprite.svg#icon-bubbles"></use>
+            </svg>
+            Comments: 6</span
+        >
+    </div>
+</div>

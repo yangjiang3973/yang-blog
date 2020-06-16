@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("components/_head.ejs")%>
+
+    <body>
+        <div class="headband"></div>
+        <div class="container">
+            <%- include("components/_sidebar.ejs"); %>
+            <div class="admin">
+                <form
+                    action="/admin"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <input
+                        class="edit-title"
+                        type="text"
+                        name="title"
+                        placeholder="title"
+                    />
+                    <textarea
+                        class="edit-content"
+                        name="content"
+                        placeholder="edit here"
+                    >
+                    </textarea>
+                    <input
+                        class="edit-uploadfile"
+                        name="file"
+                        type="file"
+                        value="File"
+                    />
+                    <input class="edit-submit" type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+        <%- include("components/_footer.ejs")%>
+    </body>
+</html>

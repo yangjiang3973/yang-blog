@@ -53,11 +53,10 @@ class PostsDAO {
     }
 
     static async createOnePost(post) {
+        if (!post.createdAt) post.createdAt = new Date(Date.now());
         try {
             return await postsCollection.insertOne(post);
-            // for validation err, create AppError throw err here to pass err to dbErrorHandler
         } catch (err) {
-            // throw err;
             dbErrorHandler(err);
         }
     }

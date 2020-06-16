@@ -9,9 +9,13 @@
             <div class="content">
                 <% articles.forEach((i) => { %>
                 <div class="content__block">
-                    <article class="content__brief">
-                        <%- i.text %>
-                    </article>
+                    <div class="content__brief">
+                        <%- include("components/_postHeader.ejs", {article: i})
+                        %>
+                        <div class="content__brief--body">
+                            <%- i.text %>
+                        </div>
+                    </div>
                     <div class="content__link">
                         <a href="/posts/<%= i._id %>" rel="content">
                             Read >>
@@ -21,14 +25,6 @@
                 <% }); %>
             </div>
         </div>
-        <footer class="footer">
-            <p class="footer__copyright">
-                &copy; Copyright 2020 by Yang Jiang. Feel free to use
-                <a href="https://github.com/yangjiang3973/yang-blog"
-                    >this project</a
-                >
-                for your own purposes.
-            </p>
-        </footer>
+        <%- include("components/_footer.ejs")%>
     </body>
 </html>

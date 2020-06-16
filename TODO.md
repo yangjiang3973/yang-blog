@@ -162,7 +162,7 @@ for password, check passwordConfirm matching
 
 4. css initialize(padding, box-sizing...) (DONE)
 
-5. Homepage `/` ()
+5. Homepage `/` (DONE)
 
 6. after this project, write blogs for grid, flex for future use
 
@@ -181,8 +181,30 @@ for password, check passwordConfirm matching
 
 2. modify box-shadow and learn it syntax
 
-3. Content brief component(
+# 2020-06-15
+
+1. Content brief component(
    3.1 front-end style(DONE)
-   3.2 back-end data()
+   3.2 back-end data(DONE)
    3.3 xss middleware need to set a white list for post with html code
    )
+
+2. Footer component(DONE)
+
+3. Admin upload page(DONE)
+
+4. add more monitor features in admin page in the future... not just uploading posts
+
+5. modulize the post header component.
+
+6. polish the post block
+
+7. improve the code hightlight feature. maybe make a editor block?
+
+the problem is from md->html or from the code highlight package?
+
+8. collapse the brief in homepage(line-clamp?)
+
+# 2020-06-16
+
+1. Post Page

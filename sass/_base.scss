@@ -40,9 +40,9 @@ body {
 }
 .container {
     display: grid;
-    grid-template-columns: 0.2fr 1fr;
+    width: 75%;
+    grid-template-columns: 24rem 115rem;
     grid-template-rows: auto auto;
     gap: 1rem;
-    width: 75%;
     margin: 0 auto;
 }

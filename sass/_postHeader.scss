@@ -1,0 +1,25 @@
+.post {
+    &__header {
+        border-bottom: 1px solid $color-bg;
+        margin-bottom: 6rem;
+        text-align: center;
+    }
+    &__info {
+        color: $color-grey;
+        margin: 1rem 0;
+    }
+    &__date {
+        &::after {
+            content: '|';
+            margin: 0 1rem;
+        }
+    }
+    &__icon {
+        fill: $color-grey;
+        display: inline-block;
+        vertical-align: top;
+        height: $font-medium;
+        width: $font-medium;
+        margin-right: 0.2rem;
+    }
+}
