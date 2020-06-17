@@ -195,7 +195,7 @@ for password, check passwordConfirm matching
 
 4. add more monitor features in admin page in the future... not just uploading posts
 
-5. modulize the post header component.
+5. modulize the post header component.(DONE)
 
 6. polish the post block
 
@@ -209,12 +209,18 @@ the problem is from md->html or from the code highlight package?
 
 1. Post Page(
    1.1 post body
-   1.2 comments component
+   1.2 comments component)(DONE)
 
 2. help for development: automatically load posts from folder when server starts. So I can dynamically see changes in .md files
 
-3. Comments component v1.0(DONE)
+# 2020-06-17
 
-4. add a share feature for post(share on wechat and so on)
+1. Comments component v1.0(DONE)
 
-5.
+2. add a share feature for post(share on wechat and so on)
+
+3. login/logout feature
+
+4. add a modal container for login/register(DONE)
+
+5. Modal content form for login/register

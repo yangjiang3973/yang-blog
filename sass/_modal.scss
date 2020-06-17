@@ -1,0 +1,32 @@
+.modal {
+    &__checkbox {
+        display: none;
+    }
+    &__background {
+        display: none;
+    }
+
+    &__checkbox:checked ~ &__background {
+        // layout
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        z-index: 100;
+        // bg
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $color-white;
+        z-index: 200;
+        height: 20rem;
+        width: 20rem;
+    }
+}

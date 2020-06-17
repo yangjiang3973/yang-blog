@@ -3,6 +3,12 @@
     <%- include("components/_head.ejs")%>
 
     <body>
+        <input type="checkbox" class="modal__checkbox" id="modal-checkbox" />
+        <div class="modal__background">
+            <div class="modal__content">
+                <label class="modal__toggle" for="modal-checkbox">X</label>
+            </div>
+        </div>
         <div class="headband"></div>
         <div class="container">
             <%- include("components/_sidebar.ejs"); %>
@@ -12,30 +18,7 @@
                     <%- article.text%>
                 </div>
             </div>
-            <div class="comments">
-                <h1 class="comments__title">
-                    留言 (18条)
-                </h1>
-                <textarea
-                    class="comment__input"
-                    name="comment"
-                    maxlength="1000"
-                    placeholder="加入讨论..."
-                ></textarea>
-                <button class="comment__submit">发表</button>
-                <div class="comments__list">
-                    <div class="comments__item">
-                        <span class="comment__user">Yang Jiang</span>
-                        <time class="comment__time">2020-06-17</time>
-                        <div class="comment__content">this is a good post</div>
-                    </div>
-                    <div class="comments__item">
-                        <span class="comment__user">Dan Gao</span>
-                        <time class="comment__time">2020-06-17</time>
-                        <div class="comment__content">this is a good post</div>
-                    </div>
-                </div>
-            </div>
+            <%- include("components/_comments.ejs")%>
         </div>
         <%- include("components/_footer.ejs")%>
     </body>
