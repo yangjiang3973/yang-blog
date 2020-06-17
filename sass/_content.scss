@@ -14,13 +14,10 @@
     }
 
     &__brief {
-        font-size: $font-small;
         padding: 4rem 4rem 2rem 4rem;
-
         &--body {
             font-size: $font-medium;
             line-height: 2.5;
-            line-clamp: 10;
             height: 20rem;
             overflow: hidden;
             pre {

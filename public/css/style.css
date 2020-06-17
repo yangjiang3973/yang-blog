@@ -45,12 +45,10 @@ body {
     grid-template-rows: auto auto;
     grid-template-columns: 115rem; }
   .content__brief {
-    font-size: 1.2rem;
     padding: 4rem 4rem 2rem 4rem; }
     .content__brief--body {
       font-size: 1.8rem;
       line-height: 2.5;
-      line-clamp: 10;
       height: 20rem;
       overflow: hidden; }
       .content__brief--body pre {
@@ -79,7 +77,53 @@ body {
 
 .comments {
   grid-column: 2 / -1;
-  background-color: #fff; }
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  padding: 4rem; }
+  .comments__title {
+    margin-bottom: 2rem; }
+  .comments__list {
+    margin-top: 2rem; }
+
+.comment__input {
+  display: block;
+  resize: none;
+  margin-bottom: 1rem;
+  width: 70%;
+  min-height: 10rem; }
+  .comment__input:focus {
+    outline: none; }
+
+.comment__submit {
+  padding: 0 1rem;
+  color: #555;
+  font-size: 1.2rem;
+  background-color: #fff;
+  border: 2px solid #555;
+  border-radius: 2px;
+  /* transition css */
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out; }
+  .comment__submit:hover {
+    color: #fff;
+    background-color: #222;
+    border-color: #222; }
+  .comment__submit:focus {
+    outline: none; }
+
+.comment__user {
+  font-size: 1.2rem;
+  color: #222;
+  font-weight: bold; }
+  .comment__user::after {
+    margin: 0 1rem;
+    content: ' '; }
+
+.comment__content {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px dashed #ccc; }
 
 .footer__copyright {
   font-size: 1.2rem;
@@ -151,10 +195,19 @@ body {
     height: 2.4rem;
     width: 2.4rem; }
 
+.post {
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  padding: 4rem 4rem 2rem 4rem; }
+  .post__body {
+    font-size: 1.8rem;
+    line-height: 2.5; }
+
 .post__header {
   border-bottom: 1px solid #eee;
   margin-bottom: 6rem;
-  text-align: center; }
+  text-align: center;
+  font-size: 1.2rem; }
 
 .post__info {
   color: #999;

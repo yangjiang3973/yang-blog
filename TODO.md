@@ -207,4 +207,14 @@ the problem is from md->html or from the code highlight package?
 
 # 2020-06-16
 
-1. Post Page
+1. Post Page(
+   1.1 post body
+   1.2 comments component
+
+2. help for development: automatically load posts from folder when server starts. So I can dynamically see changes in .md files
+
+3. Comments component v1.0(DONE)
+
+4. add a share feature for post(share on wechat and so on)
+
+5.
