@@ -204,6 +204,18 @@ body {
   height: 20rem;
   width: 20rem; }
 
+.modal__login {
+  display: none; }
+
+.modal__register {
+  display: none; }
+
+.modal__radio--login:checked ~ .modal__login {
+  display: block; }
+
+.modal__radio--register:checked ~ .modal__register {
+  display: block; }
+
 .overview {
   background-color: #fff;
   padding: 1.8rem 1rem;

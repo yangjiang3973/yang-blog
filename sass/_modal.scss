@@ -29,4 +29,21 @@
         height: 20rem;
         width: 20rem;
     }
+
+    &__login {
+        display: none;
+    }
+
+    &__register {
+        display: none;
+    }
+
+    &__radio {
+        &--login:checked ~ .modal__login {
+            display: block;
+        }
+        &--register:checked ~ .modal__register {
+            display: block;
+        }
+    }
 }

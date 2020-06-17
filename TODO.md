@@ -223,4 +223,6 @@ the problem is from md->html or from the code highlight package?
 
 4. add a modal container for login/register(DONE)
 
-5. Modal content form for login/register
+5. Modal content tab for switching between login/register(DONE)
+
+6. forms of login and register()
