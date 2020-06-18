@@ -26,24 +26,72 @@
         transform: translate(-50%, -50%);
         background-color: $color-white;
         z-index: 200;
-        height: 20rem;
-        width: 20rem;
+
+        width: 30%;
+        display: grid;
+        grid-template-rows: 4rem 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+
+    &__close {
+        grid-row: 1 / 2;
+        grid-column: 3 / -1;
+        span {
+            margin-left: 5rem;
+            font-size: $font-large;
+            cursor: pointer;
+        }
+    }
+
+    &__tab {
+        font-size: $font-medium;
+        justify-self: stretch;
+        text-align: center;
+        padding-top: 0.4rem;
+        border-bottom: 2px solid $color-grey;
+        &:hover {
+            background-color: $color-grey;
+        }
     }
 
     &__login {
         display: none;
+        margin: 5rem 2rem;
+        grid-column: 1 / -1;
+        justify-self: stretch;
     }
 
     &__register {
         display: none;
+        margin: 5rem 2rem;
+        grid-column: 1 / -1;
+        justify-self: stretch;
     }
 
     &__radio {
+        &--login {
+            display: none;
+        }
+        &--register {
+            display: none;
+        }
+
         &--login:checked ~ .modal__login {
             display: block;
         }
         &--register:checked ~ .modal__register {
             display: block;
+        }
+        &--login:checked ~ .modal__tab--login {
+            border: none;
+            color: $color-white;
+            background-color: $color-black;
+        }
+        &--register:checked ~ .modal__tab--register {
+            border: none;
+            color: $color-white;
+            background-color: $color-black;
         }
     }
 }

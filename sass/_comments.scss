@@ -33,24 +33,7 @@
     }
 
     &__submit {
-        padding: 0 1rem;
-        color: $color-text;
-        font-size: $font-small;
-        background-color: $color-white;
-        border: 2px solid $color-text;
-        border-radius: 2px;
-        /* transition css */
-        transition-property: background-color;
-        transition-duration: 0.3s;
-        transition-timing-function: ease-in-out;
-        &:hover {
-            color: $color-white;
-            background-color: $color-black;
-            border-color: $color-black;
-        }
-        &:focus {
-            outline: none;
-        }
+        @include button;
     }
 
     &__user {

@@ -1,0 +1,35 @@
+<input type="checkbox" class="modal__checkbox" id="modal-checkbox" />
+<div class="modal__background">
+    <div class="modal__content">
+        <label class="modal__close" for="modal-checkbox"><span>X</span></label>
+
+        <input
+            type="radio"
+            class="modal__radio--login"
+            id="modal-tab-login"
+            name="modal-select"
+            checked
+        />
+        <label for="modal-tab-login" class="modal__tab modal__tab--login">
+            登陆
+        </label>
+
+        <input
+            type="radio"
+            class="modal__radio--register"
+            id="modal-tab-register"
+            name="modal-select"
+        />
+        <label for="modal-tab-register" class="modal__tab modal__tab--register">
+            注册
+        </label>
+
+        <div class="modal__login">
+            <%- include("./_loginForm.ejs")%>
+        </div>
+
+        <div class="modal__register">
+            <%- include("./_registerForm.ejs")%>
+        </div>
+    </div>
+</div>

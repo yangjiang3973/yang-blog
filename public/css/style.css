@@ -147,6 +147,60 @@ body {
   .footer__copyright a {
     color: #555; }
 
+.form__group {
+  margin-bottom: 2rem;
+  vertical-align: center; }
+
+.form__input {
+  font-size: 1.8rem;
+  font-family: inherit;
+  padding: 1rem 1.5rem;
+  border-radius: 2px;
+  border: 2px solid #222;
+  width: 60%; }
+  .form__input:focus {
+    border: 2px solid #999;
+    outline: none; }
+  .form__input:focus:invalid + .form__status {
+    display: inline-flex; }
+    .form__input:focus:invalid + .form__status svg {
+      fill: #f5bf42;
+      margin: 0 1rem; }
+
+.form__status {
+  display: none;
+  margin-left: 2rem;
+  font-size: 1.2rem; }
+
+.form__submit {
+  padding: 0 1rem;
+  color: #555;
+  font-size: 1.2rem;
+  background-color: #fff;
+  border: 2px solid #555;
+  border-radius: 2px;
+  /* transition css */
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  margin-right: 5rem; }
+  .form__submit:hover {
+    color: #fff;
+    background-color: #222;
+    border-color: #222; }
+  .form__submit:focus {
+    outline: none; }
+
+.form__third-party {
+  font-size: 1.2rem; }
+  .form__third-party--github {
+    text-decoration: none;
+    color: #555; }
+
+.form__icon {
+  height: 2rem;
+  width: 2rem; }
+
 .menu {
   margin-top: 1rem;
   background-color: #fff;
@@ -201,13 +255,45 @@ body {
   transform: translate(-50%, -50%);
   background-color: #fff;
   z-index: 200;
-  height: 20rem;
-  width: 20rem; }
+  width: 30%;
+  display: grid;
+  grid-template-rows: 4rem 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center; }
+
+.modal__close {
+  grid-row: 1 / 2;
+  grid-column: 3 / -1; }
+  .modal__close span {
+    margin-left: 5rem;
+    font-size: 2.4rem;
+    cursor: pointer; }
+
+.modal__tab {
+  font-size: 1.8rem;
+  justify-self: stretch;
+  text-align: center;
+  padding-top: 0.4rem;
+  border-bottom: 2px solid #999; }
+  .modal__tab:hover {
+    background-color: #999; }
 
 .modal__login {
-  display: none; }
+  display: none;
+  margin: 5rem 2rem;
+  grid-column: 1 / -1;
+  justify-self: stretch; }
 
 .modal__register {
+  display: none;
+  margin: 5rem 2rem;
+  grid-column: 1 / -1;
+  justify-self: stretch; }
+
+.modal__radio--login {
+  display: none; }
+
+.modal__radio--register {
   display: none; }
 
 .modal__radio--login:checked ~ .modal__login {
@@ -215,6 +301,16 @@ body {
 
 .modal__radio--register:checked ~ .modal__register {
   display: block; }
+
+.modal__radio--login:checked ~ .modal__tab--login {
+  border: none;
+  color: #fff;
+  background-color: #222; }
+
+.modal__radio--register:checked ~ .modal__tab--register {
+  border: none;
+  color: #fff;
+  background-color: #222; }
 
 .overview {
   background-color: #fff;

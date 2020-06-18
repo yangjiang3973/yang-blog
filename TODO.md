@@ -225,4 +225,8 @@ the problem is from md->html or from the code highlight package?
 
 5. Modal content tab for switching between login/register(DONE)
 
-6. forms of login and register()
+# 2020-06-18
+
+1. forms of login and register(DONE)
+
+2. js code to upload login/register form data to backend(call api)

@@ -1,0 +1,51 @@
+.form {
+    &__group {
+        margin-bottom: 2rem;
+        vertical-align: center;
+    }
+
+    &__input {
+        font-size: $font-medium;
+        font-family: inherit;
+        padding: 1rem 1.5rem;
+        border-radius: 2px;
+        border: 2px solid $color-black;
+        width: 60%;
+        &:focus {
+            border: 2px solid $color-grey;
+            outline: none;
+        }
+        &:focus:invalid + .form__status {
+            display: inline-flex;
+            svg {
+                fill: $color-warning;
+                margin: 0 1rem;
+            }
+        }
+    }
+
+    &__status {
+        display: none;
+        margin-left: 2rem;
+        font-size: $font-small;
+    }
+
+    &__submit {
+        @include button;
+        margin-right: 5rem;
+    }
+
+    &__third-party {
+        font-size: $font-small;
+
+        &--github {
+            text-decoration: none;
+            color: $color-text;
+        }
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+    }
+}
