@@ -1,32 +1,34 @@
-<div class="form__group">
-    <input class="form__input" type="email" placeholder="请输入邮箱" />
-    <div class="form__status">
-        <svg class="form__icon">
-            <use xlink:href="/images/sprite.svg#icon-warning"></use>
-        </svg>
-        <span>
-            请输入有效邮箱
-        </span>
+<form id="register-form" class="form__register">
+    <div class="form__group">
+        <input class="form__input" type="email" placeholder="请输入邮箱" />
+        <div class="form__status">
+            <svg class="form__icon">
+                <use xlink:href="/images/sprite.svg#icon-warning"></use>
+            </svg>
+            <span>
+                请输入有效邮箱
+            </span>
+        </div>
     </div>
-</div>
-<div class="form__group">
-    <input class="form__input" type="text" placeholder="请输入密码" />
-    <span class="form__status"></span>
-</div>
-<div class="form__group">
-    <input class="form__input" type="text" placeholder="请再次输入密码" />
-    <span class="form__status"></span>
-</div>
-<button class="form__submit">注册</button>
-<span class="form__third-party">
-    <span>第三方登陆：</span>
-    <a
-        class="form__third-party--github"
-        href="https://github.com/login/oauth/authorize?client_id=8aed57234e8e37b96dd1"
-    >
-        <svg class="form__icon">
-            <use xlink:href="/images/sprite.svg#icon-github"></use>
-        </svg>
-        <span>github</span>
-    </a>
-</span>
+    <div class="form__group">
+        <input class="form__input" type="text" placeholder="请输入密码" />
+        <span class="form__status"></span>
+    </div>
+    <div class="form__group">
+        <input class="form__input" type="text" placeholder="请再次输入密码" />
+        <span class="form__status"></span>
+    </div>
+    <button class="form__submit">注册</button>
+    <span class="form__third-party">
+        <span>第三方登陆：</span>
+        <a
+            class="form__third-party--github"
+            href="https://github.com/login/oauth/authorize?client_id=8aed57234e8e37b96dd1"
+        >
+            <svg class="form__icon">
+                <use xlink:href="/images/sprite.svg#icon-github"></use>
+            </svg>
+            <span>github</span>
+        </a>
+    </span>
+</form>

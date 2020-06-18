@@ -48,7 +48,9 @@ module.exports.login = catchAsync(async (req, res, next) => {
 
     // check if email and password exist
     if (!email || !password)
-        return next(new AppError(400, 'Please provide email and password'));
+        return next(
+            new AppError(400, 'Please provide valid email and password')
+        );
 
     // check if user exist && password is correct
     const { user, correct } = await UserDao.checkUserPassword(email, password);

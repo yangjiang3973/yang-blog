@@ -230,3 +230,13 @@ the problem is from md->html or from the code highlight package?
 1. forms of login and register(DONE)
 
 2. js code to upload login/register form data to backend(call api)
+
+3. learn `parcel` and compare it with `webpack`
+
+4. `addEventListener` the last argument? meaning of setting to true?
+
+5. learn `axios`. Use it instead of native Ajax call
+
+6. add a username input to register form
+
+7. make an alert component for login/register.
