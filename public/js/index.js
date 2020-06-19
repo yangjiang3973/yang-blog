@@ -11,7 +11,6 @@ function init() {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
-            console.log('init -> password', password);
             login(email, password);
         },
         false

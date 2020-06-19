@@ -8340,7 +8340,33 @@ module.exports.default = axios;
 
 },{"./utils":"../../node_modules/axios/lib/utils.js","./helpers/bind":"../../node_modules/axios/lib/helpers/bind.js","./core/Axios":"../../node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"../../node_modules/axios/lib/core/mergeConfig.js","./defaults":"../../node_modules/axios/lib/defaults.js","./cancel/Cancel":"../../node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"../../node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"../../node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"../../node_modules/axios/lib/helpers/spread.js"}],"../../node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"../../node_modules/axios/lib/axios.js"}],"login.js":[function(require,module,exports) {
+},{"./lib/axios":"../../node_modules/axios/lib/axios.js"}],"alert.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showAlert = exports.hideAlert = void 0;
+
+var hideAlert = function hideAlert() {
+  var el = document.querySelector('.alert');
+  if (el) el.parentElement.removeChild(el);
+};
+
+exports.hideAlert = hideAlert;
+
+var showAlert = function showAlert(type, message) {
+  var el = document.querySelector('.alert');
+  el.classList.add("alert--".concat(type));
+  var alertText = document.createElement('span');
+  alertText.innerText = message;
+  el.appendChild(alertText);
+  el.style.display = 'flex';
+  window.setTimeout(hideAlert, 5000);
+};
+
+exports.showAlert = showAlert;
+},{}],"login.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8349,6 +8375,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.login = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _alert = require("./alert");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8378,8 +8406,10 @@ var login = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              // do action for success
-              showAlert('success', 'Logged in successfully');
+              (0, _alert.showAlert)('success', 'Logged in successfully');
+              window.setTimeout(function () {
+                location.reload();
+              }, 1500);
             }
 
             _context.next = 10;
@@ -8388,7 +8418,7 @@ var login = /*#__PURE__*/function () {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            showAlert('error', _context.t0.response.data.message);
+            (0, _alert.showAlert)('error', _context.t0.response.data.message);
 
           case 10:
           case "end":
@@ -8404,7 +8434,7 @@ var login = /*#__PURE__*/function () {
 }();
 
 exports.login = login;
-},{"axios":"../../node_modules/axios/index.js"}],"index.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("core-js/modules/es6.array.copy-within");
@@ -8673,7 +8703,6 @@ function init() {
     e.preventDefault();
     var email = document.getElementById('login-email').value;
     var password = document.getElementById('login-password').value;
-    console.log('init -> password', password);
     (0, _login.login)(email, password);
   }, false);
 }

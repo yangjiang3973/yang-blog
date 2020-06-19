@@ -1,0 +1,27 @@
+.alert {
+    display: none;
+    align-items: center; // when change to flex
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 200;
+    font-size: $font-medium;
+    color: $color-white;
+    padding: 1rem 4rem;
+    border-radius: 2px;
+
+    &__icon {
+        fill: $color-white;
+        height: 2rem;
+        width: 2rem;
+        margin-right: 1rem;
+    }
+
+    &--success {
+        background-color: $color-success;
+    }
+    &--error {
+        background-color: red;
+    }
+}

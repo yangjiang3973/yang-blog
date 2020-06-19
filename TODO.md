@@ -240,3 +240,5 @@ the problem is from md->html or from the code highlight package?
 6. add a username input to register form
 
 7. make an alert component for login/register.
+
+8. make icon styles into mixin
