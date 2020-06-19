@@ -73,6 +73,21 @@ module.exports.login = catchAsync(async (req, res, next) => {
     createTokenResponse(user._id, 200, req, res);
 });
 
+module.exports.isLoggedIn = async (req, res, next) => {
+    if (!req.cookies.jwt) return next();
+
+    try {
+        // verify jwt
+        const decoded = await promisify(jwt.verify)(
+            req.cookies.jwt,
+            process.env.JWT_SECRET
+        );
+        // check if user exists/active
+    } catch (err) {
+        return next();
+    }
+};
+
 module.exports.protect = catchAsync(async (req, res, next) => {
     let token;
     // 1) get token and check exsistence

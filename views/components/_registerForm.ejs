@@ -1,6 +1,13 @@
 <form id="register-form" class="form__register">
     <div class="form__group">
-        <input class="form__input" type="email" placeholder="请输入邮箱" />
+        <input
+            id="register-email"
+            class="form__input"
+            type="email"
+            placeholder="请输入邮箱"
+            required
+            autocomplete="username"
+        />
         <div class="form__status">
             <svg class="form__icon">
                 <use xlink:href="/images/sprite.svg#icon-warning"></use>
@@ -11,14 +18,41 @@
         </div>
     </div>
     <div class="form__group">
-        <input class="form__input" type="text" placeholder="请输入密码" />
+        <input
+            id="register-name"
+            class="form__input"
+            type="text"
+            placeholder="请输入用户名"
+            required
+            autocomplete="username"
+        />
         <span class="form__status"></span>
     </div>
     <div class="form__group">
-        <input class="form__input" type="text" placeholder="请再次输入密码" />
+        <input
+            id="register-password"
+            class="form__input"
+            type="password"
+            placeholder="请输入密码"
+            required
+            minlength="8"
+            autocomplete="new-password"
+        />
         <span class="form__status"></span>
     </div>
-    <button class="form__submit">注册</button>
+    <div class="form__group">
+        <input
+            id="register-passwordConfirm"
+            class="form__input"
+            type="password"
+            placeholder="请再次输入密码"
+            required
+            minlength="8"
+            autocomplete="new-password"
+        />
+        <span class="form__status"></span>
+    </div>
+    <button id="register-submit" class="form__submit">注册</button>
     <span class="form__third-party">
         <span>第三方登陆：</span>
         <a

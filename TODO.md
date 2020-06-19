@@ -229,7 +229,7 @@ the problem is from md->html or from the code highlight package?
 
 1. forms of login and register(DONE)
 
-2. js code to upload login/register form data to backend(call api)
+2. js code to upload login/register form data to backend(call api)(DONE)
 
 3. learn `parcel` and compare it with `webpack`
 
@@ -237,8 +237,10 @@ the problem is from md->html or from the code highlight package?
 
 5. learn `axios`. Use it instead of native Ajax call
 
-6. add a username input to register form
+6. add a username input to register form(DONE)
 
-7. make an alert component for login/register.
+7. make an alert component for login/register.(DONE)
 
-8. make icon styles into mixin
+# 2020-06-19
+
+1. make icon styles into mixin

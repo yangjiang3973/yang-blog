@@ -5,6 +5,8 @@
             id="login-email"
             type="email"
             placeholder="请输入邮箱"
+            required
+            autocomplete="username"
         />
         <div class="form__status">
             <svg class="form__icon">
@@ -19,12 +21,15 @@
         <input
             class="form__input"
             id="login-password"
-            type="text"
+            type="password"
             placeholder="请输入密码"
+            required
+            minlength="8"
+            autocomplete="current-password"
         />
         <span class="form__status"></span>
     </div>
-    <button class="form__submit">登陆</button>
+    <button id="login-submit" class="form__submit">登陆</button>
     <span class="form__third-party">
         <span>第三方登陆：</span>
         <a

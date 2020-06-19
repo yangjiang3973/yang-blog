@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { login } from './login';
+import { login, register } from './login';
 
 window.addEventListener('load', init, false);
 
@@ -9,9 +9,17 @@ function init() {
         'submit',
         e => {
             e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            login(email, password);
+            login();
+        },
+        false
+    );
+
+    const registerForm = document.getElementById('register-form');
+    registerForm.addEventListener(
+        'submit',
+        e => {
+            e.preventDefault();
+            register();
         },
         false
     );
