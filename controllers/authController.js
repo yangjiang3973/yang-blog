@@ -20,7 +20,7 @@ const createTokenResponse = (id, code, req, res) => {
             Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
         ),
         httpOnly: true,
-        secure: true // TODO: will change it when deployment
+        secure: false // TODO: will change it when deployment
     };
 
     if (process.env.NODE_ENV === 'development') cookieOptions.secure = false;
@@ -73,8 +73,21 @@ module.exports.login = catchAsync(async (req, res, next) => {
     createTokenResponse(user._id, 200, req, res);
 });
 
+module.exports.logout = (req, res) => {
+    res.cookie('jwt', 'loggedout', {
+        expires: new Date(Date.now() + 2 * 1000),
+        httpOnly: true
+    });
+
+    res.status(200).json({
+        status: 'success'
+    });
+};
+
 module.exports.isLoggedIn = async (req, res, next) => {
-    if (!req.cookies.jwt) return next();
+    console.log('module.exports.isLoggedIn -> req.cookies', req.cookies);
+    res.locals.user = null;
+    if (!req.cookies || !req.cookies.jwt) return next();
 
     try {
         // verify jwt
@@ -83,6 +96,20 @@ module.exports.isLoggedIn = async (req, res, next) => {
             process.env.JWT_SECRET
         );
         // check if user exists/active
+        const currentUser = await UserDao.getOneUser(decoded.id);
+        if (!currentUser || currentUser.active === false) return next();
+        // check if user changed password after token issued
+        if (
+            isPasswordChangedAfterJWT(
+                currentUser.passwordChangedAt,
+                decoded.iat
+            )
+        )
+            return next();
+        console.log('user correct');
+        // finally this is a logged in user
+        res.locals.user = currentUser;
+        next();
     } catch (err) {
         return next();
     }

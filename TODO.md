@@ -219,7 +219,7 @@ the problem is from md->html or from the code highlight package?
 
 2. add a share feature for post(share on wechat and so on)
 
-3. login/logout feature
+3. login/logout feature(DONE)
 
 4. add a modal container for login/register(DONE)
 
@@ -244,3 +244,13 @@ the problem is from md->html or from the code highlight package?
 # 2020-06-19
 
 1. make icon styles into mixin
+
+2. check if user logged in
+
+# 2020-06-20
+
+1. `express.json`, `express.urlencoded`, `express.raw`. which kind of data they handle for? write a summary
+
+2. Logout feature()
+
+3. add a flyout to user menu

@@ -4,12 +4,19 @@
             留言 (18条)
         </h1>
         <span class="user__menu">
+            <%if(!user){ %>
             <label class="modal__toggle" for="modal-checkbox">
                 <svg class="user__icon">
                     <use xlink:href="/images/sprite.svg#icon-enter"></use>
                 </svg>
                 登陆 | 注册
             </label>
+            <% } else{ %>
+            <svg class="user__icon">
+                <use xlink:href="/images/sprite.svg#icon-profile-male"></use>
+            </svg>
+            <a class="user__name"><%= user.name%></a>
+            <% } %>
         </span>
     </div>
     <textarea

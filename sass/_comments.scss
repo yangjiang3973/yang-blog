@@ -64,4 +64,14 @@
         vertical-align: middle;
         fill: $color-text;
     }
+    &__name {
+        display: inline-block;
+        margin-left: 2px;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            color: $color-black;
+        }
+    }
 }

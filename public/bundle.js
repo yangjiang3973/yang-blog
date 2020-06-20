@@ -8757,12 +8757,12 @@ window.addEventListener('load', init, false);
 
 function init() {
   var loginForm = document.getElementById('login-form');
-  loginForm.addEventListener('submit', function (e) {
+  if (loginForm) loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
     (0, _login.login)();
   }, false);
   var registerForm = document.getElementById('register-form');
-  registerForm.addEventListener('submit', function (e) {
+  if (registerForm) registerForm.addEventListener('submit', function (e) {
     e.preventDefault();
     (0, _login.register)();
   }, false);
