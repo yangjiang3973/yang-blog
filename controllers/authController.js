@@ -85,7 +85,6 @@ module.exports.logout = (req, res) => {
 };
 
 module.exports.isLoggedIn = async (req, res, next) => {
-    console.log('module.exports.isLoggedIn -> req.cookies', req.cookies);
     res.locals.user = null;
     if (!req.cookies || !req.cookies.jwt) return next();
 
@@ -106,7 +105,7 @@ module.exports.isLoggedIn = async (req, res, next) => {
             )
         )
             return next();
-        console.log('user correct');
+
         // finally this is a logged in user
         res.locals.user = currentUser;
         next();

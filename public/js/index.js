@@ -25,4 +25,32 @@ function init() {
             },
             false
         );
+
+    const flyoutToggle = document.getElementById('flyout-toggle');
+    if (flyoutToggle) {
+        const flyoutBody = document.getElementById('flyout-body');
+        document.body.addEventListener(
+            'click',
+            e => {
+                e.preventDefault();
+                flyoutBody.classList.remove('flyout__open');
+            },
+            false
+        );
+        flyoutToggle.addEventListener(
+            'click',
+            e => {
+                e.stopPropagation();
+                flyoutBody.classList.toggle('flyout__open');
+            },
+            false
+        );
+        flyoutBody.addEventListener(
+            'click',
+            e => {
+                e.stopPropagation();
+            },
+            false
+        );
+    }
 }

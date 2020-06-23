@@ -12,11 +12,31 @@
                 登陆 | 注册
             </label>
             <% } else{ %>
-            <svg class="user__icon">
-                <use xlink:href="/images/sprite.svg#icon-profile-male"></use>
-            </svg>
-            <a class="user__name"><%= user.name%></a>
+            <!-- <input
+                type="checkbox"
+                class="flyout__checkbox"
+                id="flyout-checkbox"
+            /> -->
+            <label
+                id="flyout-toggle"
+                class="flyout__toggle"
+                for="flyout-checkbox"
+            >
+                <svg class="user__icon">
+                    <use
+                        xlink:href="/images/sprite.svg#icon-profile-male"
+                    ></use>
+                </svg>
+                <a class="user__name"><%= user.name%></a>
+            </label>
             <% } %>
+
+            <div class="flyout__container" id="flyout-body">
+                <ul class="user__dropdown">
+                    <li>Account</li>
+                    <li>Logout</li>
+                </ul>
+            </div>
         </span>
     </div>
     <textarea

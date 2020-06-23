@@ -1,0 +1,37 @@
+.flyout {
+    &__toggle {
+        cursor: pointer;
+        &:hover {
+            color: $color-black;
+            svg {
+                fill: $color-black;
+            }
+        }
+        &::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid $color-grey;
+            position: absolute;
+            top: 1rem;
+        }
+    }
+    &__container {
+        display: none;
+        position: absolute;
+        top: 120%;
+        right: 0;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+            0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        padding: 1rem 2rem;
+    }
+
+    &__open {
+        display: inline-block;
+        .flyout__toggle::after {
+            border-top-color: $color-black;
+        }
+    }
+}

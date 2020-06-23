@@ -253,4 +253,14 @@ the problem is from md->html or from the code highlight package?
 
 2. Logout feature()
 
-3. add a flyout to user menu
+3. add a flyout to user menu(DONE)
+
+4. make manu component float when scroll down
+
+# 2020-06-23
+
+1. change the svg in user menu
+
+2. need to learn `e.preventDefault` and `e.stopPropagation`
+
+3. modulize flyout functions
