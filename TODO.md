@@ -251,16 +251,20 @@ the problem is from md->html or from the code highlight package?
 
 1. `express.json`, `express.urlencoded`, `express.raw`. which kind of data they handle for? write a summary
 
-2. Logout feature()
+2. Logout feature(DONE)
 
 3. add a flyout to user menu(DONE)
 
-4. make manu component float when scroll down
+4. make manu component float when scroll down(DONE)
 
 # 2020-06-23
 
-1. change the svg in user menu
+1. change the SVG in user menu(DONE)
 
 2. need to learn `e.preventDefault` and `e.stopPropagation`
 
-3. modulize flyout functions
+# 2020-06-24
+
+1. finish dropdown list(DONE)
+
+2. config nodeman, not watching public/js()

@@ -25,13 +25,13 @@
         right: 0;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12),
             0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-        padding: 1rem 2rem;
     }
 
     &__open {
         display: inline-block;
-        .flyout__toggle::after {
-            border-top-color: $color-black;
-        }
+    }
+
+    &__open ~ &__toggle::after {
+        border-top-color: $color-black;
     }
 }

@@ -74,4 +74,20 @@
     &__dropdown {
         list-style: none;
     }
+    &__dropdown-item {
+        &:not(:last-child) {
+            padding: 1rem 2rem 0rem 2rem;
+        }
+        padding: 1rem 2rem;
+
+        a {
+            text-decoration: none;
+            color: $color-text;
+            &:hover {
+                color: $color-black;
+                cursor: pointer;
+                border-bottom: 1px solid $color-black;
+            }
+        }
+    }
 }

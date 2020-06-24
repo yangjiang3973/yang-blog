@@ -1,7 +1,10 @@
 import '@babel/polyfill';
-import { login, register } from './login';
+import { login, register, logout } from './login';
+import { menuFloat } from './componentController';
 
 window.addEventListener('load', init, false);
+
+window.onscroll = menuFloat;
 
 function init() {
     const loginForm = document.getElementById('login-form');
@@ -22,6 +25,17 @@ function init() {
             e => {
                 e.preventDefault();
                 register();
+            },
+            false
+        );
+
+    const logoutButton = document.getElementById('logout-user');
+    if (logoutButton)
+        logoutButton.addEventListener(
+            'click',
+            e => {
+                e.preventDefault();
+                logout();
             },
             false
         );
