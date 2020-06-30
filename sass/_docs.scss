@@ -1,0 +1,40 @@
+.docs {
+    background-color: $color-white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    padding: 4rem 4rem 2rem 4rem;
+
+    h2 {
+        margin-left: 2rem;
+        font-size: $font-large;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin-left: 2rem;
+    }
+
+    &__item {
+        margin: 2rem 0;
+        line-height: 30px;
+        border-bottom: 1px dashed $color-grey-light;
+        display: flex;
+        justify-content: space-between;
+        &:hover {
+            border-bottom: 1px dashed $color-black;
+        }
+        a {
+            color: $color-black;
+            font-size: $font-medium;
+            text-decoration: none;
+        }
+        span {
+            color: $color-black;
+            font-size: $font-small;
+        }
+        time {
+            font-size: $font-small;
+        }
+    }
+}

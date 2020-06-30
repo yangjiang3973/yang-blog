@@ -281,3 +281,5 @@ the problem is from md->html or from the code highlight package?
 2. `ejs`: can i trim new line(`-%>`) and whitespace(`<%_ _%>`) at the same time?
 
 3. learn more about `ejs` options
+
+4. Docs Page(DONE)

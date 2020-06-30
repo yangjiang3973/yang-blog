@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("components/_head.ejs")%>
+    <body>
+        <div class="headband"></div>
+        <div class="container">
+            <%- include("components/_sidebar.ejs"); %>
+            <div class="docs">
+                <h2 class="docs__title">Blogs</h2>
+                <ul class="docs__list">
+                    <% posts.forEach(i => { %>
+                    <li class="docs__item">
+                        <a href="/posts/<%= i._id %>"><%= i.title %></a>
+                        <time><%= i.createdAt.toLocaleDateString()%></time>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+        <%- include("components/_footer.ejs")%>
+    </body>
+</html>

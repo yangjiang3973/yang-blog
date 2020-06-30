@@ -8,9 +8,11 @@ const AppError = require('../utils/appError');
 
 module.exports.home = catchAsync(async (req, res, next) => {
     const recentPosts = await PostDAO.getRecentPosts();
+    const comments = await CommentDAO.getCommentsByPostId(req.params.id);
 
     res.status(200).render('home', {
-        articles: recentPosts
+        articles: recentPosts,
+        comments
     });
 });
 
@@ -20,6 +22,14 @@ module.exports.post = catchAsync(async (req, res, next) => {
     res.status(200).render('post', {
         article: post,
         comments
+    });
+});
+
+module.exports.docs = catchAsync(async (req, res, next) => {
+    const posts = await PostDAO.getAllPosts();
+    console.log('module.exports.docs -> posts', posts);
+    res.status(200).render('docs', {
+        posts
     });
 });
 
