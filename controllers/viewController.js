@@ -2,6 +2,7 @@ var Busboy = require('busboy');
 const showdown = require('showdown');
 const converter = new showdown.Converter();
 const PostDAO = require('../dao/postDAO');
+const CommentDAO = require('../dao/commentDAO');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
@@ -15,7 +16,7 @@ module.exports.home = catchAsync(async (req, res, next) => {
 
 module.exports.post = catchAsync(async (req, res, next) => {
     const post = await PostDAO.getOnePost(req.params.id);
-
+    // const comments = await CommentDAO
     res.status(200).render('post', {
         article: post
     });

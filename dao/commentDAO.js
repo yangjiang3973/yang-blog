@@ -27,6 +27,8 @@ class CommentDAO {
     }
 
     static async createOneComment(comment) {
+        comment.createdAt = new Date();
+        comment.postId = ObjectId(comment.postId);
         try {
             return await commentsCollection.insertOne(comment);
         } catch (err) {

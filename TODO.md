@@ -245,7 +245,7 @@ the problem is from md->html or from the code highlight package?
 
 1. make icon styles into mixin
 
-2. check if user logged in
+2. check if user logged in(DONE)
 
 # 2020-06-20
 
@@ -267,4 +267,11 @@ the problem is from md->html or from the code highlight package?
 
 1. finish dropdown list(DONE)
 
-2. config nodeman, not watching public/js()
+2. config nodeman, not watching public/js(DONE)
+
+3. comments component 2.0(
+   3.1 create a comment(DONE)
+   3.2 display comments
+   )
+
+# 2020-06-30

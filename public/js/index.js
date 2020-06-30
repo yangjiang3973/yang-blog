@@ -1,14 +1,14 @@
 import '@babel/polyfill';
 import { login, register, logout } from './login';
-import { menuFloat } from './componentController';
+import { commentSubmit } from './comment';
+import { menuFloat } from './layoutController';
 
 window.addEventListener('load', init, false);
-
 window.onscroll = menuFloat;
 
 function init() {
     const loginForm = document.getElementById('login-form');
-    if (loginForm)
+    if (loginForm) {
         loginForm.addEventListener(
             'submit',
             e => {
@@ -17,9 +17,10 @@ function init() {
             },
             false
         );
+    }
 
     const registerForm = document.getElementById('register-form');
-    if (registerForm)
+    if (registerForm) {
         registerForm.addEventListener(
             'submit',
             e => {
@@ -28,9 +29,10 @@ function init() {
             },
             false
         );
+    }
 
     const logoutButton = document.getElementById('logout-user');
-    if (logoutButton)
+    if (logoutButton) {
         logoutButton.addEventListener(
             'click',
             e => {
@@ -39,6 +41,11 @@ function init() {
             },
             false
         );
+    }
+
+    const commentButton = document.getElementById('submit-comment');
+    if (commentButton)
+        commentButton.addEventListener('click', commentSubmit, false);
 
     const flyoutToggle = document.getElementById('flyout-toggle');
     if (flyoutToggle) {
