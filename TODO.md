@@ -271,7 +271,13 @@ the problem is from md->html or from the code highlight package?
 
 3. comments component 2.0(
    3.1 create a comment(DONE)
-   3.2 display comments
-   )
+   3.2 display comments(DONE)
+   )(DONE)
 
 # 2020-06-30
+
+1. like `catchAsync`, wrap all DAO function to avoid try..catch...
+
+2. `ejs`: can i trim new line(`-%>`) and whitespace(`<%_ _%>`) at the same time?
+
+3. learn more about `ejs` options

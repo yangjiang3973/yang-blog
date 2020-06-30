@@ -16,9 +16,10 @@ module.exports.home = catchAsync(async (req, res, next) => {
 
 module.exports.post = catchAsync(async (req, res, next) => {
     const post = await PostDAO.getOnePost(req.params.id);
-    // const comments = await CommentDAO
+    const comments = await CommentDAO.getCommentsByPostId(req.params.id);
     res.status(200).render('post', {
-        article: post
+        article: post,
+        comments
     });
 });
 

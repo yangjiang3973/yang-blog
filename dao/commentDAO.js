@@ -76,6 +76,26 @@ class CommentDAO {
             dbErrorHandler(err);
         }
     }
+
+    static async getCommentsByPostId(id) {
+        const postId = ObjectId(id);
+        try {
+            const comments = await commentsCollection
+                .find(
+                    { postId },
+                    {
+                        projection: {
+                            _id: 0,
+                            postId: 0
+                        }
+                    }
+                )
+                .toArray();
+            return comments;
+        } catch (err) {
+            dbErrorHandler(err);
+        }
+    }
 }
 
 module.exports = CommentDAO;

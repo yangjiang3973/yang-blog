@@ -48,15 +48,15 @@
     ></textarea>
     <button class="comment__submit" id="submit-comment">发表</button>
     <div class="comments__list">
+        <% comments.forEach((i) => { %>
         <div class="comments__item">
-            <span class="comment__user">Yang Jiang</span>
-            <time class="comment__time">2020-06-17</time>
-            <div class="comment__content">this is a good post</div>
+            <span class="comment__user"><%= i.username%></span>
+            <time class="comment__time"
+                ><%= i.createdAt.toLocaleDateString()%></time
+            >
+            <div class="comment__content"><%= i.text %></div>
         </div>
-        <div class="comments__item">
-            <span class="comment__user">Dan Gao</span>
-            <time class="comment__time">2020-06-17</time>
-            <div class="comment__content">this is a good post</div>
-        </div>
+
+        <% }); %>
     </div>
 </div>
