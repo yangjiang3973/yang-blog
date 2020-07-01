@@ -64,10 +64,36 @@ module.exports.loginByGithub = catchAsync(async (req, res, next) => {
     );
     let userInfo = userRes.data; // { login:username, name: john L, email:abc@123.com }
 
-    // check if user exists
-    // const usersFromDB = await UsersDAO
+    /* TODO: wrap the about code as a function! */
 
-    res.status(200).end();
+    // check if username logged in before from github
+    const userFromGithub = await UserDAO.findUserByField({
+        githubUserName: userInfo.login
+    });
+    if (userFromGithub) {
+        createTokenResponse(userFromGithub._id, 200, req, res);
+    } else {
+        // new user, create a new doc
+        const userWithSameName = await UserDAO.findUserByName(userInfo.login);
+        const newUser = {};
+        if (!userWithSameName) {
+            newUser.name = userInfo.login;
+            newUser.githubUserName = userInfo.login;
+        } else {
+            // create a random string to avoide duplicate name
+            let randomName = crypto.randomBytes(10).toString('hex');
+            while (await UserDAO.findUserByName(randomName)) {
+                randomName = crypto.randomBytes(10).toString('hex');
+            }
+            newUser.name = randomName;
+            newUser.githubUserName = userInfo.login;
+        }
+        const { result, insertedId } = await UserDao.createOneUser(newUser);
+        if (result.ok !== 1 || result.n === 0) {
+            return next(new AppError(404, 'Failed to create a new user'));
+        }
+        createTokenResponse(insertedId, 201, req, res);
+    }
 });
 
 module.exports.login = catchAsync(async (req, res, next) => {

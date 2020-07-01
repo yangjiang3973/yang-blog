@@ -34,12 +34,19 @@ class UserDAO {
         try {
             if (!user.role) user.role = 'user'; // by default
             if (!user.active) user.active = true;
+            if (!user.email) user.email = 'abc@abc.com';
 
-            const { password, passwordConfirm } = user;
-            if (!validators.validatePassowrd(password, passwordConfirm))
-                throw new AppError(400, 'your password does not match');
-            user.password = await bcrypt.hash(password, 10);
-            delete user.passwordConfirm;
+            if (!user.password) {
+                user.password = crypto.randomBytes(32).toString('hex');
+            } else {
+                const { password, passwordConfirm } = user;
+
+                if (!validators.validatePassowrd(password, passwordConfirm))
+                    throw new AppError(400, 'your password does not match');
+                user.password = await bcrypt.hash(password, 10);
+                delete user.passwordConfirm;
+            }
+
             const r = await usersCollection.insertOne(user);
             return r;
         } catch (err) {
@@ -99,6 +106,15 @@ class UserDAO {
     static async findUserByEmail(email) {
         try {
             const user = await usersCollection.findOne({ email: email });
+            return user;
+        } catch (error) {
+            dbErrorHandler(err);
+        }
+    }
+
+    static async findUserByName(name) {
+        try {
+            const user = await usersCollection.findOne({ name });
             return user;
         } catch (error) {
             dbErrorHandler(err);

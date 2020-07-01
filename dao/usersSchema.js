@@ -4,8 +4,13 @@ module.exports = {
     properties: {
         name: {
             bsonType: 'string',
+            maxlength: 20,
             description:
                 'must be a string and is required and is unique indexed'
+        },
+        githubUserName: {
+            bsonType: 'string',
+            description: 'must be a string'
         },
         email: {
             bsonType: 'string',
@@ -19,7 +24,7 @@ module.exports = {
         },
         role: {
             bsonType: 'string',
-            enum: ['admin', 'user'],
+            enum: ['admin', 'user', 'third-party user'],
             description:
                 'must be a string and can only be one of the enum values'
         },
