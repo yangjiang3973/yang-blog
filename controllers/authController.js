@@ -1,6 +1,7 @@
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const axios = require('axios');
 const UserDao = require('../dao/userDAO');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
@@ -41,6 +42,32 @@ module.exports.signup = catchAsync(async (req, res, next) => {
     }
     // jwt
     createTokenResponse(insertedId, 201, req, res);
+});
+
+module.exports.loginByGithub = catchAsync(async (req, res, next) => {
+    const code = req.query.code;
+    let res_token = await axios.post(
+        'https://github.com/login/oauth/access_token',
+        {
+            client_id: process.env.GITHUB_CLIENT_ID,
+            client_secret: process.env.GITHUB_CLIENT_SECRET,
+            code: code
+        }
+    );
+
+    // res_token=aa73b037629ff95e8273728b7999a376d2a1c097&scope=&token_type=bearer
+    let token = res_token.data.split('=')[1].replace('&scope', ''); // TODO: use a better way to parse
+
+    // use token to get users info
+    let userRes = await axios.get(
+        `https://api.github.com/user?access_token=${token}`
+    );
+    let userInfo = userRes.data; // { login:username, name: john L, email:abc@123.com }
+
+    // check if user exists
+    // const usersFromDB = await UsersDAO
+
+    res.status(200).end();
 });
 
 module.exports.login = catchAsync(async (req, res, next) => {

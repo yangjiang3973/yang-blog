@@ -283,3 +283,15 @@ the problem is from md->html or from the code highlight package?
 3. learn more about `ejs` options
 
 4. Docs Page(DONE)
+
+5. login by github
+
+# 2020-07-01
+
+1. learn more about OAuth 2.0
+
+2. how to manage user registered by third party? need to do some research
+
+3. Account Page(DONE)
+
+4. A lot of new things on github, like GitHub Packages(https://help.github.com/en/packages), Github App....need to learn them

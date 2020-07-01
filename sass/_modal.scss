@@ -6,6 +6,10 @@
         display: none;
     }
 
+    &__toggle {
+        cursor: pointer;
+    }
+
     &__checkbox:checked ~ &__background {
         // layout
         display: block;

@@ -30,6 +30,33 @@ body {
   gap: 1rem;
   margin: 0 auto; }
 
+.account {
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  padding: 4rem 4rem 2rem 4rem; }
+  .account__title {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 3rem; }
+  .account__list {
+    list-style: none; }
+  .account__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e5e9ef;
+    height: 8rem; }
+    .account__item--entry {
+      font-size: 1.8rem; }
+    .account__item--status {
+      font-size: 1.2rem; }
+    .account__item--link {
+      font-size: 1.2rem;
+      margin-right: 3rem; }
+      .account__item--link a {
+        text-decoration: none;
+        color: #00a1d6; }
+
 .admin {
   background-color: #fff;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
@@ -344,6 +371,9 @@ body {
 
 .modal__background {
   display: none; }
+
+.modal__toggle {
+  cursor: pointer; }
 
 .modal__checkbox:checked ~ .modal__background {
   display: block;

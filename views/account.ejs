@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("components/_head.ejs")%>
+    <body>
+        <div class="headband"></div>
+        <div class="container">
+            <%- include("components/_sidebar.ejs"); %>
+            <div class="account">
+                <h2 class="account__title">个人帐户</h2>
+                <ul class="account__list">
+                    <li class="account__item">
+                        <span class="account__item--entry">设置密码</span>
+                        <span class="account__item--status">已设置</span>
+                        <span class="account__item--link">
+                            <a href="">修改密码</a>
+                        </span>
+                    </li>
+                    <li class="account__item">
+                        <span class="account__item--entry">订阅更新</span>
+                        <span class="account__item--status">未订阅</span>
+                        <span class="account__item--link">
+                            <a href="">邮箱订阅</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <%- include("components/_footer.ejs")%>
+    </body>
+</html>
