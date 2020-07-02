@@ -14,24 +14,29 @@ const signToken = id => {
     });
 };
 
-const createTokenResponse = (id, code, req, res) => {
-    const token = signToken(id);
-    const cookieOptions = {
-        expires: new Date(
-            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-        ),
-        httpOnly: true,
-        secure: false // TODO: will change it when deployment
-    };
+const cookieOptions = {
+    expires: new Date(
+        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+    secure: false // TODO: will change it when deployment
+};
 
+const createTokenResponse = (id, code, req, res, type) => {
+    const token = signToken(id);
     if (process.env.NODE_ENV === 'development') cookieOptions.secure = false;
 
     res.cookie('jwt', token, cookieOptions);
 
-    res.status(code).json({
-        status: 'success',
-        token //TODO: is it possible to remove it? by only using cookie. also need to change `protect`
-    });
+    if (type === 'html') {
+        // this is for github login
+        res.status(code).redirect(req.get('Referrer'));
+    } else {
+        res.status(code).json({
+            status: 'success',
+            token //TODO: is it possible to remove it? by only using cookie in view. also need to change `protect`
+        });
+    }
 };
 
 module.exports.signup = catchAsync(async (req, res, next) => {
@@ -67,22 +72,22 @@ module.exports.loginByGithub = catchAsync(async (req, res, next) => {
     /* TODO: wrap the about code as a function! */
 
     // check if username logged in before from github
-    const userFromGithub = await UserDAO.findUserByField({
+    const userFromGithub = await UserDao.findUserByField({
         githubUserName: userInfo.login
     });
     if (userFromGithub) {
-        createTokenResponse(userFromGithub._id, 200, req, res);
+        createTokenResponse(userFromGithub._id, 200, req, res, 'html');
     } else {
         // new user, create a new doc
-        const userWithSameName = await UserDAO.findUserByName(userInfo.login);
+        const userWithSameName = await UserDao.findUserByName(userInfo.login);
         const newUser = {};
         if (!userWithSameName) {
             newUser.name = userInfo.login;
             newUser.githubUserName = userInfo.login;
         } else {
             // create a random string to avoide duplicate name
-            let randomName = crypto.randomBytes(10).toString('hex');
-            while (await UserDAO.findUserByName(randomName)) {
+            let randomName = crypto.randomBytes(5).toString('hex');
+            while (await UserDao.findUserByName(randomName)) {
                 randomName = crypto.randomBytes(10).toString('hex');
             }
             newUser.name = randomName;
@@ -92,7 +97,7 @@ module.exports.loginByGithub = catchAsync(async (req, res, next) => {
         if (result.ok !== 1 || result.n === 0) {
             return next(new AppError(404, 'Failed to create a new user'));
         }
-        createTokenResponse(insertedId, 201, req, res);
+        createTokenResponse(insertedId, 201, req, res, 'html');
     }
 });
 

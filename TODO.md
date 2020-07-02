@@ -295,3 +295,28 @@ the problem is from md->html or from the code highlight package?
 3. Account Page(DONE)
 
 4. A lot of new things on github, like GitHub Packages(https://help.github.com/en/packages), Github App....need to learn them
+
+5. design user data model and login validation for third-party login, learn from online articles and write a post()
+
+# 2020-07-02
+
+1. `const { result, insertedId } = await UserDao.createOneUser(newUser);`
+
+move the returned result to DAO, should not in the controller
+
+2. learn `CORS policy` and `'Access-Control-Allow-Origin' header`
+
+why `CORS` can make web safer?
+
+3. I do understand this piece of code from a blog(https://juejin.im/post/5a9a68e7f265da23994dfb1f)
+
+```js
+githubLogin: function () {
+      window.location.href = 'https://github.com/login/oauth/authorize?client_id=6625cb27769b1bc52415&redirect_uri=http://localhost:3000/login&scope=user:email';
+      window.localStorage.setItem('GITHUB_LOGIN_REDIRECT_URL', `${this.$route.path}?comment=new`);
+}
+```
+
+first, need to learn from office docs of github to see what `redirect_uri` means
+
+4. read github oauth doc(https://docs.github.com/en/developers/apps/authorizing-oauth-apps) to learn and implement better workflow

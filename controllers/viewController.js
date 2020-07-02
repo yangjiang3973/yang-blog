@@ -35,7 +35,6 @@ module.exports.docs = catchAsync(async (req, res, next) => {
 
 module.exports.account = catchAsync(async (req, res, next) => {
     const user = await UserDAO.getOneUser(req.user._id);
-    console.log('module.exports.account -> user', user);
     res.status(200).render('account', {
         me: user
     });

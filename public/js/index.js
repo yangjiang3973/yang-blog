@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { login, register, logout } from './login';
+import { login, loginByGithub, register, logout } from './login';
 import { commentSubmit } from './comment';
 import { menuFloat } from './layoutController';
 

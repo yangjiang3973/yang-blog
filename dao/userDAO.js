@@ -34,10 +34,11 @@ class UserDAO {
         try {
             if (!user.role) user.role = 'user'; // by default
             if (!user.active) user.active = true;
-            if (!user.email) user.email = 'abc@abc.com';
+            if (!user.email)
+                user.email = crypto.randomBytes(10).toString('hex');
 
             if (!user.password) {
-                user.password = crypto.randomBytes(32).toString('hex');
+                user.password = crypto.randomBytes(16).toString('hex');
             } else {
                 const { password, passwordConfirm } = user;
 
@@ -115,6 +116,15 @@ class UserDAO {
     static async findUserByName(name) {
         try {
             const user = await usersCollection.findOne({ name });
+            return user;
+        } catch (error) {
+            dbErrorHandler(err);
+        }
+    }
+
+    static async findUserByField(query) {
+        try {
+            const user = await usersCollection.findOne(query);
             return user;
         } catch (error) {
             dbErrorHandler(err);

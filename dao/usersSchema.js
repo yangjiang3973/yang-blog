@@ -4,7 +4,7 @@ module.exports = {
     properties: {
         name: {
             bsonType: 'string',
-            maxlength: 20,
+            maxLength: 20,
             description:
                 'must be a string and is required and is unique indexed'
         },
