@@ -11,29 +11,50 @@
     }
 
     &__list {
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        row-gap: 4rem;
         list-style: none;
+        padding: 4rem;
     }
 
     &__item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid #e5e9ef;
-        height: 8rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
 
         &--entry {
+            justify-self: start;
             font-size: $font-medium;
         }
         &--status {
             font-size: $font-small;
+            display: flex;
+            width: 100%;
+            input {
+                font-size: $font-small;
+                border: none;
+                outline: none;
+                width: 60%;
+            }
+            input:focus ~ .account__btn {
+                display: block;
+            }
         }
         &--link {
             font-size: $font-small;
-            margin-right: 3rem;
-            a {
-                text-decoration: none;
-                color: $color-blue;
+            color: $color-blue;
+            label {
+                cursor: pointer;
             }
         }
+    }
+    &__btn {
+        display: none;
+        background-color: transparent;
+        color: $color-blue;
+        font-size: $font-small;
+        border: none;
+        cursor: pointer;
     }
 }

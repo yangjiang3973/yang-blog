@@ -320,3 +320,11 @@ githubLogin: function () {
 first, need to learn from office docs of github to see what `redirect_uri` means
 
 4. read github oauth doc(https://docs.github.com/en/developers/apps/authorizing-oauth-apps) to learn and implement better workflow
+
+5. ()add features on account: change username, email.
+
+6. set permissions on different routes and inputs.
+
+7. after finish #5 and #6, go through previous notes and review current website. Make a list of what to do next.
+
+8. difference between `justify-items` and `justify-content` in grid

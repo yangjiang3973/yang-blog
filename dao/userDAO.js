@@ -34,11 +34,16 @@ class UserDAO {
         try {
             if (!user.role) user.role = 'user'; // by default
             if (!user.active) user.active = true;
-            if (!user.email)
+            if (!user.email) {
                 user.email = crypto.randomBytes(10).toString('hex');
-
+                while (await usersCollection.findOne({ email: user.email })) {
+                    user.email = crypto.randomBytes(10).toString('hex');
+                }
+                user.emailMissing = true;
+            }
             if (!user.password) {
                 user.password = crypto.randomBytes(16).toString('hex');
+                user.passwordMissing = true;
             } else {
                 const { password, passwordConfirm } = user;
 

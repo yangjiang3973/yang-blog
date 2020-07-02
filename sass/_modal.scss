@@ -41,8 +41,9 @@
     &__close {
         grid-row: 1 / 2;
         grid-column: 3 / -1;
+        justify-self: end;
+        padding: 0 2rem;
         span {
-            margin-left: 5rem;
             font-size: $font-large;
             cursor: pointer;
         }

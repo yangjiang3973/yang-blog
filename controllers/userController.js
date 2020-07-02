@@ -2,18 +2,6 @@ const UserDao = require('../dao/userDAO');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const { filterObj } = require('../utils/utils');
-/* move to authController as sign up */
-// module.exports.createOneUser = catchAsync(async (req, res, next) => {
-//     const user = req.body;
-//     const { result } = await UserDao.createOneUser(user);
-//     if (result.ok !== 1 || result.n === 0) {
-//         return next(new AppError(404, 'Failed to create a new user'));
-//     }
-//     res.status(201).json({
-//         status: 'success',
-//         data: user
-//     });
-// });
 
 module.exports.getAllUsers = catchAsync(async (req, res, next) => {
     const users = await UserDao.getAllUsers();
@@ -59,6 +47,7 @@ module.exports.deleteUser = catchAsync(async (req, res, next) => {
 });
 
 module.exports.updateMe = catchAsync(async (req, res, next) => {
+    console.log('aaaaa');
     // Check if logged in
     if (!req.user)
         return next(
@@ -78,7 +67,8 @@ module.exports.updateMe = catchAsync(async (req, res, next) => {
         );
 
     // Only update allowed fields! need to check first
-    const filteredData = filterObj(req.body, 'name');
+    const filteredData = filterObj(req.body, 'name', 'email');
+    console.log('module.exports.updateMe -> filteredData', filteredData);
 
     // update
     const { ok, value } = await UserDao.updateUser(req.user._id, filteredData);

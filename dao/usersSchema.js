@@ -16,11 +16,19 @@ module.exports = {
             bsonType: 'string',
             description: 'must be a string and is required'
         },
+        emailMissing: {
+            bsonType: 'bool',
+            description: 'must be a bool type'
+        },
         password: {
             bsonType: 'string',
             minLength: 8,
             description:
                 'must be a string and is longer than 8 char and is required'
+        },
+        passwordMissing: {
+            bsonType: 'bool',
+            description: 'must be a bool type'
         },
         role: {
             bsonType: 'string',

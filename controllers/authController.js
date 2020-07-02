@@ -80,10 +80,9 @@ module.exports.loginByGithub = catchAsync(async (req, res, next) => {
     } else {
         // new user, create a new doc
         const userWithSameName = await UserDao.findUserByName(userInfo.login);
-        const newUser = {};
+        const newUser = { githubUserName: userInfo.login };
         if (!userWithSameName) {
             newUser.name = userInfo.login;
-            newUser.githubUserName = userInfo.login;
         } else {
             // create a random string to avoide duplicate name
             let randomName = crypto.randomBytes(5).toString('hex');
@@ -91,7 +90,6 @@ module.exports.loginByGithub = catchAsync(async (req, res, next) => {
                 randomName = crypto.randomBytes(10).toString('hex');
             }
             newUser.name = randomName;
-            newUser.githubUserName = userInfo.login;
         }
         const { result, insertedId } = await UserDao.createOneUser(newUser);
         if (result.ok !== 1 || result.n === 0) {

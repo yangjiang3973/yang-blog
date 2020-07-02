@@ -1,5 +1,6 @@
 import '@babel/polyfill';
 import { login, loginByGithub, register, logout } from './login';
+import { updateEmail } from './accountSetting';
 import { commentSubmit } from './comment';
 import { menuFloat } from './layoutController';
 
@@ -74,4 +75,9 @@ function init() {
             false
         );
     }
+
+    const accountEmailBtn = document.getElementById('account-email-btn');
+    console.log('init -> accountEmailBtn', accountEmailBtn);
+    if (accountEmailBtn)
+        accountEmailBtn.addEventListener('mousedown', updateEmail, false);
 }
