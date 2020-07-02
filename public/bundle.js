@@ -8936,7 +8936,7 @@ function init() {
   if (flyoutToggle) {
     var flyoutBody = document.getElementById('flyout-body');
     document.body.addEventListener('click', function (e) {
-      e.preventDefault();
+      // e.preventDefault();  // will prevent other element's click events
       flyoutBody.classList.remove('flyout__open');
     }, false);
     flyoutToggle.addEventListener('click', function (e) {

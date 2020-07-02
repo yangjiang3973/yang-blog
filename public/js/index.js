@@ -53,7 +53,7 @@ function init() {
         document.body.addEventListener(
             'click',
             e => {
-                e.preventDefault();
+                // e.preventDefault();  // will prevent other element's click events
                 flyoutBody.classList.remove('flyout__open');
             },
             false
