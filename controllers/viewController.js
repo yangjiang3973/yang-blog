@@ -40,6 +40,12 @@ module.exports.account = catchAsync(async (req, res, next) => {
     });
 });
 
+module.exports.tags = catchAsync(async (req, res, next) => {
+    res.status(200).render('tags', {
+        me: 'aaaaa'
+    });
+});
+
 module.exports.admin = catchAsync(async (req, res, next) => {
     res.status(200).render('admin');
 });

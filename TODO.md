@@ -284,7 +284,7 @@ the problem is from md->html or from the code highlight package?
 
 4. Docs Page(DONE)
 
-5. login by github
+5. login by github(DONE)
 
 # 2020-07-01
 
@@ -321,7 +321,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 
 4. read github oauth doc(https://docs.github.com/en/developers/apps/authorizing-oauth-apps) to learn and implement better workflow
 
-5. ()add features on account: change username, email.
+5. (DONE)add features on account: change username, email.
 
 6. set permissions on different routes and inputs.
 
@@ -331,4 +331,8 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 
 # 2020-07-03
 
-account page continue: update email on backend(DONE), need to display email on webpage if it is not missing
+1. Add subscribe feature in account page.
+
+2. Tag Page
+
+3. use JSNetworkX make a differnt tags view

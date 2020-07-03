@@ -10,6 +10,8 @@ router.route('/account').get(authController.protect, viewController.account);
 
 router.route('/docs').get(viewController.docs);
 
+router.route('/tags').get(viewController.tags);
+
 router.route('/admin').get(viewController.admin);
 router.route('/admin').post(viewController.adminUploadPost);
 
