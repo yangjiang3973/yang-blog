@@ -3,7 +3,7 @@
     <%- include("components/_head.ejs")%>
     <body>
         <%- include("components/_alert.ejs")%>
-
+        <%-include("components/_modalPassword.ejs")%>
         <div class="container">
             <%- include("components/_sidebar.ejs"); %>
             <div class="account">
@@ -11,42 +11,57 @@
                 <ul class="account__list">
                     <li class="account__item">
                         <span class="account__item--entry">设置邮箱</span>
+                        <!-- prettier-ignore -->
                         <span class="account__item--status">
                             <%if(me.emailMissing){ %>
-                            <input
-                                class="account__item--status"
-                                id="account-email"
-                                type="email"
-                                placeholder="未绑定"
-                            />
+                                <input
+                                    class="account__item--status"
+                                    id="account-email"
+                                    type="email"
+                                    placeholder="未绑定"
+                                />
+                            <% } else {%> 
+                                <input 
+                                    class="account__item--status"
+                                    id="account-email" 
+                                    type="email" 
+                                    placeholder= <%=me.email%> /> 
+                            <% } %>
                             <button class="account__btn" id="account-email-btn">
                                 保存
                             </button>
-                            <% } else {%>
-                            <input
-                                class="account__item--status"
-                                id="account-email"
-                                type="email"
-                                placeholder="未绑定"
-                            />
-                            <% } %>
                         </span>
                         <span class="account__item--link">
                             <label for="account-email">绑定邮箱</label>
                         </span>
                     </li>
                     <li class="account__item">
-                        <span class="account__item--entry">设置名称</span>
-                        <span class="account__item--status">已设置</span>
+                        <span class="account__item--entry">设置用户名</span>
+                        <!-- prettier-ignore -->
+                        <span class="account__item--status">
+                            <input 
+                                class="account__item--status"
+                                id="account-name" 
+                                type="text"
+                                placeholder= <%=me.name%> /> 
+                            <button class="account__btn" id="account-name-btn">
+                                保存
+                            </button>
+                        </span>
                         <span class="account__item--link">
-                            <label for="account-email">修改用户名</label>
+                            <label for="account-name">修改用户名</label>
                         </span>
                     </li>
+                    <!-- prettier-ignore -->
                     <li class="account__item">
                         <span class="account__item--entry">设置密码</span>
+                        <% if(me.passwordMissing){ %>
+                        <span class="account__item--status">未设置</span>
+                        <% } else { %>
                         <span class="account__item--status">已设置</span>
+                        <%}%>
                         <span class="account__item--link">
-                            <label for="account-email">修改密码</label>
+                            <label for="modal-password-checkbox">修改密码</label>
                         </span>
                     </li>
                     <li class="account__item">

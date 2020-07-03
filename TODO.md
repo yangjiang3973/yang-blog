@@ -261,7 +261,7 @@ the problem is from md->html or from the code highlight package?
 
 1. change the SVG in user menu(DONE)
 
-2. need to learn `e.preventDefault` and `e.stopPropagation`
+2. need to learn `e.preventDefault` and `e.stopPropagation`. Can I remove it in `index.js`
 
 # 2020-06-24
 
@@ -328,3 +328,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 7. after finish #5 and #6, go through previous notes and review current website. Make a list of what to do next.
 
 8. difference between `justify-items` and `justify-content` in grid
+
+# 2020-07-03
+
+account page continue: update email on backend(DONE), need to display email on webpage if it is not missing

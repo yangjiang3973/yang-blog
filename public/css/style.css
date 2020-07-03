@@ -301,7 +301,6 @@ body {
 
 .form__input {
   font-size: 1.8rem;
-  font-family: inherit;
   padding: 1rem 1.5rem;
   border-radius: 2px;
   border: 2px solid #222;
@@ -468,6 +467,26 @@ body {
   border: none;
   color: #fff;
   background-color: #222; }
+
+.small-modal__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 200;
+  padding: 4rem;
+  width: 30%; }
+
+.small-modal__close {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0%;
+  padding: 0 2rem; }
+  .small-modal__close span {
+    font-size: 2.4rem;
+    cursor: pointer; }
 
 .overview {
   background-color: #fff;

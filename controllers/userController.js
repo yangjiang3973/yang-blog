@@ -47,7 +47,6 @@ module.exports.deleteUser = catchAsync(async (req, res, next) => {
 });
 
 module.exports.updateMe = catchAsync(async (req, res, next) => {
-    console.log('aaaaa');
     // Check if logged in
     if (!req.user)
         return next(
@@ -68,7 +67,6 @@ module.exports.updateMe = catchAsync(async (req, res, next) => {
 
     // Only update allowed fields! need to check first
     const filteredData = filterObj(req.body, 'name', 'email');
-    console.log('module.exports.updateMe -> filteredData', filteredData);
 
     // update
     const { ok, value } = await UserDao.updateUser(req.user._id, filteredData);

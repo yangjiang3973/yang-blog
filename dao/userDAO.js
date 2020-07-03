@@ -1,6 +1,7 @@
 const { ObjectId } = require('mongodb');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const validator = require('validator');
 const AppError = require('../utils/appError');
 const dbErrorHandler = require('../utils/dbErrorHandler');
 const validators = require('../utils/validators');
@@ -40,17 +41,19 @@ class UserDAO {
                     user.email = crypto.randomBytes(10).toString('hex');
                 }
                 user.emailMissing = true;
+            } else {
+                user.emailMissing = false;
             }
             if (!user.password) {
                 user.password = crypto.randomBytes(16).toString('hex');
                 user.passwordMissing = true;
             } else {
                 const { password, passwordConfirm } = user;
-
                 if (!validators.validatePassowrd(password, passwordConfirm))
                     throw new AppError(400, 'your password does not match');
                 user.password = await bcrypt.hash(password, 10);
                 delete user.passwordConfirm;
+                user.passwordMissing = false;
             }
 
             const r = await usersCollection.insertOne(user);
@@ -84,6 +87,11 @@ class UserDAO {
     }
 
     static async updateUser(id, data) {
+        // if update email, need to validate
+        if (data.email) {
+            if (validator.isEmail(data.email)) data.emailMissing = false;
+            else throw new AppError(400, 'Please input a valid email address');
+        }
         try {
             const r = await usersCollection.findOneAndUpdate(
                 { _id: ObjectId(id) },
@@ -197,12 +205,13 @@ class UserDAO {
             throw new AppError(400, 'your password does not match');
 
         const password = await bcrypt.hash(newPassword, 10);
-        await usersCollection.findOneAndUpdate(
+        const r = await usersCollection.findOneAndUpdate(
             { _id: userId },
             {
                 $set: {
                     password,
-                    passwordChangedAt: new Date(Date.now())
+                    passwordChangedAt: new Date(Date.now()),
+                    passwordMissing: false
                 },
                 $unset: {
                     passwordResetToken: 1,
@@ -210,6 +219,7 @@ class UserDAO {
                 }
             }
         );
+        return r;
     }
 }
 

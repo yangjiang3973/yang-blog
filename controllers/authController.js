@@ -292,19 +292,23 @@ module.exports.updatePassword = catchAsync(async (req, res, next) => {
             )
         );
 
-    // if the POSTed password is correct
-    const { user, correct } = await UserDao.checkUserPassword(
-        req.user.email,
-        req.body.currentPassword
-    );
-    if (!correct) return next(new AppError(400, 'You input a wrong password!'));
+    // if this is not the first time to set password
+    if (!req.user.passwordMissing) {
+        // if the POSTed password is correct
+        const { correct } = await UserDao.checkUserPassword(
+            req.user.email,
+            req.body.currentPassword
+        );
+        if (!correct)
+            return next(new AppError(400, 'You input a wrong password!'));
+    }
 
     // update the password
     await UserDao.resetPassword(
-        user._id,
+        req.user._id,
         req.body.newPassword,
         req.body.newPasswordConfirm
     );
 
-    createTokenResponse(user._id, 200, req, res);
+    createTokenResponse(req.user._id, 200, req, res);
 });

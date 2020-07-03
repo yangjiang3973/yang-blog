@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import { login, loginByGithub, register, logout } from './login';
-import { updateEmail } from './accountSetting';
+import { updateEmail, updateName, updatePassword } from './accountSetting';
 import { commentSubmit } from './comment';
 import { menuFloat } from './layoutController';
 
@@ -77,7 +77,21 @@ function init() {
     }
 
     const accountEmailBtn = document.getElementById('account-email-btn');
-    console.log('init -> accountEmailBtn', accountEmailBtn);
     if (accountEmailBtn)
         accountEmailBtn.addEventListener('mousedown', updateEmail, false);
+
+    const accountNameBtn = document.getElementById('account-name-btn');
+    if (accountNameBtn)
+        accountNameBtn.addEventListener('mousedown', updateName, false);
+
+    const editPasswordForm = document.getElementById('password-edit-form');
+    if (editPasswordForm)
+        editPasswordForm.addEventListener(
+            'submit',
+            e => {
+                e.preventDefault();
+                updatePassword();
+            },
+            false
+        );
 }
