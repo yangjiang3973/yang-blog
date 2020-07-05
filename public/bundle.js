@@ -8842,7 +8842,7 @@ var tagsGenerator = function tagsGenerator() {
   data.forEach(function (item, index) {
     var tagElem = document.getElementById("tag-".concat(index + 1));
     var tagLink = document.createElement('a');
-    tagLink.href = "/tags/".concat(item);
+    tagLink.href = "/tags/".concat(item).toLowerCase();
     tagLink.className = 'tags__link';
     tagLink.innerText = item;
     tagElem.appendChild(tagLink);

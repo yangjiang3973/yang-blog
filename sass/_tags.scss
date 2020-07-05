@@ -19,6 +19,9 @@
     &__link {
         text-decoration: none;
         color: $color-text;
+        &:hover {
+            color: $color-black;
+        }
     }
 
     &__item {

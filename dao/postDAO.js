@@ -92,6 +92,15 @@ class PostsDAO {
         }
     }
 
+    static async getPostsByTag(tag) {
+        try {
+            const posts = await postsCollection.find({ tags: tag }).toArray();
+            return posts;
+        } catch (err) {
+            dbErrorHandler(err);
+        }
+    }
+
     //   static async getPostsList() {
     //     try {
     //       const docs = await posts

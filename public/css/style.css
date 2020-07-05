@@ -565,6 +565,8 @@ body {
   .tags__link {
     text-decoration: none;
     color: #555; }
+    .tags__link:hover {
+      color: #222; }
   .tags__item--1 {
     font-size: 5rem;
     grid-row: 1 / span 2;

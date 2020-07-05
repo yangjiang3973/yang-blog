@@ -46,6 +46,16 @@ module.exports.tags = catchAsync(async (req, res, next) => {
     });
 });
 
+module.exports.tagsPosts = catchAsync(async (req, res, next) => {
+    const tag = req.params.tag;
+    // get posts by tag
+    const posts = await PostDAO.getPostsByTag(tag);
+
+    res.status(200).render('docs', {
+        posts
+    });
+});
+
 module.exports.admin = catchAsync(async (req, res, next) => {
     res.status(200).render('admin');
 });

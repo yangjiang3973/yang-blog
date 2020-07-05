@@ -27,7 +27,7 @@ export const tagsGenerator = () => {
     data.forEach((item, index) => {
         const tagElem = document.getElementById(`tag-${index + 1}`);
         const tagLink = document.createElement('a');
-        tagLink.href = `/tags/${item}`;
+        tagLink.href = `/tags/${item}`.toLowerCase();
         tagLink.className = 'tags__link';
         tagLink.innerText = item;
         tagElem.appendChild(tagLink);
