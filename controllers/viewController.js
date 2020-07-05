@@ -1,4 +1,5 @@
-var Busboy = require('busboy');
+const algoliasearch = require('algoliasearch');
+const Busboy = require('busboy');
 const showdown = require('showdown');
 const converter = new showdown.Converter();
 const PostDAO = require('../dao/postDAO');
@@ -54,6 +55,18 @@ module.exports.tagsPosts = catchAsync(async (req, res, next) => {
     res.status(200).render('docs', {
         posts
     });
+});
+
+module.exports.search = catchAsync(async (req, res, next) => {
+    const client = algoliasearch(
+        process.env.ALGOLIA_ID,
+        process.env.ALGOLIA_KEY
+    );
+    const index = client.initIndex('dev_posts');
+    const results = await index.search('promise');
+    console.log('module.exports.search -> results', results);
+
+    res.status(200).render('search');
 });
 
 module.exports.admin = catchAsync(async (req, res, next) => {

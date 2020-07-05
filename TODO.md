@@ -333,6 +333,16 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 
 1. Add subscribe feature in account page.
 
-2. Tag Page
+2. Tag Page(v1.0) (DONE)
 
 3. use JSNetworkX make a differnt tags view
+
+# 2020-07-04
+
+1. Search Page
+
+2. use algolia search to build my search feature
+
+3. maybe only need to add algolia UI widgets in front end?
+
+because data is on algolia server, only need to send search input in front-end and get returned results.

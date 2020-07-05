@@ -13,6 +13,8 @@ router.route('/docs').get(viewController.docs);
 router.route('/tags').get(viewController.tags);
 router.route('/tags/:tag').get(viewController.tagsPosts);
 
+router.route('/search').get(viewController.search);
+
 router.route('/admin').get(viewController.admin);
 router.route('/admin').post(viewController.adminUploadPost);
 

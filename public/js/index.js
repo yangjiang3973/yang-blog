@@ -98,4 +98,41 @@ function init() {
 
     const tagsGrid = document.getElementById('tags-grid');
     if (tagsGrid) tagsGenerator();
+
+    // search
+    const searchClient = algoliasearch(
+        '0TSTKQ89MM',
+        '3856d53d41547560299236cc59b6023c' // search only API key, not admin API key
+    );
+
+    const search = instantsearch({
+        indexName: 'dev_posts',
+        searchClient,
+        routing: true
+    });
+
+    search.addWidgets([
+        instantsearch.widgets.configure({
+            hitsPerPage: 10
+        })
+    ]);
+
+    search.addWidgets([
+        instantsearch.widgets.searchBox({
+            container: '#search-box',
+            placeholder: 'Search for contacts'
+        })
+    ]);
+
+    search.addWidgets([
+        instantsearch.widgets.hits({
+            container: '#hits',
+            templates: {
+                item: document.getElementById('hit-template').innerHTML,
+                empty: `We didn't find any results for the search <em>"{{query}}"</em>`
+            }
+        })
+    ]);
+
+    search.start();
 }
