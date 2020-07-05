@@ -3,6 +3,7 @@ import { login, loginByGithub, register, logout } from './login';
 import { updateEmail, updateName, updatePassword } from './accountSetting';
 import { commentSubmit } from './comment';
 import { menuFloat } from './layoutController';
+import { tagsGenerator } from './tags';
 
 window.addEventListener('load', init, false);
 window.onscroll = menuFloat;
@@ -94,4 +95,7 @@ function init() {
             },
             false
         );
+
+    const tagsGrid = document.getElementById('tags-grid');
+    if (tagsGrid) tagsGenerator();
 }
