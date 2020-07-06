@@ -115,7 +115,7 @@ body {
     padding: 4rem 4rem 2rem 4rem; }
     .content__brief--body {
       font-size: 1.8rem;
-      line-height: 2.5;
+      line-height: 2;
       height: 20rem;
       overflow: hidden; }
       .content__brief--body pre {
@@ -526,7 +526,13 @@ body {
   padding: 4rem 4rem 2rem 4rem; }
   .post__body {
     font-size: 1.8rem;
-    line-height: 2.5; }
+    line-height: 2; }
+    .post__body p {
+      margin-bottom: 2rem; }
+    .post__body pre {
+      margin-bottom: 1rem; }
+      .post__body pre code {
+        line-height: 2rem; }
 
 .post__header {
   border-bottom: 1px solid #eee;

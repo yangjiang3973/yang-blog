@@ -26,12 +26,7 @@ module.exports.getOnePost = catchAsync(async (req, res, next) => {
 });
 
 module.exports.createOnePost = catchAsync(async (req, res, next) => {
-    const { result } = await PostDAO.createOnePost(req.body);
-
-    if (result.ok !== 1 || result.n === 0) {
-        return next(new AppError(404, 'Failed to create a new post'));
-    }
-
+    await PostDAO.createOnePost(req.body);
     res.status(201).json({
         status: 'success',
         data: null

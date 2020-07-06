@@ -62,9 +62,16 @@ process.on('unhandledRejection', err=>{
 
 # 2020-06-07
 
-1. validation for DB is done, but also need to validate input(for email, trim spaces, check email, transform to lowercase)
+1. validation for DB is done, but also need to validate input(for email, trim spaces, check email, transform to lowercase)(IN PROGRESS)
 
 for password, check passwordConfirm matching
+
+    1.1 list all front-end input places:
+        admin(ignore now)
+        login
+        register
+        comments
+        update info in account page
 
 2. JWT(DONE)
 
@@ -199,9 +206,13 @@ for password, check passwordConfirm matching
 
 6. polish the post block
 
-7. improve the code hightlight feature. maybe make a editor block?
+7. improve the code hightlight feature. maybe make a editor block?(DONE)
 
 the problem is from md->html or from the code highlight package?
+
+both, first, highlight was called in wrong way.
+
+second, code in .md is in wrong format.
 
 8. collapse the brief in homepage(line-clamp?)
 
@@ -339,14 +350,24 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 
 # 2020-07-05
 
-1. Search Page
+1. Search Page(DONE)
 
-2. use algolia search to build my search feature
+2. use algolia search to build my search feature(DONE)
 
-3. maybe only need to add algolia UI widgets in front end?
-
-because data is on algolia server, only need to send search input in front-end and get returned results.
+3. maybe only need to add algolia UI widgets in front end?(DONE)
 
 # 2020-07-06
 
-1. sync data to algolia
+1. sync data to algolia when creating new posts(
+   1.1 create one post(DONE)
+   1.2 deleting posts(wait for admin management feature)
+   1.3 updating posts(wait for admin management feature)
+   )
+
+2. admin need to be able update / delete posts
+
+3. learn `Web Workers`. maybe use it to highlight code blocks(https://highlightjs.org/usage/)
+
+4. add a sub-footer to jump to previous(<-) or next(->) article at the bottom of each post
+
+5. when uploading a new post, need to preview in `html` first.

@@ -1,4 +1,7 @@
 const { ObjectId } = require('mongodb');
+const algoliasearch = require('algoliasearch');
+const AppError = require('../utils/appError');
+
 const dbErrorHandler = require('../utils/dbErrorHandler');
 const postsSchema = require('./postsSchema');
 
@@ -43,19 +46,38 @@ class PostsDAO {
         }
     }
 
-    static async createManyPosts(posts) {
-        try {
-            await postsCollection.insertMany(posts);
-            return;
-        } catch (err) {
-            dbErrorHandler(err);
-        }
-    }
+    // static async createManyPosts(posts) {
+    //     try {
+    //         const r = await postsCollection.insertMany(posts);
+    //         console.log(r);
+    //         return;
+    //     } catch (err) {
+    //         dbErrorHandler(err);
+    //     }
+    // }
 
     static async createOnePost(post) {
         if (!post.createdAt) post.createdAt = new Date(Date.now());
         try {
-            return await postsCollection.insertOne(post);
+            const r = await postsCollection.insertOne(post);
+            if (r.result.ok !== 1)
+                throw new AppError(
+                    500,
+                    'Cannot create data in database, please try again later!'
+                );
+            // sync data to algolia after inserting to DB successfully
+            const client = algoliasearch(
+                process.env.ALGOLIA_ID,
+                process.env.ALGOLIA_ADMIN_KEY
+            );
+            const index = client.initIndex('dev_posts');
+            const res = await index.saveObject(post, {
+                autoGenerateObjectIDIfNotExist: true
+            });
+
+            if (!res.objectID)
+                throw new AppError(503, 'Failed to sync data to Algolia!');
+            return;
         } catch (err) {
             dbErrorHandler(err);
         }
@@ -100,28 +122,6 @@ class PostsDAO {
             dbErrorHandler(err);
         }
     }
-
-    //   static async getPostsList() {
-    //     try {
-    //       const docs = await posts
-    //         .find({}, { projection: { title: 1 } })
-    //         .limit(5)
-    //         .toArray();
-    //       return docs;
-    //     } catch (error) {
-    //       console.error(error);
-    //       return null;
-    //     }
-    //   }
-
-    //   static async test() {
-    //     try {
-    //       console.log("bbb");
-    //       await posts.insertOne({ test: "hello" });
-    //     } catch (error) {
-    //       console.error(error);
-    //     }
-    //   }
 }
 
 module.exports = PostsDAO;
