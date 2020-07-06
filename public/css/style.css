@@ -554,6 +554,65 @@ body {
   background-color: #fff;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   padding: 4rem 4rem 2rem 4rem; }
+  .search__box {
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    margin-bottom: 2rem; }
+    .search__box form {
+      display: flex;
+      flex-direction: row;
+      padding: 0 1rem; }
+    .search__box--input {
+      order: 2;
+      width: 100%;
+      font-size: 1.8rem;
+      padding: 5px;
+      outline: none;
+      border: none;
+      background: transparent; }
+    .search__box--submit {
+      order: 1;
+      outline: none; }
+      .search__box--submit svg {
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+        fill: #222; }
+    .search__box--reset {
+      order: 4; }
+    .search__box--loading {
+      order: 3;
+      align-self: center;
+      margin-right: 1rem; }
+  .search__stats {
+    font-size: 1.2rem; }
+  .search__hits--empty {
+    font-size: 2.4rem; }
+  .search__hits--list {
+    font-size: 1.8rem; }
+  .search__hits--item {
+    margin: 2rem 0; }
+  .search__result--title {
+    text-decoration: none;
+    color: #00a1d6;
+    cursor: pointer; }
+    .search__result--title:hover {
+      text-decoration: underline; }
+  .search__result--snippet {
+    font-size: 1.2rem; }
+  .search__pagination {
+    font-size: 1.8rem; }
+    .search__pagination--item {
+      display: inline-block;
+      padding: 0 1rem;
+      margin: 0 1rem; }
+      .search__pagination--item a {
+        color: #555;
+        text-decoration: none; }
+      .search__pagination--item--selected {
+        background-color: #ccc; }
+        .search__pagination--item--selected a {
+          color: #fff; }
 
 .tags {
   background-color: #fff;

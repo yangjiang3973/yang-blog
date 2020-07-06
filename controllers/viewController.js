@@ -58,13 +58,13 @@ module.exports.tagsPosts = catchAsync(async (req, res, next) => {
 });
 
 module.exports.search = catchAsync(async (req, res, next) => {
-    const client = algoliasearch(
-        process.env.ALGOLIA_ID,
-        process.env.ALGOLIA_KEY
-    );
-    const index = client.initIndex('dev_posts');
-    const results = await index.search('promise');
-    console.log('module.exports.search -> results', results);
+    // const client = algoliasearch(
+    //     process.env.ALGOLIA_ID,
+    //     process.env.ALGOLIA_KEY
+    // );
+    // const index = client.initIndex('dev_posts');
+    // const results = await index.search('promise');
+    // // console.log('module.exports.search -> results', results);
 
     res.status(200).render('search');
 });

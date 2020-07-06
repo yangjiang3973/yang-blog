@@ -337,7 +337,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 
 3. use JSNetworkX make a differnt tags view
 
-# 2020-07-04
+# 2020-07-05
 
 1. Search Page
 
@@ -346,3 +346,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 3. maybe only need to add algolia UI widgets in front end?
 
 because data is on algolia server, only need to send search input in front-end and get returned results.
+
+# 2020-07-06
+
+1. sync data to algolia

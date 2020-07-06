@@ -7,6 +7,7 @@
             <div class="search">
                 <header>
                     <div id="search-box"></div>
+                    <div id="search-stats"></div>
                 </header>
                 <main>
                     <div id="hits"></div>
@@ -16,13 +17,4 @@
         </div>
         <%- include("components/_footer.ejs")%>
     </body>
-
-    <script type="text/html" id="hit-template">
-        <div class="hit">
-          <p class="hit-name">
-            {{#helpers.highlight}}{ "attribute": "firstname" }{{/helpers.highlight}}
-            {{#helpers.highlight}}{ "attribute": "lastname" }{{/helpers.highlight}}
-          </p>
-        </div>
-    </script>
 </html>
