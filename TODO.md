@@ -195,7 +195,7 @@ for password, check passwordConfirm matching
 1. Content brief component(
    3.1 front-end style(DONE)
    3.2 back-end data(DONE)
-   3.3 xss middleware need to set a white list for post with html code
+   3.3 xss middleware need to set a white list for post with html code(after I enable it again, no problem now...)(DONE)
    )
 
 2. Footer component(DONE)
@@ -385,3 +385,5 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 2. add slug to each post link
 
 3. user.active is useless now. need to consider if to remove it?
+
+4. cannot write html code in comments. need to fix
