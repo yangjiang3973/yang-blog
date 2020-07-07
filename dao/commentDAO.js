@@ -30,7 +30,13 @@ class CommentDAO {
         comment.createdAt = new Date();
         comment.postId = ObjectId(comment.postId);
         try {
-            return await commentsCollection.insertOne(comment);
+            const r = await commentsCollection.insertOne(comment);
+            if (r.result.ok !== 1 || r.result.n === 0) {
+                return next(
+                    new AppError(404, 'Failed to create a new comment')
+                );
+            }
+            return;
         } catch (err) {
             dbErrorHandler(err);
         }

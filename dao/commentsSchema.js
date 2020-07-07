@@ -8,6 +8,7 @@ module.exports = {
         },
         text: {
             bsonType: 'string',
+            maxLength: 1000,
             description: 'must be a string and is required'
         },
         postId: {

@@ -8,7 +8,7 @@
             required
             autocomplete="username"
         />
-        <div class="form__status">
+        <div class="form__status" id="register-status-email">
             <svg class="form__icon">
                 <use xlink:href="/images/sprite.svg#icon-warning"></use>
             </svg>
@@ -23,6 +23,7 @@
             class="form__input"
             type="text"
             placeholder="请输入用户名"
+            maxlength="20"
             required
             autocomplete="username"
         />
@@ -36,9 +37,17 @@
             placeholder="请输入密码"
             required
             minlength="8"
+            maxlength="20"
             autocomplete="new-password"
         />
-        <span class="form__status"></span>
+        <span class="form__status" id="register-status-password">
+            <svg class="form__icon">
+                <use xlink:href="/images/sprite.svg#icon-warning"></use>
+            </svg>
+            <span>
+                请设置有效密码，8-20位之间。
+            </span>
+        </span>
     </div>
     <div class="form__group">
         <input
@@ -48,9 +57,17 @@
             placeholder="请再次输入密码"
             required
             minlength="8"
+            maxlength="20"
             autocomplete="new-password"
         />
-        <span class="form__status"></span>
+        <span class="form__status" id="register-status-passwordconfirm">
+            <svg class="form__icon">
+                <use xlink:href="/images/sprite.svg#icon-warning"></use>
+            </svg>
+            <span>
+                密码不匹配
+            </span>
+        </span>
     </div>
     <button id="register-submit" class="form__submit">注册</button>
     <span class="form__third-party">

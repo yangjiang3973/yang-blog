@@ -69,10 +69,7 @@ module.exports.updateMe = catchAsync(async (req, res, next) => {
     const filteredData = filterObj(req.body, 'name', 'email');
 
     // update
-    const { ok, value } = await UserDao.updateUser(req.user._id, filteredData);
-    if (ok !== 1) {
-        return next(new AppError(404, 'Failed to update your data'));
-    }
+    const { value } = await UserDao.updateUser(req.user._id, filteredData);
     res.status(200).json({
         status: 'success',
         data: value

@@ -62,16 +62,16 @@ process.on('unhandledRejection', err=>{
 
 # 2020-06-07
 
-1. validation for DB is done, but also need to validate input(for email, trim spaces, check email, transform to lowercase)(IN PROGRESS)
+1. validation for DB is done, but also need to validate input(for email, trim spaces, check email, transform to lowercase)(DONE)
 
 for password, check passwordConfirm matching
 
     1.1 list all front-end input places:
         admin(ignore now)
-        login
-        register
-        comments
-        update info in account page
+        login(DONE)
+        register(DONE)
+        comments(DONE)
+        update info in account page(DONE)
 
 2. JWT(DONE)
 
@@ -371,3 +371,13 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 4. add a sub-footer to jump to previous(<-) or next(->) article at the bottom of each post
 
 5. when uploading a new post, need to preview in `html` first.
+
+6. change font-family
+
+7. support multi language(english and chinese)->localization
+
+# 2020-07-07
+
+1. display comments in `div` does not keep the format of text(like paragraph)
+
+2. add slug to each post link

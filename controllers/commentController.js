@@ -6,10 +6,8 @@ module.exports.createOneComment = catchAsync(async (req, res, next) => {
     const { text, postId } = req.body;
     const username = req.user.name;
     const newComment = { username, text, postId };
-    const { result } = await CommentDao.createOneComment(newComment);
-    if (result.ok !== 1 || result.n === 0) {
-        return next(new AppError(404, 'Failed to create a new comment'));
-    }
+    await CommentDao.createOneComment(newComment);
+
     res.status(201).json({
         status: 'success',
         data: newComment

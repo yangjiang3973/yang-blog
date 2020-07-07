@@ -2,6 +2,7 @@ const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const axios = require('axios');
+const validator = require('validator');
 const UserDao = require('../dao/userDAO');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
@@ -41,6 +42,7 @@ const createTokenResponse = (id, code, req, res, type) => {
 
 module.exports.signup = catchAsync(async (req, res, next) => {
     const user = req.body;
+    console.log('module.exports.signup -> user', user);
     const { result, insertedId } = await UserDao.createOneUser(user);
     if (result.ok !== 1 || result.n === 0) {
         return next(new AppError(404, 'Failed to create a new user'));
@@ -103,7 +105,7 @@ module.exports.login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
 
     // check if email and password exist
-    if (!email || !password)
+    if (!email || !password || !validator.isEmail(email))
         return next(
             new AppError(400, 'Please provide valid email and password')
         );

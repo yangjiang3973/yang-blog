@@ -46,7 +46,11 @@
         maxlength="1000"
         placeholder="加入讨论..."
     ></textarea>
+    <%if(!user){ %>
+    <button class="comment__submit" id="submit-comment" disabled>请登录</button>
+    <% } else{ %>
     <button class="comment__submit" id="submit-comment">发表</button>
+    <% }%>
     <div class="comments__list">
         <% comments.forEach((i) => { %>
         <div class="comments__item">

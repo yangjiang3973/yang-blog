@@ -1,3 +1,4 @@
+import validator from 'validator';
 import axios from 'axios';
 import { showAlert } from './alert';
 
@@ -8,7 +9,7 @@ export const updatePassword = async () => {
     const newPasswordConfirm = document.getElementById(
         'account-confirm-password'
     ).value;
-    console.log('aaa');
+
     try {
         const res = await axios({
             method: 'PATCH',
@@ -26,14 +27,16 @@ export const updatePassword = async () => {
             }, 1500);
         }
     } catch (err) {
-        console.log(err);
         showAlert('error', err.response.data.message);
     }
 };
 
 export const updateEmail = async () => {
-    const email = document.getElementById('account-email').value;
-    if (!email || email.length === 0) return;
+    const email = document.getElementById('account-email').value.toLowerCase();
+    if (!validator.isEmail(email)) {
+        showAlert('error', 'Please input a valid email');
+        return;
+    }
     await sendUpdate({ email });
     //TODO: add something to show waiting
 };

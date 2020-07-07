@@ -304,20 +304,20 @@ body {
   padding: 1rem 1.5rem;
   border-radius: 2px;
   border: 2px solid #222;
-  width: 60%; }
+  width: 50%; }
   .form__input:focus {
     border: 2px solid #999;
     outline: none; }
   .form__input:focus:invalid + .form__status {
     display: inline-flex; }
-    .form__input:focus:invalid + .form__status svg {
-      fill: #f5bf42;
-      margin: 0 1rem; }
 
 .form__status {
   display: none;
   margin-left: 2rem;
   font-size: 1.2rem; }
+  .form__status svg {
+    fill: #f5bf42;
+    margin: 0 1rem; }
 
 .form__submit {
   padding: 0 1rem;

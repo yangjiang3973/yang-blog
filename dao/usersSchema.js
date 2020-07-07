@@ -14,7 +14,8 @@ module.exports = {
         },
         email: {
             bsonType: 'string',
-            description: 'must be a string and is required'
+            description:
+                'must be a string and is required and is unique indexed'
         },
         emailMissing: {
             bsonType: 'bool',
@@ -22,7 +23,6 @@ module.exports = {
         },
         password: {
             bsonType: 'string',
-            minLength: 8,
             description:
                 'must be a string and is longer than 8 char and is required'
         },

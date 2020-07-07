@@ -48,7 +48,14 @@ function init() {
 
     const commentButton = document.getElementById('submit-comment');
     if (commentButton)
-        commentButton.addEventListener('click', commentSubmit, false);
+        commentButton.addEventListener(
+            'click',
+            e => {
+                e.preventDefault();
+                commentSubmit();
+            },
+            false
+        );
 
     const flyoutToggle = document.getElementById('flyout-toggle');
     if (flyoutToggle) {
