@@ -6,18 +6,18 @@
         <div class="headband"></div>
         <div class="container">
             <%- include("components/_sidebar.ejs"); %>
-            <div class="content">
+            <div class="recent">
                 <% articles.forEach((i) => { %>
-                <div class="content__block">
-                    <div class="content__brief">
+                <div class="recent__block">
+                    <div class="recent__brief">
                         <%- include("components/_postHeader.ejs", {article: i})
                         %>
-                        <div class="content__brief--body">
+                        <div class="recent__brief--body">
                             <%- i.text %>
                         </div>
                     </div>
-                    <div class="content__link">
-                        <a href="/posts/<%= i._id %>" rel="content">
+                    <div class="recent__link">
+                        <a href="/posts/<%= i._id %>" rel="recent">
                             Read >>
                         </a>
                     </div>

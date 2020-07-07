@@ -33,7 +33,7 @@ body {
 .account {
   background-color: #fff;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  padding: 4rem 4rem 2rem 4rem; }
+  padding: 4rem; }
   .account__title {
     text-align: center;
     font-size: 2.4rem;
@@ -77,7 +77,8 @@ body {
 
 .admin {
   background-color: #fff;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  padding: 4rem; }
 
 .alert {
   display: none;
@@ -101,30 +102,30 @@ body {
   .alert--error {
     background-color: red; }
 
-.content {
+.recent {
   display: grid;
   grid-template-rows: repeat(5, auto);
   gap: 2rem; }
-  .content__block {
+  .recent__block {
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: 115rem; }
-  .content__brief {
+  .recent__brief {
     padding: 4rem 4rem 2rem 4rem; }
-    .content__brief--body {
+    .recent__brief--body {
       font-size: 1.8rem;
       line-height: 2;
       height: 20rem;
       overflow: hidden; }
-      .content__brief--body pre {
+      .recent__brief--body pre {
         white-space: pre-wrap; }
-  .content__link {
+  .recent__link {
     align-self: center;
     justify-self: center;
     margin: 0 1rem 1rem 1rem; }
-    .content__link a {
+    .recent__link a {
       padding: 0 1rem;
       color: #555;
       font-size: 1.8rem;
@@ -137,7 +138,7 @@ body {
       transition-duration: 0.3s;
       transition-timing-function: ease-in-out;
       transition-delay: 0s; }
-    .content__link a:hover {
+    .recent__link a:hover {
       color: #fff;
       background-color: #222;
       border-color: #222; }
@@ -233,7 +234,7 @@ body {
 .docs {
   background-color: #fff;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  padding: 4rem 4rem 2rem 4rem; }
+  padding: 4rem; }
   .docs h2 {
     margin-left: 2rem;
     font-size: 2.4rem; }
@@ -523,7 +524,7 @@ body {
 .post {
   background-color: #fff;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  padding: 4rem 4rem 2rem 4rem; }
+  padding: 4rem; }
   .post__body {
     font-size: 1.8rem;
     line-height: 2; }
@@ -559,7 +560,7 @@ body {
 .search {
   background-color: #fff;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  padding: 4rem 4rem 2rem 4rem; }
+  padding: 4rem; }
   .search__box {
     border: 2px solid #ccc;
     border-radius: 2px;

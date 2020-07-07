@@ -42,7 +42,6 @@ const createTokenResponse = (id, code, req, res, type) => {
 
 module.exports.signup = catchAsync(async (req, res, next) => {
     const user = req.body;
-    console.log('module.exports.signup -> user', user);
     const { result, insertedId } = await UserDao.createOneUser(user);
     if (result.ok !== 1 || result.n === 0) {
         return next(new AppError(404, 'Failed to create a new user'));

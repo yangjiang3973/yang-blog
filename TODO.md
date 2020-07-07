@@ -87,7 +87,7 @@ for password, check passwordConfirm matching
 
 (6) protect routes(DONE)
 
-3. review schemas in natours to borrow some ideas
+3. review schemas in natours to borrow some ideas(DONE)
 
 4. learn bcrypt..why don't need to add a salt manually?
 
@@ -109,7 +109,7 @@ for password, check passwordConfirm matching
 
 # 2020-06-09
 
-1. if a user delete himself, will be set `active = false`. need to consider this feature in auth controller(update, recover...).
+1. if a user delete himself, will be set `active = false`. need to consider this feature in auth controller(update, recover...).(DONE)
 
 2. update password by user himself(DONE)
 
@@ -118,7 +118,7 @@ for password, check passwordConfirm matching
 4. mongodb difference between update and findandupdate(DONE)
    Ans: The difference is that FindAndModify() returns the document, either the pre-update or post-update version, together with the update, in one atomic operation. Update is atomic but does not return the document, so if you then query for it it's possible it will have been changed by another process in the interim.
 
-5. follow No.4, need to change update and findAndUpdate to proper ones.(done in UserDAO)
+5. follow No.4, need to change update and findAndUpdate to proper ones.(done in UserDAO)(no need to do it)
 
 6. delete user by himself(set active to false) (DONE)
 
@@ -161,11 +161,11 @@ for password, check passwordConfirm matching
 
 # 2020-06-10
 
-1. start server side rendering
+1. start server side rendering(DONE)
 
 2. Q: in page a, style.css was loaded, when open page b, does style.css need to load again?
 
-3. organize commently used syntax of emmet
+3. write commently used syntax of emmet in a post
 
 4. css initialize(padding, box-sizing...) (DONE)
 
@@ -175,7 +175,7 @@ for password, check passwordConfirm matching
 
 # 2020-06-13
 
-1. implement similar `catchAsync` in DAO functions.(return function call not function definition)
+1. implement similar `catchAsync` in DAO functions.(return function call not function definition)(cannot find a feasible solution)
 
 2. Overview component(DONE)
    2.1 icon import(DONE)
@@ -186,7 +186,9 @@ for password, check passwordConfirm matching
 
 1. Menu component(DONE)
 
-2. modify box-shadow and learn it syntax
+2. modify box-shadow(DONE)
+
+3. learn the syntax of box-shadow
 
 # 2020-06-15
 
@@ -381,3 +383,5 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 1. display comments in `div` does not keep the format of text(like paragraph)
 
 2. add slug to each post link
+
+3. user.active is useless now. need to consider if to remove it?
