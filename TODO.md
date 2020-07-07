@@ -206,7 +206,7 @@ for password, check passwordConfirm matching
 
 5. modulize the post header component.(DONE)
 
-6. polish the post block
+6. polish the post block(better css and add a code highlighter)(DONE)
 
 7. improve the code hightlight feature. maybe make a editor block?(DONE)
 
@@ -221,22 +221,20 @@ second, code in .md is in wrong format.
 # 2020-06-16
 
 1. Post Page(
-   1.1 post body
+   1.1 post body(DONE)
    1.2 comments component)(DONE)
 
-2. help for development: automatically load posts from folder when server starts. So I can dynamically see changes in .md files
+2. help for development: automatically load posts from folder when server starts. So I can dynamically see changes in .md files(NO)
 
 # 2020-06-17
 
 1. Comments component v1.0(DONE)
 
-2. add a share feature for post(share on wechat and so on)
+2. login/logout feature(DONE)
 
-3. login/logout feature(DONE)
+3. add a modal container for login/register(DONE)
 
-4. add a modal container for login/register(DONE)
-
-5. Modal content tab for switching between login/register(DONE)
+4. Modal content tab for switching between login/register(DONE)
 
 # 2020-06-18
 
@@ -256,7 +254,7 @@ second, code in .md is in wrong format.
 
 # 2020-06-19
 
-1. make icon styles into mixin
+1. make icon styles into mixin(NO, too less)
 
 2. check if user logged in(DONE)
 
@@ -289,7 +287,7 @@ second, code in .md is in wrong format.
 
 # 2020-06-30
 
-1. like `catchAsync`, wrap all DAO function to avoid try..catch...
+1. like `catchAsync`, wrap all DAO function to avoid try..catch...(NO)
 
 2. `ejs`: can i trim new line(`-%>`) and whitespace(`<%_ _%>`) at the same time?
 
@@ -303,19 +301,19 @@ second, code in .md is in wrong format.
 
 1. learn more about OAuth 2.0
 
-2. how to manage user registered by third party? need to do some research
+2. how to manage user registered by third party? need to do some research and write an article
 
 3. Account Page(DONE)
 
 4. A lot of new things on github, like GitHub Packages(https://help.github.com/en/packages), Github App....need to learn them
 
-5. design user data model and login validation for third-party login, learn from online articles and write a post()
+5. design user data model and login validation for third-party login(DONE)
 
 # 2020-07-02
 
 1. `const { result, insertedId } = await UserDao.createOneUser(newUser);`
 
-move the returned result to DAO, should not in the controller
+move the returned result to DAO, should not in the controller(IN PROGRESS)
 
 2. learn `CORS policy` and `'Access-Control-Allow-Origin' header`
 
@@ -387,3 +385,9 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 3. user.active is useless now. need to consider if to remove it?
 
 4. cannot write html code in comments. need to fix
+
+5. add a share feature for post(share on wechat and so on)
+
+6. increase brief height(use js to count number of `<p>`??)
+
+(IN PROGRESS) in 2020-07-02
