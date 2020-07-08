@@ -315,7 +315,15 @@ second, code in .md is in wrong format.
 
 move the returned result to DAO, should not in the controller(IN PROGRESS)
 
-2. learn `CORS policy` and `'Access-Control-Allow-Origin' header`
+    1.1 authController
+    1.2 commentController
+    1.3 postController
+    1.4 userController
+    1.5 viewController
+
+before do this, need to know when will r returns ok!= 1
+
+2. learn `CORS policy` and `'Access-Control-Allow-Origin' header` and write an article
 
 why `CORS` can make web safer?
 
@@ -334,7 +342,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 
 5. (DONE)add features on account: change username, email.
 
-6. set permissions on different routes and inputs.
+6. set permissions on different routes and inputs.(DONE)
 
 7. after finish #5 and #6, go through previous notes and review current website. Make a list of what to do next.
 
@@ -364,7 +372,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
    1.3 updating posts(wait for admin management feature)
    )
 
-2. admin need to be able update / delete posts
+2. admin need to be able update / delete posts(in admin page, not just use api)
 
 3. learn `Web Workers`. maybe use it to highlight code blocks(https://highlightjs.org/usage/)
 
@@ -389,5 +397,3 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 5. add a share feature for post(share on wechat and so on)
 
 6. increase brief height(use js to count number of `<p>`??)
-
-(IN PROGRESS) in 2020-07-02

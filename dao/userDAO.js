@@ -35,7 +35,6 @@ class UserDAO {
         try {
             if (!user.role) user.role = 'user'; // by default
             if (!user.active) user.active = true;
-            console.log('UserDAO -> createOneUser -> user.email', user.email);
             if (!user.email) {
                 user.email = crypto.randomBytes(10).toString('hex');
                 while (await usersCollection.findOne({ email: user.email })) {
@@ -58,15 +57,12 @@ class UserDAO {
                 user.passwordMissing = false;
             }
             if (await usersCollection.findOne({ name: user.name })) {
-                console.log('UserDAO -> createOneUser -> user.name', user.name);
                 throw new AppError(
                     400,
                     'your name has been registered, please choose a new one!'
                 );
             }
-            console.log('UserDAO -> user.email', user.email);
             if (await usersCollection.findOne({ email: user.email })) {
-                console.log('UserDAO -> user.email', user.email);
                 throw new AppError(
                     400,
                     'your email has been registered, please choose a new one!'

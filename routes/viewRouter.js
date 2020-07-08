@@ -15,6 +15,8 @@ router.route('/tags/:tag').get(viewController.tagsPosts);
 
 router.route('/search').get(viewController.search);
 
+router.use(authController.protect, authController.restrictTo('admin')); // middle ware
+
 router.route('/admin').get(viewController.admin);
 router.route('/admin').post(viewController.adminUploadPost);
 

@@ -3,11 +3,13 @@ const commentController = require('../controllers/commentController');
 const authController = require('../controllers/authController');
 const router = express.Router();
 
+router.use(authController.protect, authController.restrictTo('admin'));
+
 // RESTful
 router
     .route('/')
     .get(commentController.getAllComments)
-    .post(authController.protect, commentController.createOneComment);
+    .post(commentController.createOneComment);
 
 router
     .route('/:id')

@@ -9,19 +9,17 @@ router.route('/login/github/callback/').get(authController.loginByGithub);
 router.route('/logout').get(authController.logout);
 router.route('/forgotPassword').post(authController.forgotPassword);
 router.route('/resetPassword/:token').patch(authController.resetPassword);
-router
-    .route('/updateMyPassword')
-    .patch(authController.protect, authController.updatePassword);
-router
-    .route('/updateMe')
-    .patch(authController.protect, userController.updateMe);
-router
-    .route('/deleteMe')
-    .delete(authController.protect, userController.deleteMe);
+
+router.use(authController.protect);
+
+router.route('/updateMyPassword').patch(authController.updatePassword);
+router.route('/updateMe').patch(userController.updateMe);
+router.route('/deleteMe').delete(userController.deleteMe); // TODO: need to allow user delete himself?
+
+router.use(authController.restrictTo('admin'));
 
 // RESTful APIs
 router.route('/').get(userController.getAllUsers);
-// .post(userController.createOneUser);
 
 router
     .route('/:id')
