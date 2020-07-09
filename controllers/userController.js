@@ -13,9 +13,6 @@ module.exports.getAllUsers = catchAsync(async (req, res, next) => {
 
 module.exports.getOneUser = catchAsync(async (req, res, next) => {
     const user = await UserDao.getOneUser(req.params.id);
-    if (!user) {
-        return next(new AppError(404, 'No user found with that ID'));
-    }
     res.status(200).json({
         status: 'success',
         data: user
@@ -25,10 +22,8 @@ module.exports.getOneUser = catchAsync(async (req, res, next) => {
 module.exports.updateUser = catchAsync(async (req, res, next) => {
     const id = req.params.id;
     const newData = req.body;
-    const { ok, value } = await UserDao.updateUser(id, newData);
-    if (ok !== 1) {
-        return next(new AppError(404, 'Failed to update this user'));
-    }
+    const { value } = await UserDao.updateUser(id, newData);
+
     res.status(200).json({
         status: 'success',
         data: value
@@ -36,10 +31,8 @@ module.exports.updateUser = catchAsync(async (req, res, next) => {
 });
 
 module.exports.deleteUser = catchAsync(async (req, res, next) => {
-    const { result } = await UserDao.deleteUser(req.params.id);
-    if (result.ok !== 1 || result.n === 0) {
-        return next(new AppError(404, 'Failed to delete this user'));
-    }
+    await UserDao.deleteUser(req.params.id);
+
     res.status(200).json({
         status: 'success',
         data: null
@@ -88,9 +81,6 @@ module.exports.deleteMe = catchAsync(async (req, res, next) => {
     const { ok } = await UserDao.updateUser(req.user._id, {
         active: false
     });
-    if (ok !== 1) {
-        return next(new AppError(404, 'Failed to delete your data'));
-    }
     res.status(204).json({
         status: 'success',
         data: null

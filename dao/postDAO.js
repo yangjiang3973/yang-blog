@@ -40,6 +40,9 @@ class PostsDAO {
     static async getOnePost(id) {
         try {
             const post = await postsCollection.findOne({ _id: ObjectId(id) });
+            if (!post) {
+                throw new AppError(404, 'No post found with that ID');
+            }
             return post;
         } catch (err) {
             dbErrorHandler(err);
@@ -85,10 +88,16 @@ class PostsDAO {
 
     static async updatePost(id, data) {
         try {
-            return await postsCollection.updateOne(
+            const r = await postsCollection.updateOne(
                 { _id: ObjectId(id) },
                 { $set: data }
             );
+
+            if (r.result.ok !== 1 || r.result.n === 0) {
+                throw new AppError(404, 'Failed to update this post');
+            }
+
+            return;
         } catch (err) {
             dbErrorHandler(err);
         }
@@ -96,7 +105,11 @@ class PostsDAO {
 
     static async deletePost(id) {
         try {
-            return await postsCollection.deleteOne({ _id: ObjectId(id) });
+            const r = await postsCollection.deleteOne({ _id: ObjectId(id) });
+            if (r.result.ok !== 1 || r.result.n === 0) {
+                throw new AppError(404, 'Failed to delete this post');
+            }
+            return;
         } catch (err) {
             dbErrorHandler(err);
         }

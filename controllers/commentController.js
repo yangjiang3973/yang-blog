@@ -36,12 +36,7 @@ module.exports.getOneComment = catchAsync(async (req, res, next) => {
 module.exports.updateComment = catchAsync(async (req, res, next) => {
     const id = req.params.id;
     const newData = req.body;
-    const { result } = await CommentDao.updateComment(id, newData);
-
-    if (result.ok !== 1 || result.n === 0) {
-        return next(new AppError(404, 'Failed to update this comment'));
-    }
-
+    await CommentDao.updateComment(id, newData);
     res.status(200).json({
         status: 'success',
         data: null
@@ -49,12 +44,7 @@ module.exports.updateComment = catchAsync(async (req, res, next) => {
 });
 
 module.exports.deleteComment = catchAsync(async (req, res, next) => {
-    const { result } = await CommentDao.deleteComment(req.params.id);
-
-    if (result.ok !== 1 || result.n === 0) {
-        return next(new AppError(404, 'Failed to delete this comment'));
-    }
-
+    await CommentDao.deleteComment(req.params.id);
     res.status(200).json({
         status: 'success',
         data: null

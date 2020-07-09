@@ -42,10 +42,8 @@ const createTokenResponse = (id, code, req, res, type) => {
 
 module.exports.signup = catchAsync(async (req, res, next) => {
     const user = req.body;
-    const { result, insertedId } = await UserDao.createOneUser(user);
-    if (result.ok !== 1 || result.n === 0) {
-        return next(new AppError(404, 'Failed to create a new user'));
-    }
+    const { insertedId } = await UserDao.createOneUser(user);
+
     // jwt
     createTokenResponse(insertedId, 201, req, res);
 });
@@ -92,10 +90,8 @@ module.exports.loginByGithub = catchAsync(async (req, res, next) => {
             }
             newUser.name = randomName;
         }
-        const { result, insertedId } = await UserDao.createOneUser(newUser);
-        if (result.ok !== 1 || result.n === 0) {
-            return next(new AppError(404, 'Failed to create a new user'));
-        }
+        const { insertedId } = await UserDao.createOneUser(newUser);
+
         createTokenResponse(insertedId, 201, req, res, 'html');
     }
 });
@@ -118,14 +114,6 @@ module.exports.login = catchAsync(async (req, res, next) => {
         const { ok } = await UserDao.updateUser(user._id, {
             active: true
         });
-        if (ok !== 1) {
-            return next(
-                new AppError(
-                    404,
-                    'Failed to active your account. Please try again!'
-                )
-            );
-        }
     }
     createTokenResponse(user._id, 200, req, res);
 });
@@ -172,6 +160,7 @@ module.exports.isLoggedIn = async (req, res, next) => {
 };
 
 module.exports.protect = catchAsync(async (req, res, next) => {
+    console.log('test');
     let token;
     // 1) get token and check exsistence
     if (
@@ -269,7 +258,6 @@ module.exports.resetPassword = catchAsync(async (req, res, next) => {
         .digest('hex');
 
     const user = await UserDao.findUserByToken(hashedToken);
-
     // check if there is a user and token is not expired, set new password
     if (!user) {
         return next(new AppError(400, 'Token is invalid or expired!'));

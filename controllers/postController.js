@@ -14,11 +14,6 @@ module.exports.getAllPosts = catchAsync(async (req, res, next) => {
 
 module.exports.getOnePost = catchAsync(async (req, res, next) => {
     const post = await PostDAO.getOnePost(req.params.id);
-
-    if (!post) {
-        return next(new AppError(404, 'No post found with that ID'));
-    }
-
     res.status(200).json({
         status: 'success',
         data: post
@@ -36,11 +31,7 @@ module.exports.createOnePost = catchAsync(async (req, res, next) => {
 module.exports.updatePost = catchAsync(async (req, res, next) => {
     const id = req.params.id;
     const newPost = req.body;
-    const { result } = await PostDAO.updatePost(id, newPost);
-
-    if (result.ok !== 1 || result.n === 0) {
-        return next(new AppError(404, 'Failed to update this post'));
-    }
+    await PostDAO.updatePost(id, newPost);
 
     res.status(200).json({
         status: 'success',
@@ -49,10 +40,8 @@ module.exports.updatePost = catchAsync(async (req, res, next) => {
 });
 
 module.exports.deletePost = catchAsync(async (req, res, next) => {
-    const { result } = await PostDAO.deletePost(req.params.id);
-    if (result.ok !== 1 || result.n === 0) {
-        return next(new AppError(404, 'Failed to delete this post'));
-    }
+    await PostDAO.deletePost(req.params.id);
+
     res.status(200).json({
         status: 'success',
         data: null

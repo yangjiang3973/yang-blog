@@ -43,10 +43,10 @@ app.use(
 );
 
 /* routes */
-app.use('/', viewRouter);
 app.use('/api/v1/posts', postRouter); // sub-app
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/comments', commentRouter);
+app.use('/', viewRouter);
 
 // all unhandled routes
 app.all('*', (req, res, next) => {

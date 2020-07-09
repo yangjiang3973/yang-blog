@@ -33,8 +33,8 @@ class UserDAO {
 
     static async createOneUser(user) {
         try {
-            if (!user.role) user.role = 'user'; // by default
-            if (!user.active) user.active = true;
+            user.role = 'user'; // by default
+            user.active = true;
             if (!user.email) {
                 user.email = crypto.randomBytes(10).toString('hex');
                 while (await usersCollection.findOne({ email: user.email })) {
@@ -70,6 +70,9 @@ class UserDAO {
             }
 
             const r = await usersCollection.insertOne(user);
+            if (r.result.ok !== 1 || r.result.n === 0) {
+                throw new AppError(404, 'Failed to create a new user');
+            }
             return r;
         } catch (err) {
             dbErrorHandler(err);
@@ -93,6 +96,9 @@ class UserDAO {
                 { _id: ObjectId(id) },
                 { projection: { password: 0 } }
             );
+            if (!user) {
+                throw new AppError(404, 'No user found with that ID');
+            }
             return user;
         } catch (err) {
             dbErrorHandler(err);
@@ -129,7 +135,11 @@ class UserDAO {
 
     static async deleteUser(id) {
         try {
-            return await usersCollection.deleteOne({ _id: ObjectId(id) });
+            await usersCollection.deleteOne({ _id: ObjectId(id) });
+            if (r.result.ok !== 1 || r.result.n === 0) {
+                throw new AppError(404, 'Failed to delete this user');
+            }
+            return;
         } catch (err) {
             dbErrorHandler(err);
         }

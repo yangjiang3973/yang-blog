@@ -32,9 +32,7 @@ class CommentDAO {
         try {
             const r = await commentsCollection.insertOne(comment);
             if (r.result.ok !== 1 || r.result.n === 0) {
-                return next(
-                    new AppError(404, 'Failed to create a new comment')
-                );
+                throw new AppError(404, 'Failed to create a new comment');
             }
             return;
         } catch (err) {
@@ -64,12 +62,17 @@ class CommentDAO {
 
     static async updateComment(id, data) {
         try {
-            return await commentsCollection.updateOne(
+            const r = await commentsCollection.updateOne(
                 { _id: ObjectId(id) },
                 {
                     $set: data
                 }
             );
+
+            if (r.result.ok !== 1 || r.result.n === 0) {
+                throw new AppError(500, 'Failed to update this comment');
+            }
+            return r;
         } catch (err) {
             dbErrorHandler(err);
         }
@@ -77,7 +80,11 @@ class CommentDAO {
 
     static async deleteComment(id) {
         try {
-            return await commentsCollection.deleteOne({ _id: ObjectId(id) });
+            const r = await commentsCollection.deleteOne({ _id: ObjectId(id) });
+            if (r.result.ok !== 1 || r.result.n === 0) {
+                throw new AppError(404, 'Failed to delete this comment');
+            }
+            return;
         } catch (err) {
             dbErrorHandler(err);
         }

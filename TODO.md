@@ -313,13 +313,13 @@ second, code in .md is in wrong format.
 
 1. `const { result, insertedId } = await UserDao.createOneUser(newUser);`
 
-move the returned result to DAO, should not in the controller(IN PROGRESS)
+move the returned result to DAO, should not in the controller(DONE)
 
-    1.1 authController
-    1.2 commentController
-    1.3 postController
-    1.4 userController
-    1.5 viewController
+    1.1 authController(DONE)
+    1.2 commentController(DONE)
+    1.3 postController(DONE)
+    1.4 userController(DONE)
+    1.5 viewController(DONE)
 
 before do this, need to know when will r returns ok!= 1
 
@@ -344,7 +344,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 
 6. set permissions on different routes and inputs.(DONE)
 
-7. after finish #5 and #6, go through previous notes and review current website. Make a list of what to do next.
+7. after finish #5 and #6, go through previous notes and review current website. Make a list of what to do next.(DONE)
 
 8. difference between `justify-items` and `justify-content` in grid
 
@@ -397,3 +397,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 5. add a share feature for post(share on wechat and so on)
 
 6. increase brief height(use js to count number of `<p>`??)
+
+# 2020-07-09
+
+1. what is MVVM?

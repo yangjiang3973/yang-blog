@@ -19,7 +19,6 @@ module.exports = err => {
     // duplicate value
     if (err.code === 11000) {
         const value = err.message.match(/(["'])(\\?.)*?\1/)[0];
-        console.log(value);
         const message = `Duplicate field value: ${value}. Please use another value!`;
         throw new AppError(400, message);
     }
