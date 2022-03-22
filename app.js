@@ -18,13 +18,13 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-/* middleware */
+// middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 const limiter = rateLimit({
     max: 100,
     windowMs: 60 * 60 * 1000, // 1h
-    message: 'Too many requests from this IP. Please try again later!'
+    message: 'Too many requests from this IP. Please try again later!',
 });
 app.use('/api', limiter);
 
@@ -38,11 +38,11 @@ app.use(xss());
 // prevent parameter pollution(query string)
 app.use(
     hpp({
-        whitelist: ['title']
+        whitelist: ['title'],
     })
 );
 
-/* routes */
+// routes
 app.use('/api/v1/posts', postRouter); // sub-app
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/comments', commentRouter);

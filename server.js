@@ -23,9 +23,9 @@ MongoClient.connect(url, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     poolSize: 50,
-    wtimeout: 2500
+    wtimeout: 2500,
 })
-    .then(async client => {
+    .then(async (client) => {
         await PostDAO.injectDB(client);
         await UserDAO.injectDB(client);
         await CommentDAO.injectDB(client);
@@ -35,13 +35,13 @@ MongoClient.connect(url, {
             );
         });
     })
-    .catch(err => {
+    .catch((err) => {
         console.error(err.stack);
         process.exit(1);
     });
 
 // globally handle unhandled rejection
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
     console.log('unhandled rejection! shutting down...');
     console.log(err.name, err.message);
     server.close(() => {

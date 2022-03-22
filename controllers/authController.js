@@ -9,9 +9,9 @@ const AppError = require('../utils/appError');
 const { isPasswordChangedAfterJWT } = require('../utils/validators');
 const { sendEmail } = require('../utils/utils');
 
-const signToken = id => {
+const signToken = (id) => {
     return jwt.sign({ id: id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN
+        expiresIn: process.env.JWT_EXPIRES_IN,
     });
 };
 
@@ -20,7 +20,7 @@ const cookieOptions = {
         Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
-    secure: false // TODO: will change it when deployment
+    secure: false, // TODO: will change it when deployment with https
 };
 
 const createTokenResponse = (id, code, req, res, type) => {
@@ -35,7 +35,7 @@ const createTokenResponse = (id, code, req, res, type) => {
     } else {
         res.status(code).json({
             status: 'success',
-            token //TODO: is it possible to remove it? by only using cookie in view. also need to change `protect`
+            token, //TODO: is it possible to remove it? by only using cookie in view. also need to change `protect`
         });
     }
 };
@@ -55,7 +55,7 @@ module.exports.loginByGithub = catchAsync(async (req, res, next) => {
         {
             client_id: process.env.GITHUB_CLIENT_ID,
             client_secret: process.env.GITHUB_CLIENT_SECRET,
-            code: code
+            code: code,
         }
     );
 
@@ -72,7 +72,7 @@ module.exports.loginByGithub = catchAsync(async (req, res, next) => {
 
     // check if username logged in before from github
     const userFromGithub = await UserDao.findUserByField({
-        githubUserName: userInfo.login
+        githubUserName: userInfo.login,
     });
     if (userFromGithub) {
         createTokenResponse(userFromGithub._id, 200, req, res, 'html');
@@ -107,12 +107,11 @@ module.exports.login = catchAsync(async (req, res, next) => {
 
     // check if user exist && password is correct
     const { user, correct } = await UserDao.checkUserPassword(email, password);
-    if (!correct)
-        return next(new AppError(401, 'In correct password or email'));
+    if (!correct) return next(new AppError(401, 'Incorrect password or email'));
     // active user again after deleting himself
     if (!user.active) {
         const { ok } = await UserDao.updateUser(user._id, {
-            active: true
+            active: true,
         });
     }
     createTokenResponse(user._id, 200, req, res);
@@ -121,11 +120,11 @@ module.exports.login = catchAsync(async (req, res, next) => {
 module.exports.logout = (req, res) => {
     res.cookie('jwt', 'loggedout', {
         expires: new Date(Date.now() + 2 * 1000),
-        httpOnly: true
+        httpOnly: true,
     });
 
     res.status(200).json({
-        status: 'success'
+        status: 'success',
     });
 };
 
@@ -231,12 +230,12 @@ module.exports.forgotPassword = catchAsync(async (req, res, next) => {
         await sendEmail({
             email: user.email,
             subject: 'Reset your password(valid in 10min)',
-            message
+            message,
         });
 
         res.status(200).json({
             status: 'success',
-            message: 'Token sent to your email'
+            message: 'Token sent to your email',
         });
     } catch (err) {
         // reset token and expires time

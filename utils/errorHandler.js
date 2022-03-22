@@ -15,14 +15,14 @@ module.exports = (err, req, res, next) => {
         if (err.isOperational) {
             res.status(err.statusCode).json({
                 status: err.status,
-                message: err.message
+                message: err.message,
             });
         } else {
             console.error('Error:', err);
-            // Programming error(not operational error), just send generic message to clients
+            // Programming error(not operational error), just send this generic message to clients
             res.status(500).json({
                 status: 'error',
-                message: 'Something went wrong, please try again later'
+                message: 'Something went wrong, please try again later',
             });
         }
     } else {
@@ -31,7 +31,7 @@ module.exports = (err, req, res, next) => {
             status: err.status,
             error: err,
             message: err.message,
-            stack: err.stack
+            stack: err.stack,
         });
     }
 };

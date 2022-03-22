@@ -8,15 +8,17 @@ module.exports.getAllPosts = catchAsync(async (req, res, next) => {
     res.status(200).json({
         status: 'success',
         results: posts.length,
-        data: posts
+        data: posts,
     });
 });
 
 module.exports.getOnePost = catchAsync(async (req, res, next) => {
     const post = await PostDAO.getOnePost(req.params.id);
+    // TODO: need to add 404 error handling here
+
     res.status(200).json({
         status: 'success',
-        data: post
+        data: post,
     });
 });
 
@@ -24,7 +26,7 @@ module.exports.createOnePost = catchAsync(async (req, res, next) => {
     await PostDAO.createOnePost(req.body);
     res.status(201).json({
         status: 'success',
-        data: null
+        data: null,
     });
 });
 
@@ -35,7 +37,7 @@ module.exports.updatePost = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
         status: 'success',
-        data: null
+        data: null,
     });
 });
 
@@ -44,6 +46,6 @@ module.exports.deletePost = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
         status: 'success',
-        data: null
+        data: null,
     });
 });

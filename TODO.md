@@ -321,7 +321,7 @@ move the returned result to DAO, should not in the controller(DONE)
     1.4 userController(DONE)
     1.5 viewController(DONE)
 
-before do this, need to know when will r returns ok!= 1
+before do this, need to know when will r returns ok!= 1(like, disk is full? disk error?)
 
 2. learn `CORS policy` and `'Access-Control-Allow-Origin' header` and write an article
 
@@ -340,7 +340,7 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 
 4. read github oauth doc(https://docs.github.com/en/developers/apps/authorizing-oauth-apps) to learn and implement better workflow
 
-5. (DONE)add features on account: change username, email.
+5. add features on account: change username, email.(DONE)
 
 6. set permissions on different routes and inputs.(DONE)
 
@@ -401,3 +401,35 @@ first, need to learn from office docs of github to see what `redirect_uri` means
 # 2020-07-09
 
 1. what is MVVM?
+
+# 2020-07-17
+
+1. add Monaco Editor to my blog?
+
+# 2022-02-13
+
+1. return to this blog project and make it better before release
+
+    1.1 review code and all implemented features
+
+# 2022-02-18
+
+1. add 404 error handling
+
+e.g try to find a article that does not exist with id,
+
+2. add db error handler in global error handler?
+
+some errors are handle already in DAO
+
+3. Does my blog need a login feature for comment?
+
+check othre good blogs and learn from them
+
+# 2022-03-22
+
+1. In the future, the blog should be in English
+
+2. maybe launch first with a password!!!!!!
+
+learn github blog first
