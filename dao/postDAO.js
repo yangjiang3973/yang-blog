@@ -13,18 +13,18 @@ class PostsDAO {
             return;
         }
         try {
+            postsCollection = await conn.db('blog').collection('posts');
             await conn.db('blog').command({
                 collMod: 'posts',
                 validator: {
-                    $jsonSchema: postsSchema
+                    $jsonSchema: postsSchema,
                 },
                 validationLevel: 'strict',
-                validationAction: 'error'
+                validationAction: 'error',
             });
-            postsCollection = await conn.db('blog').collection('posts');
-        } catch (e) {
+        } catch (error) {
             console.error(
-                `Unable to establish a collection handle in postDAO: ${e}`
+                `Unable to establish a collection handle in postDAO: ${error}`
             );
         }
     }
@@ -32,8 +32,8 @@ class PostsDAO {
         try {
             const posts = await postsCollection.find({}).toArray();
             return posts;
-        } catch (err) {
-            dbErrorHandler(err);
+        } catch (error) {
+            dbErrorHandler(error);
         }
     }
 
@@ -44,8 +44,8 @@ class PostsDAO {
                 throw new AppError(404, 'No post found with that ID');
             }
             return post;
-        } catch (err) {
-            dbErrorHandler(err);
+        } catch (error) {
+            dbErrorHandler(error);
         }
     }
 
@@ -69,20 +69,20 @@ class PostsDAO {
                     'Cannot create data in database, please try again later!'
                 );
             // sync data to algolia after inserting to DB successfully
-            const client = algoliasearch(
-                process.env.ALGOLIA_ID,
-                process.env.ALGOLIA_ADMIN_KEY
-            );
-            const index = client.initIndex('dev_posts');
-            const res = await index.saveObject(post, {
-                autoGenerateObjectIDIfNotExist: true
-            });
+            // const client = algoliasearch(
+            //     process.env.ALGOLIA_ID,
+            //     process.env.ALGOLIA_ADMIN_KEY
+            // );
+            // const index = client.initIndex('dev_posts');
+            // const res = await index.saveObject(post, {
+            //     autoGenerateObjectIDIfNotExist: true,
+            // });
 
-            if (!res.objectID)
-                throw new AppError(503, 'Failed to sync data to Algolia!');
+            // if (!res.objectID)
+            //     throw new AppError(503, 'Failed to sync data to Algolia!');
             return;
-        } catch (err) {
-            dbErrorHandler(err);
+        } catch (error) {
+            dbErrorHandler(error);
         }
     }
 
@@ -98,8 +98,8 @@ class PostsDAO {
             }
 
             return;
-        } catch (err) {
-            dbErrorHandler(err);
+        } catch (error) {
+            dbErrorHandler(error);
         }
     }
 
@@ -110,8 +110,8 @@ class PostsDAO {
                 throw new AppError(404, 'Failed to delete this post');
             }
             return;
-        } catch (err) {
-            dbErrorHandler(err);
+        } catch (error) {
+            dbErrorHandler(error);
         }
     }
 
@@ -123,7 +123,7 @@ class PostsDAO {
                 .limit(5)
                 .toArray();
         } catch (error) {
-            dbErrorHandler(err);
+            dbErrorHandler(error);
         }
     }
 
@@ -131,8 +131,8 @@ class PostsDAO {
         try {
             const posts = await postsCollection.find({ tags: tag }).toArray();
             return posts;
-        } catch (err) {
-            dbErrorHandler(err);
+        } catch (error) {
+            dbErrorHandler(error);
         }
     }
 }

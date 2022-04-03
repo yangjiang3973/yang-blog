@@ -8,29 +8,24 @@
             <%- include("components/_sidebar.ejs"); %>
             <div class="admin">
                 <form
+                    class="admin__form"
                     action="/admin"
                     method="post"
                     enctype="multipart/form-data"
                 >
                     <input
-                        class="edit-title"
+                        class="admin__form--title"
                         type="text"
                         name="title"
                         placeholder="title"
                     />
-                    <textarea
-                        class="edit-content"
-                        name="content"
-                        placeholder="edit here"
-                    >
-                    </textarea>
                     <input
-                        class="edit-uploadfile"
+                        class="admin__form--upload"
                         name="file"
                         type="file"
                         value="File"
                     />
-                    <input class="edit-submit" type="submit" value="Submit" />
+                    <input class="admin__form--submit" type="submit" value="Submit" />
                 </form>
             </div>
         </div>

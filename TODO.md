@@ -433,3 +433,36 @@ check othre good blogs and learn from them
 2. maybe launch first with a password!!!!!!
 
 learn github blog first
+
+3. make a good feed for subscripbe blog and make its UI like zhihu? or other website's UI
+
+4. make my block compatible with other feed
+
+5. launch a static first, delpoy it, then continuous deliver a better version
+
+6. keep myself up to date by Twitter, Podcasts, books and blogs(including Medium).
+
+learn how to use them
+
+Write on my own platform. Use other’s platforms to get more reach
+
+7. tailwindcss
+
+8. Netlify. Jamstack
+
+9. Did i use slug for links? make title like: "this-is-a-post"
+
+# 2022-03-23
+
+1. reorganize the thoughts about each feature of my blog.
+
+    a. how to save post to DB and load from DB(This is not a static site)
+    disable `protect` controller and go to admin page directly
+    (DONE): need to polish this page and upload a file
+    (DONE): writing the scss file of admin page
+    b. better markdown to html
+    c. code hightlight
+    d. disable comment for now
+    disable search now
+    -----test locally
+    e. deployment: learn github's blog function, netlify, maintain node app with DB?

@@ -16,7 +16,7 @@ const CommentDAO = require('./dao/commentDAO');
 let url;
 if (process.env.NODE_ENV === 'development') url = 'mongodb://localhost:27017';
 else url = process.env.DB_URL.replace('<PASSWORD>', process.env.DB_PASSWORD);
-url = 'mongodb://localhost:27017';
+url = 'mongodb://localhost:27017/blog';
 
 let server;
 MongoClient.connect(url, {

@@ -15,6 +15,7 @@ class UserDAO {
             return;
         }
         try {
+            usersCollection = await conn.db('blog').collection('users');
             await conn.db('blog').command({
                 collMod: 'users',
                 validator: {
@@ -23,7 +24,6 @@ class UserDAO {
                 validationLevel: 'strict',
                 validationAction: 'error',
             });
-            usersCollection = await conn.db('blog').collection('users');
         } catch (e) {
             console.error(
                 `Unable to establish a collection handle in userDAO: ${e}`

@@ -10,15 +10,15 @@ class CommentDAO {
             return;
         }
         try {
+            commentsCollection = await conn.db('blog').collection('comments');
             await conn.db('blog').command({
                 collMod: 'comments',
                 validator: {
-                    $jsonSchema: commentsSchema
+                    $jsonSchema: commentsSchema,
                 },
                 validationLevel: 'strict',
-                validationAction: 'error'
+                validationAction: 'error',
             });
-            commentsCollection = await conn.db('blog').collection('comments');
         } catch (e) {
             console.error(
                 `Unable to establish a collection handle in commentDAO: ${e}`
@@ -52,7 +52,7 @@ class CommentDAO {
     static async getOneComment(id) {
         try {
             const comment = await commentsCollection.findOne({
-                _id: ObjectId(id)
+                _id: ObjectId(id),
             });
             return comment;
         } catch (err) {
@@ -65,7 +65,7 @@ class CommentDAO {
             const r = await commentsCollection.updateOne(
                 { _id: ObjectId(id) },
                 {
-                    $set: data
+                    $set: data,
                 }
             );
 
@@ -99,8 +99,8 @@ class CommentDAO {
                     {
                         projection: {
                             _id: 0,
-                            postId: 0
-                        }
+                            postId: 0,
+                        },
                     }
                 )
                 .toArray();

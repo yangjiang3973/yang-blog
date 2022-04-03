@@ -13,7 +13,7 @@ module.exports.home = catchAsync(async (req, res, next) => {
 
     res.status(200).render('home', {
         articles: recentPosts,
-        comments
+        comments,
     });
 });
 
@@ -22,27 +22,27 @@ module.exports.post = catchAsync(async (req, res, next) => {
     const comments = await CommentDAO.getCommentsByPostId(req.params.id);
     res.status(200).render('post', {
         article: post,
-        comments
+        comments,
     });
 });
 
 module.exports.docs = catchAsync(async (req, res, next) => {
     const posts = await PostDAO.getAllPosts();
     res.status(200).render('docs', {
-        posts
+        posts,
     });
 });
 
 module.exports.account = catchAsync(async (req, res, next) => {
     const user = await UserDAO.getOneUser(req.user._id);
     res.status(200).render('account', {
-        me: user
+        me: user,
     });
 });
 
 module.exports.tags = catchAsync(async (req, res, next) => {
     res.status(200).render('tags', {
-        me: 'aaaaa'
+        me: 'aaaaa',
     });
 });
 
@@ -52,7 +52,7 @@ module.exports.tagsPosts = catchAsync(async (req, res, next) => {
     const posts = await PostDAO.getPostsByTag(tag);
 
     res.status(200).render('docs', {
-        posts
+        posts,
     });
 });
 
@@ -68,11 +68,11 @@ module.exports.adminUploadPost = catchAsync(async (req, res, next) => {
     const busboy = new Busboy({ headers: req.headers });
     const fileToSave = {
         title: '',
-        text: ''
+        text: '',
     };
 
     busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-        file.on('data', function(data) {
+        file.on('data', function (data) {
             fileToSave.text += data;
         });
     });

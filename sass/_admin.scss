@@ -1,3 +1,64 @@
 .admin {
     @include contentBox;
+    &__form {
+        padding: 0 1rem;
+
+        &--title {
+            width: 100%;
+            font-size: $font-medium;
+            padding: 5px;
+            outline: none;
+            border: 2px solid $color-grey-light;
+            margin-bottom: 2rem;
+        }
+        &--upload {
+            display: block;
+            margin-bottom: 2rem;
+        }
+        &--submit {
+            outline: none;
+        }
+    }
+
+    &__box {
+        // padding: 0 10%;
+        border: 2px solid $color-grey-light;
+        border-radius: 2px;
+        margin-bottom: 2rem;
+        form {
+            display: flex;
+            flex-direction: row;
+            padding: 0 1rem;
+        }
+        &--input {
+            order: 2;
+            width: 100%;
+            font-size: $font-medium;
+            padding: 5px;
+            outline: none;
+            border: none;
+            background: transparent;
+        }
+
+        &--submit {
+            order: 1;
+            outline: none;
+            svg {
+                display: inline-block;
+                height: 2rem;
+                width: 2rem;
+                fill: $color-black;
+            }
+        }
+
+        &--reset {
+            order: 4;
+        }
+
+        &--loading {
+            order: 3;
+            align-self: center;
+            margin-right: 1rem;
+        }
+    }
 }

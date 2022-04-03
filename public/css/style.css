@@ -79,6 +79,50 @@ body {
   background-color: #fff;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   padding: 4rem; }
+  .admin__form {
+    padding: 0 1rem; }
+    .admin__form--title {
+      width: 100%;
+      font-size: 1.8rem;
+      padding: 5px;
+      outline: none;
+      border: 2px solid #ccc;
+      margin-bottom: 2rem; }
+    .admin__form--upload {
+      display: block;
+      margin-bottom: 2rem; }
+    .admin__form--submit {
+      outline: none; }
+  .admin__box {
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    margin-bottom: 2rem; }
+    .admin__box form {
+      display: flex;
+      flex-direction: row;
+      padding: 0 1rem; }
+    .admin__box--input {
+      order: 2;
+      width: 100%;
+      font-size: 1.8rem;
+      padding: 5px;
+      outline: none;
+      border: none;
+      background: transparent; }
+    .admin__box--submit {
+      order: 1;
+      outline: none; }
+      .admin__box--submit svg {
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+        fill: #222; }
+    .admin__box--reset {
+      order: 4; }
+    .admin__box--loading {
+      order: 3;
+      align-self: center;
+      margin-right: 1rem; }
 
 .alert {
   display: none;
