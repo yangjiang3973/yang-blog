@@ -24,6 +24,8 @@
         &--submit {
             order: 1;
             outline: none;
+            border: none;
+            background: transparent;
             svg {
                 display: inline-block;
                 height: 2rem;

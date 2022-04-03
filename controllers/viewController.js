@@ -1,6 +1,7 @@
 const Busboy = require('busboy');
 const showdown = require('showdown');
 const converter = new showdown.Converter();
+const highlight = require('highlight.js');
 const PostDAO = require('../dao/postDAO');
 const UserDAO = require('../dao/userDAO');
 const CommentDAO = require('../dao/commentDAO');

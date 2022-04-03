@@ -623,7 +623,9 @@ body {
       background: transparent; }
     .search__box--submit {
       order: 1;
-      outline: none; }
+      outline: none;
+      border: none;
+      background: transparent; }
       .search__box--submit svg {
         display: inline-block;
         height: 2rem;

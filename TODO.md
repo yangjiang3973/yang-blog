@@ -456,13 +456,19 @@ Write on my own platform. Use other’s platforms to get more reach
 
 1. reorganize the thoughts about each feature of my blog.
 
-    a. how to save post to DB and load from DB(This is not a static site)
+    a. (DONE)how to save post to DB and load from DB(This is not a static site)
     disable `protect` controller and go to admin page directly
     (DONE): need to polish this page and upload a file
     (DONE): writing the scss file of admin page
-    b. better markdown to html
-    c. code hightlight
-    d. disable comment for now
-    disable search now
+    b. (DONE)better markdown to html
+    now, convert md to html, then save to db.
+    c. (DONE)code hightlight
+    bundle the hightlight.js to my own bundle.js?
+    I am using parcel, and how to bundle this package by it
+    PS: do not highlight on server side.
+    d. (DONE)disable comment for now
+    (DONE)disable search now
     -----test locally
-    e. deployment: learn github's blog function, netlify, maintain node app with DB?
+    e. (IN PROGRESS) deployment: learn github's blog function, netlify, maintain node app with DB?
+    f. slugify the link
+    g. seo

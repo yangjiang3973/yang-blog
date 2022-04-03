@@ -1,4 +1,6 @@
 import '@babel/polyfill';
+import hljs from 'highlight.js';
+hljs.highlightAll();
 import { login, loginByGithub, register, logout } from './login';
 import { updateEmail, updateName, updatePassword } from './accountSetting';
 import { commentSubmit } from './comment';
@@ -14,7 +16,7 @@ function init() {
     if (loginForm) {
         loginForm.addEventListener(
             'submit',
-            e => {
+            (e) => {
                 e.preventDefault();
                 login();
             },
@@ -26,7 +28,7 @@ function init() {
     if (registerForm) {
         registerForm.addEventListener(
             'submit',
-            e => {
+            (e) => {
                 e.preventDefault();
                 register();
             },
@@ -38,7 +40,7 @@ function init() {
     if (logoutButton) {
         logoutButton.addEventListener(
             'click',
-            e => {
+            (e) => {
                 e.preventDefault();
                 logout();
             },
@@ -50,7 +52,7 @@ function init() {
     if (commentButton)
         commentButton.addEventListener(
             'click',
-            e => {
+            (e) => {
                 e.preventDefault();
                 commentSubmit();
             },
@@ -62,7 +64,7 @@ function init() {
         const flyoutBody = document.getElementById('flyout-body');
         document.body.addEventListener(
             'click',
-            e => {
+            (e) => {
                 // e.preventDefault();  // will prevent other element's click events
                 flyoutBody.classList.remove('flyout__open');
             },
@@ -70,7 +72,7 @@ function init() {
         );
         flyoutToggle.addEventListener(
             'click',
-            e => {
+            (e) => {
                 e.stopPropagation();
                 flyoutBody.classList.toggle('flyout__open');
             },
@@ -78,7 +80,7 @@ function init() {
         );
         flyoutBody.addEventListener(
             'click',
-            e => {
+            (e) => {
                 e.stopPropagation();
             },
             false
@@ -97,7 +99,7 @@ function init() {
     if (editPasswordForm)
         editPasswordForm.addEventListener(
             'submit',
-            e => {
+            (e) => {
                 e.preventDefault();
                 updatePassword();
             },
