@@ -434,3 +434,189 @@ now students can join this course by themselves.
 ok, that's all for todays's topic.
 
 You have learned all basic operations and almost completed this course.
+
+# video 4
+
+site backup?? should I include this part?
+or is there a quick way, like make s snapshot of server? diff between snapshot and backup?
+PS: do not include this part. only I need to know.
+make a snapshot and keep overwrite the old ones.
+only when make important changes or immigration, then need to backup
+
+0. TODO: course template!!!!
+
+bulk upload can set default course values!
+
+category id is on the url link when you click it!
+
+course template is actually implemented by using other features:
+https://docs.moodle.org/311/en/Adding_a_new_course#Course_templates
+
+write a document for this! copy from moodle doc!
+
+1. course backup and restore
+
+since you are a teacher, you do not have the permission to copy and save student's info.
+
+if you want to save everything, ask the admin to do it for you.
+
+restore: add as a new course or merge into an existing course
+
+2. copy course
+
+PS: i need to implement Cron....
+make Cron run every minute
+The scheduled task asynchronous_copy_task is enabled
+
+3. forum
+
+# video script:
+
+Welcome back!
+
+In this video,
+
+I am going to show you a new feature that can help you save a lot of time when createing many, many courses.
+
+first, you need to prepare a .csv file that includes necessary information of new courses.
+
+I have a file in my local machine.
+
+The first line shows the fields name, such as shortname, fullname and category.
+
+follow the order of fields name, I input 5 courses' information.
+
+Note, the catagary field is different. you should not use the category name literally.
+
+instead, you should use category id.
+
+Where to find it?
+
+go to site administration, courses, manage courses and categories.
+
+click the category, then at the end of url, you will see the category id
+
+[click and show the category id]
+
+Next, you need to upload this csv file to create new courses on the platform.
+
+go to site administration, courses, upload courses.
+
+select the csv file and click preview.
+
+Here you can see the list of new courses you are going to create.
+
+# template
+
+and there are 2 useful features I want to share with you.
+
+first, you can use a template for these new courses you are creating.
+
+[click question mark]
+
+this feature is under `course process`.
+
+Detailed instructions for template are in the pdf file I uploaded.
+
+second, you can add default course values.
+
+In the csv file, we only set 3 necessary fields, shortname, fullname and category.
+
+here you can set other default values for new courses.
+
+finally, click `upload courses`
+
+Now go back to the courses list, you can see new courses were created.
+
+By using this feature, you can easily create new courses in bulk with a template.
+
+# backup
+
+The next feature I am going to introduce is called `backup`.
+
+You can save a course as a file. Later restore it back to any platform based on moodle or even use it as a template.
+
+Go to the course page and click the gear button.
+
+click backup
+
+[click backup]
+
+there are 5 steps to complete backup.
+
+Because I am the admin, so I can save all things under this course.
+
+but for example, if you are a teacher, by default you don't have the permission to copy and save student's info.
+
+continue, I decide to save everything.
+
+[click next button]
+
+the file is in .mbz format.
+
+so you can share it with other platforms that are also based on moodle framework.
+
+Later I will show you how to restore a course from a .mbz format file.
+
+now, review the settings and perform backup.
+
+one copy is saved on the server and also, you can download to your local machine.
+
+in the future, you can restore this course at any time.
+
+go to Site administration -> courses -> restore course
+
+here you can restore from the file you have.
+
+I also uploaded a pdf file about backup and restore. Make sure you read it after watching this video.
+
+So much for course back and restore. see you!
+
+# launch!
+
+1. use amazon cloud service or domestic server?
+
+(DONE) use vultr
+
+2. (DONE) try Cron or other setting on demo server first.
+
+    run `/usr/bin/php /path/to/moodle/admin/cli/cron.php >/dev/null` to enable cron for moodle
+
+    the above command will only run once, you need to use crontab to run this command regularly!!
+
+    move `/usr/bin/php /path/to/moodle/admin/cli/cron.php >/dev/null` to a crontab file and run every minute
+
+    `crontab -u apache -e`
+
+3. (IN PROGRESS) is there any article about moodle release on vps? including more details to take care.
+
+reading moodle docs about installing...
+
+`https://docs.moodle.org/400/en/Installing_Moodle`
+
+4. backup the site?(especially before any change). use instance snapshot or other methods?
+
+what is snopshot and how to use it?
+
+three things to backup:
+
+    a. moodledata folder.
+    b. MySQL DB
+    c. moodle code(optional if no changes in code)
+
+write a script to regularly backup? or make a tool to ask admin to backup? like install `Adminer`
+https://docs.moodle.org/400/en/Adminer
+
+both, first backup the current moodle on my server and move to vultr's new server.
+
+and write down the workflow.
+
+5. prevent server from random login trials and maybe more protection
+
+and other security settings
+
+`The best security strategy is a good backup! But you don't have a good backup unless you are able to restore it. Test your restoration procedures!`
+
+`Use https to secure all pages (not just the login page)`
+
+6. Check mail works

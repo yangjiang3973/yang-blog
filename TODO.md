@@ -436,7 +436,7 @@ learn github blog first
 
 3. make a good feed for subscripbe blog and make its UI like zhihu? or other website's UI
 
-4. make my block compatible with other feed
+4. make my blog compatible with other feed
 
 5. launch a static first, delpoy it, then continuous deliver a better version
 
@@ -469,6 +469,15 @@ Write on my own platform. Use other’s platforms to get more reach
     d. (DONE)disable comment for now
     (DONE)disable search now
     -----test locally
-    e. (IN PROGRESS) deployment: learn github's blog function, netlify, maintain node app with DB?
+    e. (NO) deployment: learn github's blog function, `netlify`, maintain node app with DB?
+    my blog has a DB and is not a static website
     f. slugify the link
     g. seo
+
+# 2022-06-09
+
+1. (TODO) learn parcel. How does `highlight.js` get bundled?
+
+is it possible to replace parcel?? maybe webpack or vite?
+
+2. each time, fix one bug or improve one feature.
