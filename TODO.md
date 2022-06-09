@@ -481,3 +481,5 @@ Write on my own platform. Use other’s platforms to get more reach
 is it possible to replace parcel?? maybe webpack or vite?
 
 2. each time, fix one bug or improve one feature.
+
+3. (IN PROGRESS) ship the blog now on my server!
