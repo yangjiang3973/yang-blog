@@ -90,7 +90,113 @@ pm2:
 `pm2 monit`
 `pm2 describe <name>`
 
+1. each instance need to listen to different port number? so nginx can balance load?
+   I think in a single server, no need to config different port number for node instaces.
+   pm2 already can balance traffic to each instance.
+   Only when you have multiple server with different IPs, then Nginx can be used as a load balancer
+
+2. need to hide these port number and only keep 80?
+   set firewall rules or iptables to forbid other ports.
+
+deploy my blog in the domestic server, and migrate later.
+
+nginx: `/usr/local/lighthouse/softwares/nginx/conf/nginx.conf`
+
+(DONE)get git
+(DONE)get pm2
+mongodb
+`sudo nano /etc/yum.repos.d/mongodb-org.repo`
+
+```r
+[mongodb-org]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.4/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc
+```
+
+`dnf repolist`
+`sudo dnf install mongodb-org`
+to disables Transparent Huge Pages (THP):
+`sudo nano /etc/systemd/system/disable-thp.service`
+
+```r
+[Unit]
+Description=Disable Transparent Huge Pages (THP)
+After=sysinit.target local-fs.target
+Before=mongod.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo never | tee /sys/kernel/mm/transparent_hugepage/enabled > /dev/null'
+
+[Install]
+WantedBy=basic.target
+```
+
+`sudo systemctl daemon-reload`
+`sudo systemctl start disable-thp.service`
+
+`chown -R mongod:mongod /var/lib/mongo/` (maybe already in correct mod)
+`chown mongod:mongod /tmp/mongodb-27017.sock`
+`sudo systemctl start mongod`
+`sudo systemctl enable mongod`(using MongoDB as a permanent feature, you can set it to run at boot)
+
+Create MongoDB Admin User:
+`mongo`
+`use admin`
+
+```s
+db.createUser(
+ {
+ user: "yang",
+ pwd: "Jy199172238~",
+ roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+ }
+ )
+```
+
+```S
+{
+        "_id" : "admin.yang",
+        "userId" : UUID("3e4069b7-81d6-4ca1-84bf-edc3c06a5689"),
+        "user" : "yang",
+        "db" : "admin",
+        "roles" : [
+                {
+                        "role" : "userAdminAnyDatabase",
+                        "db" : "admin"
+                }
+        ],
+        "mechanisms" : [
+                "SCRAM-SHA-1",
+                "SCRAM-SHA-256"
+        ]
+}
+```
+
+Configure MongoDB Authentication:
+
+`sudo nano /lib/systemd/system/mongod.service`
+change `Environment="OPTIONS=--f /etc/mongod.conf"` to `Environment="OPTIONS= --auth -f /etc/mongod.conf"`
+
+`sudo systemctl daemon-reload`
+`sudo systemctl restart mongod`
+
+`mongo`
+`use admin`
+`show users`(without auth will get an error mesg)
+
+```s
+db.auth(`mdbadmin`, `password`)
+```
+
+(watch out the smart quote!)
+
 (IN PROGRESS)
 
-1. each instance need to listen to different port number? so nginx can balance load?
-2. need to hide these port number and only keep 80?
+auth in mongodb??
+I create a user as admin before, but cannot execute command in new db, such as `example_db`.
+(not authorized on example_db....)
+(`db.Sample.insert({"SampleValue1" : 255, "SampleValue2" : "randomStringOfText"})`)
