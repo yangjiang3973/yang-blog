@@ -152,29 +152,12 @@ db.createUser(
  {
  user: "yang",
  pwd: "Jy199172238~",
- roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+ roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
  }
  )
 ```
 
-```S
-{
-        "_id" : "admin.yang",
-        "userId" : UUID("3e4069b7-81d6-4ca1-84bf-edc3c06a5689"),
-        "user" : "yang",
-        "db" : "admin",
-        "roles" : [
-                {
-                        "role" : "userAdminAnyDatabase",
-                        "db" : "admin"
-                }
-        ],
-        "mechanisms" : [
-                "SCRAM-SHA-1",
-                "SCRAM-SHA-256"
-        ]
-}
-```
+(you can also update user by `db.updateUser(`yang`, {roles:[{ role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase"]})`)
 
 Configure MongoDB Authentication:
 
@@ -187,16 +170,10 @@ change `Environment="OPTIONS=--f /etc/mongod.conf"` to `Environment="OPTIONS= --
 `mongo`
 `use admin`
 `show users`(without auth will get an error mesg)
-
-```s
-db.auth(`mdbadmin`, `password`)
-```
-
+`db.auth(`mdbadmin`, `password`)` to get auth
 (watch out the smart quote!)
 
-(IN PROGRESS)
-
-auth in mongodb??
-I create a user as admin before, but cannot execute command in new db, such as `example_db`.
-(not authorized on example_db....)
-(`db.Sample.insert({"SampleValue1" : 255, "SampleValue2" : "randomStringOfText"})`)
+(reference:
+https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-centos-8
+https://www.digitalocean.com/community/tutorials/how-to-secure-mongodb-on-centos-8
+)
