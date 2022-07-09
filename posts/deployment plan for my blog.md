@@ -151,7 +151,7 @@ Create MongoDB Admin User:
 db.createUser(
  {
  user: "yang",
- pwd: "Jy199172238~",
+ pwd: "J**********~",
  roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
  }
  )
