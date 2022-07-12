@@ -102,9 +102,9 @@ deploy my blog in the domestic server, and migrate later.
 
 nginx: `/usr/local/lighthouse/softwares/nginx/conf/nginx.conf`
 
-(DONE)get git
-(DONE)get pm2
-mongodb
+(DONE) get git
+(DONE) get pm2
+(DONE) mongodb
 `sudo nano /etc/yum.repos.d/mongodb-org.repo`
 
 ```r
@@ -177,3 +177,39 @@ change `Environment="OPTIONS=--f /etc/mongod.conf"` to `Environment="OPTIONS= --
 https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-centos-8
 https://www.digitalocean.com/community/tutorials/how-to-secure-mongodb-on-centos-8
 )
+
+(IN PROGRESS) upload and run my project first time
+
+1. (DONE) which location should I create my project folder?
+   `/var/yang-blog`
+
+2. (IN PROGRESS) config.env is not included on github? how to deal with this file in production mode?
+   a `.env` file is only for local development mode.
+   In production mode, there shouldn't be any static file containing keys and passwords???
+   No, I do not think so.
+   I should write sensitive environment variables into system level's config file.
+   use `systemd` to manage environment variables?
+   what is the difference between keep envirment variables in `.env` and another file.
+   NOTE: use `.env` for now, and keep doing research later.(TODO)
+   (`https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-environment-variables-in-linux/`)
+   (`https://linuxize.com/post/how-to-set-and-list-environment-variables-in-linux/`)
+
+    `printenv PATH`
+    `printenv`
+
+    create shell variable(not env):
+    `MY_VAR='Linuxize'` (no space)
+    `echo $MY_VAR`
+    `printenv MY_VAR`(of course no output)
+    convert shell variable to env:
+    `export MY_VAR`
+
+    The printenv and env commands print only the environment variables.
+    If you want to get a list of all variables,
+    including environment, shell and variables, and shell functions you can use the set command:
+
+3.
+
+(TODO) config nginx and other tools to run together
+(TODO) CI/CD travis or jenkins like toolkit team at least (And other devops workflow)
+(TODO) update packages that have vulnerabilities. (`npm audit fix`?)
