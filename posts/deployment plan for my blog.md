@@ -183,7 +183,7 @@ https://www.digitalocean.com/community/tutorials/how-to-secure-mongodb-on-centos
 1. (DONE) which location should I create my project folder?
    `/var/yang-blog`
 
-2. (IN PROGRESS) config.env is not included on github? how to deal with this file in production mode?
+2. (DONE) config.env is not included on github? how to deal with this file in production mode?
    a `.env` file is only for local development mode.
    In production mode, there shouldn't be any static file containing keys and passwords???
    No, I do not think so.
@@ -231,10 +231,20 @@ https://www.digitalocean.com/community/tutorials/how-to-secure-mongodb-on-centos
     `db.getSiblingDB("admin").grantRolesToUser( "yang", [ { role: "dbOwner", db: "blog" } ] )`
     (`https://stackoverflow.com/questions/65189390/mongodb-give-user-access-to-specific-database`)
 
-    (IN PROGRESS) `MongoError: ns does not exist`
+    (DONE) `MongoError: ns does not exist`
     maybe because the collection does not exist
     should a collection of db be setup before production or while app launching?
 
-(TODO) config nginx and other tools to run together
+(DONE) config nginx and other tools to run together
+comment out the last line of nginx defualt config file: `include include/*.conf`
+because it may load other unexpected file right now.
+remember to recover it after removing template page. (TODO)
+
+(TODO) app can come back after server restarts.
+
 (TODO) CI/CD travis or jenkins like toolkit team at least (And other devops workflow)
+
+1. after I commit my code to github, it will generate a new version and deployment to production server.
+   (Advanced: split master branch and dev branch, only major changes will trigger new build)
+
 (TODO) update packages that have vulnerabilities. (`npm audit fix`?)
