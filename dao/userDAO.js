@@ -10,20 +10,41 @@ const usersSchema = require('./usersSchema');
 let usersCollection; // collections
 
 class UserDAO {
-    static async injectDB(conn) {
+    static async injectDB(conn, collectionNames) {
         if (usersCollection) {
             return;
         }
         try {
-            usersCollection = await conn.db('blog').collection('users');
-            await conn.db('blog').command({
-                collMod: 'users',
-                validator: {
-                    $jsonSchema: usersSchema,
-                },
-                validationLevel: 'strict',
-                validationAction: 'error',
-            });
+            // check if collection exists in db
+            let existFlag = false;
+            for (let i = 0; i < collectionNames.length; i++) {
+                if (collectionNames[i].name === 'users') {
+                    existFlag = true;
+                    break;
+                }
+            }
+            // create collection
+            if (existFlag === false) {
+                usersCollection = await conn
+                    .db('blog')
+                    .createCollection('users', {
+                        validator: {
+                            $jsonSchema: usersSchema,
+                        },
+                        validationLevel: 'strict',
+                        validationAction: 'error',
+                    });
+            } else {
+                usersCollection = await conn.db('blog').collection('users');
+                await conn.db('blog').command({
+                    collMod: 'users',
+                    validator: {
+                        $jsonSchema: usersSchema,
+                    },
+                    validationLevel: 'strict',
+                    validationAction: 'error',
+                });
+            }
         } catch (e) {
             console.error(
                 `Unable to establish a collection handle in userDAO: ${e}`

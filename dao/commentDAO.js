@@ -5,20 +5,43 @@ const commentsSchema = require('./commentsSchema');
 let commentsCollection; // collections
 
 class CommentDAO {
-    static async injectDB(conn) {
+    static async injectDB(conn, collectionNames) {
         if (commentsCollection) {
             return;
         }
         try {
-            commentsCollection = await conn.db('blog').collection('comments');
-            await conn.db('blog').command({
-                collMod: 'comments',
-                validator: {
-                    $jsonSchema: commentsSchema,
-                },
-                validationLevel: 'strict',
-                validationAction: 'error',
-            });
+            // check if collection exists in db
+            let existFlag = false;
+            for (let i = 0; i < collectionNames.length; i++) {
+                if (collectionNames[i].name === 'comments') {
+                    existFlag = true;
+                    break;
+                }
+            }
+            // create collection
+            if (existFlag === false) {
+                commentsCollection = await conn
+                    .db('blog')
+                    .createCollection('comments', {
+                        validator: {
+                            $jsonSchema: commentsSchema,
+                        },
+                        validationLevel: 'strict',
+                        validationAction: 'error',
+                    });
+            } else {
+                commentsCollection = await conn
+                    .db('blog')
+                    .collection('comments');
+                await conn.db('blog').command({
+                    collMod: 'comments',
+                    validator: {
+                        $jsonSchema: commentsSchema,
+                    },
+                    validationLevel: 'strict',
+                    validationAction: 'error',
+                });
+            }
         } catch (e) {
             console.error(
                 `Unable to establish a collection handle in commentDAO: ${e}`

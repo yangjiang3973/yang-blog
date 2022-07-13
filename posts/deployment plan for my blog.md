@@ -208,7 +208,32 @@ https://www.digitalocean.com/community/tutorials/how-to-secure-mongodb-on-centos
     If you want to get a list of all variables,
     including environment, shell and variables, and shell functions you can use the set command:
 
-3.
+3. connct to mongodb:
+   (DONE) problem1: cannot use URI to connect to mongodb. need to add `?authSource=admin` at the end
+
+    (DONE) problem2: cannot use db `blog`.
+    `UserNotFound: Could not find user "yang" for db "blog"`
+
+    ```s
+    db.createUser(
+    {
+    user: "yang",
+    pwd: "J**********~",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+    }
+    )
+    ```
+
+    `yang` is just an admin account in db called `admin`, and can access all db's user info that is stored in `admin`
+
+    so need to add it to other dbs as a user? but what is `"readWriteAnyDatabase"`?? is it useless? need to do research(TODO)
+
+    `db.getSiblingDB("admin").grantRolesToUser( "yang", [ { role: "dbOwner", db: "blog" } ] )`
+    (`https://stackoverflow.com/questions/65189390/mongodb-give-user-access-to-specific-database`)
+
+    (IN PROGRESS) `MongoError: ns does not exist`
+    maybe because the collection does not exist
+    should a collection of db be setup before production or while app launching?
 
 (TODO) config nginx and other tools to run together
 (TODO) CI/CD travis or jenkins like toolkit team at least (And other devops workflow)

@@ -8,20 +8,41 @@ const postsSchema = require('./postsSchema');
 let postsCollection; // collections
 
 class PostsDAO {
-    static async injectDB(conn) {
+    static async injectDB(conn, collectionNames) {
         if (postsCollection) {
             return;
         }
         try {
-            postsCollection = await conn.db('blog').collection('posts');
-            await conn.db('blog').command({
-                collMod: 'posts',
-                validator: {
-                    $jsonSchema: postsSchema,
-                },
-                validationLevel: 'strict',
-                validationAction: 'error',
-            });
+            // check if collection exists in db
+            let existFlag = false;
+            for (let i = 0; i < collectionNames.length; i++) {
+                if (collectionNames[i].name === 'posts') {
+                    existFlag = true;
+                    break;
+                }
+            }
+            // create collection
+            if (existFlag === false) {
+                postsCollection = await conn
+                    .db('blog')
+                    .createCollection('posts', {
+                        validator: {
+                            $jsonSchema: postsSchema,
+                        },
+                        validationLevel: 'strict',
+                        validationAction: 'error',
+                    });
+            } else {
+                postsCollection = await conn.db('blog').collection('posts');
+                await conn.db('blog').command({
+                    collMod: 'posts',
+                    validator: {
+                        $jsonSchema: postsSchema,
+                    },
+                    validationLevel: 'strict',
+                    validationAction: 'error',
+                });
+            }
         } catch (error) {
             console.error(
                 `Unable to establish a collection handle in postDAO: ${error}`

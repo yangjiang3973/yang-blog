@@ -16,7 +16,7 @@ const CommentDAO = require('./dao/commentDAO');
 let url;
 if (process.env.NODE_ENV === 'development') url = 'mongodb://localhost:27017';
 else url = process.env.DB_URL.replace('<PASSWORD>', process.env.DB_PASSWORD);
-
+url = `mongodb://yang:Jy199172238~@localhost:27017/blog?authSource=admin`;
 let server;
 MongoClient.connect(url, {
     useUnifiedTopology: true,
@@ -25,9 +25,13 @@ MongoClient.connect(url, {
     wtimeout: 2500,
 })
     .then(async (client) => {
-        await PostDAO.injectDB(client);
-        await UserDAO.injectDB(client);
-        await CommentDAO.injectDB(client);
+        const collectionNames = await client
+            .db('blog')
+            .listCollections({}, { nameOnly: true })
+            .toArray();
+        await PostDAO.injectDB(client, collectionNames);
+        await UserDAO.injectDB(client, collectionNames);
+        await CommentDAO.injectDB(client, collectionNames);
         server = app.listen(process.env.PORT, () => {
             console.log(
                 `listening on port 4000 in ${process.env.NODE_ENV} mode`
