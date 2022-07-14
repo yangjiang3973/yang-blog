@@ -252,9 +252,30 @@ remember to recover it after removing template page. (TODO)
 3. make sure other tools also restart, including mongodb and nginx:
    for example `systemctl enable mongod` will run mongod as a service when the server starts
 
-(TODO) CI/CD travis or jenkins like toolkit team at least (And other devops workflow)
+(TODO) CI/CD `travis` or `jenkins` like toolkit team at least (And other devops workflow)
 
-1. after I commit my code to github, it will generate a new version and deployment to production server.
-   (Advanced: split master branch and dev branch, only major changes will trigger new build)
+After I commit my code to github, it will generate a new version and deployment to production server.
+(Advanced: split master branch and dev branch, only major changes will trigger new build)
 
+CI: Continuous Integration. compile code and bundle. common tools includes Github CI and Jenkins and so on...
+
+CD: Continuous Deployment or Delivery. deployment new release on testing env or production env. common tools includes Docker, k8s and so on.
+
+NOTE: make a general plan after reading some articles!
+
+(IN PROGRESS) learn Github CI
+
+try github action first before Jenkins.
+
+(IN PROGRESS) learn `Jenkins`
+
+1. install Jenkins
+   To restart jenkins-lts after an upgrade:
+   `brew services restart jenkins-lts`
+   Or, if you don't want/need a background service you can just run:
+   `/usr/local/opt/openjdk@11/bin/java -Dmail.smtp.starttls.enable=true -jar /usr/local/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress=127.0.0.1 --httpPort=8080`
+
+---
+
+(TODO) use docker for my app
 (TODO) update packages that have vulnerabilities. (`npm audit fix`?)
