@@ -189,6 +189,7 @@ https://www.digitalocean.com/community/tutorials/how-to-secure-mongodb-on-centos
    No, I do not think so.
    I should write sensitive environment variables into system level's config file.
    use `systemd` to manage environment variables?
+   `In development, you typically set environment variables in your interactive shell, for example by using export or your .bash_profile file. But in general you shouldn’t do that on a production server; instead, use your OS’s init system (systemd or Upstart)` -- from expressjs website
    what is the difference between keep envirment variables in `.env` and another file.
    NOTE: use `.env` for now, and keep doing research later.(TODO)
    (`https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-set-environment-variables-in-linux/`)
@@ -240,7 +241,16 @@ comment out the last line of nginx defualt config file: `include include/*.conf`
 because it may load other unexpected file right now.
 remember to recover it after removing template page. (TODO)
 
-(TODO) app can come back after server restarts.
+(DONE) app can come back automatically after server restarts.
+
+1. restart app when a critical error occurs on application level(pm2)
+2. restart pm2 when server crush by init system:
+   (config init system, such as `systemd` or `upstart`)
+   `pm2 startup` (will detect systemd or other default init tool and add service by itself)
+   `pm2 save`
+   (`https://www.tecmint.com/enable-pm2-to-auto-start-node-js-app/`)
+3. make sure other tools also restart, including mongodb and nginx:
+   for example `systemctl enable mongod` will run mongod as a service when the server starts
 
 (TODO) CI/CD travis or jenkins like toolkit team at least (And other devops workflow)
 
