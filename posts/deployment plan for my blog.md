@@ -277,5 +277,7 @@ try github action first before Jenkins.
 
 ---
 
+(TODO) build front end by vite?
 (TODO) use docker for my app
 (TODO) update packages that have vulnerabilities. (`npm audit fix`?)
+(TODO) add testcases!
