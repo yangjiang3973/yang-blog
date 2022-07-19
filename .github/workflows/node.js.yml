@@ -33,16 +33,17 @@ jobs:
               run: ls -a
             - name: SSH vps and get code
               uses: appleboy/ssh-action@master
-              host: ${{ secrets.HOST }}
-              username: ${{ secrets.USERNAME }}
-              password: ${{ secrets.PASSWORD }}
-              port: 22
-              script: |
-                  cd /var/yang-blog
-                  git pull origin master
-                  git status
-                  npm install
-                  pm2 restart all
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  password: ${{ secrets.PASSWORD }}
+                  port: 22
+                  script: |
+                      cd /var/yang-blog
+                      git pull origin master
+                      git status
+                      npm install
+                      pm2 restart all
 
         # - run: npm run build --if-present
         # - run: npm test
