@@ -252,7 +252,7 @@ remember to recover it after removing template page. (TODO)
 3. make sure other tools also restart, including mongodb and nginx:
    for example `systemctl enable mongod` will run mongod as a service when the server starts
 
-(TODO) CI/CD `travis` or `jenkins` like toolkit team at least (And other devops workflow)
+(DONE) CI/CD `travis` or `jenkins` like toolkit team at least (And other devops workflow)
 
 After I commit my code to github, it will generate a new version and deployment to production server.
 (Advanced: split master branch and dev branch, only major changes will trigger new build)
@@ -263,11 +263,13 @@ CD: Continuous Deployment or Delivery. deployment new release on testing env or 
 
 NOTE: make a general plan after reading some articles!
 
-(IN PROGRESS) learn Github CI
+(DONE) learn Github CI
 
 try github action first before Jenkins.
 
-(IN PROGRESS) learn `Jenkins`
+setup `basic` CI/CD by github actions.
+
+(DONE) learn `Jenkins`
 
 1. install Jenkins
    To restart jenkins-lts after an upgrade:
@@ -275,9 +277,20 @@ try github action first before Jenkins.
    Or, if you don't want/need a background service you can just run:
    `/usr/local/opt/openjdk@11/bin/java -Dmail.smtp.starttls.enable=true -jar /usr/local/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress=127.0.0.1 --httpPort=8080`
 
+(DONE) github actions is enough for now.
+
 ---
+
+(TODO) update packages that have vulnerabilities. (`npm audit fix`?)
+how to update dependencies regularly?
+how to update a dependency that has vulnerabilities?
+
+use github `dependabot`
+
+1. (IN PROGRESS) read github docs
+2. (TODO) config the plan of dependencies update: `dependabot.yml`
 
 (TODO) build front end by vite?
 (TODO) use docker for my app
-(TODO) update packages that have vulnerabilities. (`npm audit fix`?)
 (TODO) add testcases!
+(TODO) use Vue+TS on server side rendering? and learn a new framework, such as nestjs?
