@@ -38,7 +38,7 @@
         "instantsearch.js": "^4.7.0",
         "jsonwebtoken": "^8.5.1",
         "mongodb": "^3.5.8",
-        "nodemailer": "^6.4.8",
+        "nodemailer": "^6.7.7",
         "showdown": "^1.9.1",
         "validator": "^13.1.1",
         "xss-clean": "^0.1.1"
