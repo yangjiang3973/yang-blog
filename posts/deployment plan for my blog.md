@@ -294,3 +294,4 @@ use github `dependabot`
 (TODO) use docker for my app
 (TODO) add testcases!
 (TODO) use Vue+TS on server side rendering? and learn a new framework, such as nestjs?
+(TODO) branches and version management of this project (only master and dev now)
