@@ -22,7 +22,7 @@
     },
     "homepage": "https://github.com/yangjiang3973/yang-blog#readme",
     "dependencies": {
-        "algoliasearch": "^4.3.0",
+        "algoliasearch": "^4.14.3",
         "axios": "^0.19.2",
         "bcryptjs": "^2.4.3",
         "busboy": "^1.6.0",
